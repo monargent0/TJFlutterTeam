@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tabbar_bmi_app/dongwon.dart';
 import 'package:tabbar_bmi_app/jungeun.dart';
 
 import 'main_sy.dart';
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage>
       // ),
       body: TabBarView(
         controller: controller,
-        children: const [JungEun(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
+        children: const [BMIPage(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
         color: Colors.deepOrange[200],
