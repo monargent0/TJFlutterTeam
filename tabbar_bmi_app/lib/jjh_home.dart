@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
             children: [
               const CircleAvatar(
                 backgroundImage: AssetImage(
-                  'images/JEbmi.png',
+                  'images/bmi.png',
                   ),radius: 100,
                 
               ),
