@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'main_sy.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -51,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
       body: TabBarView(
         controller: controller,
-        children: const [동원 , 상아, 수연, 재환, 정은],
+        children: const [동원 , 상아, sybmi(), 재환, 정은],
       ),
       bottomNavigationBar: Container(
         color: Colors.deepOrange[200],
