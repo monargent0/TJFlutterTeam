@@ -28,7 +28,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   // property
   late TabController controller;
 
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   void dispose() {
     controller.dispose();
     super.dispose();
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,35 +69,35 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 Icons.looks_one,
                 color: Colors.green,
               ),
-              text: "동원",
+              text: "One",
             ),
             Tab(
               icon: Icon(
                 Icons.looks_two,
                 color: Colors.blue,
               ),
-              text: '상아',
+              text: 'Two',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
+                Icons.looks_3,
                 color: Colors.blue,
               ),
-              text: '수연',
+              text: 'Two',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
+                Icons.looks_4,
                 color: Colors.blue,
               ),
-              text: '재환',
+              text: 'Two',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
+                Icons.looks_5,
                 color: Colors.blue,
               ),
-              text: '정은',
+              text: 'Two',
             ),
           ],
         ),
