@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tabbar_bmi_app/jung_home.dart';
 import 'package:tabbar_bmi_app/jungeun.dart';
 
+import 'main_sy.dart';
+
 void main() {
   runApp(const MyApp());
 }
