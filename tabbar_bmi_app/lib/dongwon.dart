@@ -38,15 +38,15 @@ class _BMIPageState extends State<BMIPage> {
                 int.parse(height.text.trim()) /
                 10000));
         if (bmi < 18.5) {
-          imageName = '0.png';
+          imageName = 'd-0.png';
         } else if (bmi < 24.9) {
-          imageName = '1.png';
+          imageName = 'd-1.png';
         } else if (bmi < 29.9) {
-          imageName = '2.png';
+          imageName = 'd-2.png';
         } else if (bmi < 34.9) {
-          imageName = '3.png';
+          imageName = 'd-3.png';
         } else {
-          imageName = '4.png';
+          imageName = 'd-4.png';
         }
       }
     });
@@ -83,7 +83,7 @@ class _BMIPageState extends State<BMIPage> {
             const SizedBox(
               height: 40,
             ),
-            if (imageName == 'main.png') ...[
+            if (imageName == 'd-main.png') ...[
               Image.asset('images/$imageName')
             ] else ...[
               Row(
