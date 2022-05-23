@@ -66,14 +66,35 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 Icons.looks_one,
                 color: Colors.green,
               ),
-              text: "One",
+              text: "동원",
             ),
             Tab(
               icon: Icon(
                 Icons.looks_two,
                 color: Colors.blue,
               ),
-              text: 'Two',
+              text: '상아',
+            ),
+            Tab(
+              icon: Icon(
+                Icons.looks_two,
+                color: Colors.blue,
+              ),
+              text: '수연',
+            ),
+            Tab(
+              icon: Icon(
+                Icons.looks_two,
+                color: Colors.blue,
+              ),
+              text: '재환',
+            ),
+            Tab(
+              icon: Icon(
+                Icons.looks_two,
+                color: Colors.blue,
+              ),
+              text: '정은',
             ),
           ],
         ),
