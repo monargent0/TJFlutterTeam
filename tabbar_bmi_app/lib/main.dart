@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tabbar_bmi_app/jjh_main.dart';
 
 import 'main_sy.dart';
 
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       body: TabBarView(
         controller: controller,
         children: const [
-          
+          JJH()
         ],
       ),
       bottomNavigationBar: Container(

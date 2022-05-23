@@ -1,5 +1,6 @@
-import 'package:bmi_app/message.dart';
+
 import 'package:flutter/material.dart';
+import 'package:tabbar_bmi_app/jjh_message.dart';
 
 class Result extends StatefulWidget {
   const Result({Key? key}) : super(key: key);
