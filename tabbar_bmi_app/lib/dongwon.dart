@@ -23,7 +23,7 @@ class _BMIPageState extends State<BMIPage> {
       ..addListener(() {
         _calc();
       });
-    imageName = 'main.png';
+    imageName = 'd-main.png';
 
     super.initState();
   }
@@ -31,7 +31,7 @@ class _BMIPageState extends State<BMIPage> {
   void _calc() {
     setState(() {
       if (height.text.trim().isEmpty | weight.text.trim().isEmpty) {
-        imageName = 'main.png';
+        imageName = 'd-main.png';
       } else {
         double bmi = (int.parse(weight.text.trim()) /
             (int.parse(height.text.trim()) *
@@ -83,6 +83,7 @@ class _BMIPageState extends State<BMIPage> {
             const SizedBox(
               height: 40,
             ),
+
             if (imageName == 'd-main.png') ...[
               Image.asset('images/$imageName')
             ] else ...[
@@ -104,7 +105,7 @@ class _BMIPageState extends State<BMIPage> {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        '${(int.parse(weight.text.trim()) / (int.parse(height.text.trim()) * int.parse(height.text.trim()) / 100000)).round() / 10}',
+                        '${(int.parse(weight.text.trim()) / ((int.parse(height.text.trim()) * int.parse(height.text.trim())) / 100000)).round() / 10}',
                         style: const TextStyle(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       )
