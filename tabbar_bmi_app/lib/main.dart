@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/jung_home.dart';
 import 'package:tabbar_bmi_app/jungeun.dart';
 
 import 'main_sy.dart';
@@ -19,6 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -50,12 +50,12 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: const Text('BMI Team'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('BMI Team'),
+      // ),
       body: TabBarView(
         controller: controller,
-        children: const [JungHome(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
+        children: const [JungEun(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
         color: Colors.deepOrange[200],

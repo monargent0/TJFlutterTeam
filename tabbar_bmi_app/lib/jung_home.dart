@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:tabbar_bmi_app/jung_input.dart';
-import 'package:tabbar_bmi_app/jung_result.dart';
 
 class JungHome extends StatelessWidget {
   const JungHome({Key? key}) : super(key: key);
 
- @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/' :(context) => const JungHome(),
-        '/input' :(context) => const Input(),
-        '/result' :(context) => const Result(),
-      },
-      // initialRoute: '/',
-      debugShowCheckedModeBanner: false,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

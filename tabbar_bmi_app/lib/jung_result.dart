@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:tabbar_bmi_app/jung_massage.dart';
 
 class Result extends StatefulWidget {

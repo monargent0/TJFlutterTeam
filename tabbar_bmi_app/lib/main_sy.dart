@@ -1,84 +1,84 @@
-import 'package:bmi_app/check.dart';
-import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/main.dart';
+// import 'package:bmi_app/check.dart';
+// import 'package:flutter/material.dart';
+// import 'package:tabbar_bmi_app/main.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-class MyWidget extends StatefulWidget {
-  const MyWidget({Key? key}) : super(key: key);
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const MyHomePage(),
+//     );
+//   }
+// }
+// class MyWidget extends StatefulWidget {
+//   const MyWidget({Key? key}) : super(key: key);
 
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
+//   @override
+//   State<MyWidget> createState() => _MyWidgetState();
+// }
 
-class _MyWidgetState extends State<MyWidget> {
-  @override
-  Widget build(BuildContext context) {
+// class _MyWidgetState extends State<MyWidget> {
+//   @override
+//   Widget build(BuildContext context) {
     
-  }
-}
-class sybmi extends StatelessWidget {
-  const sybmi({Key? key}) : super(key: key);
+//   }
+// }
+// class sybmi extends StatelessWidget {
+//   const sybmi({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My BMI'),
-        backgroundColor: Colors.green[200],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage('images/mainpage.jpeg'),
-              radius: 100,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const CheckBMI();
-                    },
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.green[400])),
-              child: const Text(
-                "Start!",
-                style: TextStyle(
-                  fontSize: 15,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('My BMI'),
+//         backgroundColor: Colors.green[200],
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const CircleAvatar(
+//               backgroundImage: AssetImage('images/mainpage.jpeg'),
+//               radius: 100,
+//             ),
+//             const SizedBox(
+//               height: 10,
+//             ),
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.push(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) {
+//                       return const CheckBMI();
+//                     },
+//                   ),
+//                 );
+//               },
+//               style: ButtonStyle(
+//                   backgroundColor:
+//                       MaterialStateProperty.all(Colors.green[400])),
+//               child: const Text(
+//                 "Start!",
+//                 style: TextStyle(
+//                   fontSize: 15,
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
