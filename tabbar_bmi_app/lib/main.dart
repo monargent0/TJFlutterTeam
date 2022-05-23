@@ -60,47 +60,47 @@ class _MyHomePageState extends State<MyHomePage>
         children: const [BMIPage(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
-        color: Colors.deepOrange[200],
+        color: Colors.lightBlue[100],
         height: 100,
         child: TabBar(
           controller: controller,
-          labelColor: Colors.redAccent,
-          indicatorColor: Colors.red,
+          labelColor: Colors.deepPurple,
+          indicatorColor: Colors.blue,
           tabs: const [
             Tab(
               icon: Icon(
                 Icons.looks_one,
-                color: Colors.green,
+                color: Colors.red,
               ),
-              text: "One",
+              text: "동원",
             ),
             Tab(
               icon: Icon(
                 Icons.looks_two,
-                color: Colors.blue,
+                color: Colors.orange,
               ),
-              text: 'Two',
+              text: '상아',
             ),
             Tab(
               icon: Icon(
                 Icons.looks_3,
-                color: Colors.blue,
+                color: Colors.yellow,
               ),
-              text: 'Two',
+              text: '수연',
             ),
             Tab(
               icon: Icon(
                 Icons.looks_4,
-                color: Colors.blue,
+                color: Colors.green,
               ),
-              text: 'Two',
+              text: '재환',
             ),
             Tab(
               icon: Icon(
                 Icons.looks_5,
                 color: Colors.blue,
               ),
-              text: 'Two',
+              text: '정은',
             ),
           ],
         ),
