@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage>
       // ),
       body: TabBarView(
         controller: controller,
-        children: const [BMIPage(), Sanga(),sybmi(),JJH(),JungEun()], //동원 , 상아, 수연, 재환, 정은
+        children: const [BMIPage(), Sanga(), Sybmi(),JJH(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
         color: Colors.lightBlue[100],

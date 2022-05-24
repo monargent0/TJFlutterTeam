@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const Sybmi(),
     );
   }
 }
 
-class sybmi extends StatelessWidget {
-  const sybmi({Key? key}) : super(key: key);
+class Sybmi extends StatelessWidget {
+  const Sybmi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
