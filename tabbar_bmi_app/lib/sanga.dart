@@ -14,19 +14,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const Sanga(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class Sanga extends StatefulWidget {
+  const Sanga({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Sanga> createState() => _SangaState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SangaState extends State<Sanga> {
   // Peroperty
   late TextEditingController heightController;
   late TextEditingController weightController;
@@ -50,42 +50,45 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: const Text('고장난 BMI 계산기'),
         ),
-        body: Column(
-          children: [
-            TextField(
-              controller: heightController,
-              decoration: const InputDecoration(
-                labelText: '신장을 입력하세요.(단위:cm)'
-                ),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              controller: weightController,
-              decoration: const InputDecoration(labelText: '몸무게를 입력하세요.(단위:kg)'),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // ---
-                 calcFunction();
-                },
-                 
-              
-              child: const Text('BMI 계산'),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            Text(calcResult,style: const TextStyle
-            (color: Colors.red,fontSize:20, fontWeight:FontWeight.bold),
-            ),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: heightController,
+                decoration: const InputDecoration(
+                  labelText: '신장을 입력하세요.(단위:cm)'
+                  ),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: weightController,
+                decoration: const InputDecoration(labelText: '몸무게를 입력하세요.(단위:kg)'),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // ---
+                   calcFunction();
+                  },
+                   
+                
+                child: const Text('BMI 계산'),
+              ),
+              const SizedBox(
+                width: 30,
+              ),
+              Text(calcResult,style: const TextStyle
+              (color: Colors.red,fontSize:20, fontWeight:FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );
