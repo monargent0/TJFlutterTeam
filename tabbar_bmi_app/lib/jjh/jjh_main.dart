@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/jjh_bmiForm.dart';
-import 'package:tabbar_bmi_app/jjh_home.dart';
-import 'package:tabbar_bmi_app/jjh_result.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_bmiForm.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_home.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_result.dart';
 
 class JJH extends StatelessWidget {
   const JJH({Key? key}) : super(key: key);

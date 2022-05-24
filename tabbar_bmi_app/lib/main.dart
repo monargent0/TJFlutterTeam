@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/jjh_main.dart';
-import 'package:tabbar_bmi_app/dongwon.dart';
-import 'package:tabbar_bmi_app/jungeun.dart';
-import 'package:tabbar_bmi_app/sanga.dart';
-
-import 'main_sy.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_main.dart';
+import 'package:tabbar_bmi_app/dongwon/dongwon.dart';
+import 'package:tabbar_bmi_app/jungeun/jungeun.dart';
+import 'package:tabbar_bmi_app/sanga/sanga.dart';
+import 'package:tabbar_bmi_app/sy/sy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage>
       // ),
       body: TabBarView(
         controller: controller,
-        children: const [BMIPage(), Sanga(), Sybmi(),JJH(),JungEun()], //동원 , 상아, 수연, 재환, 정은
+        children: const [BMIPage(), Sanga(), SY(),JJH(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
         color: Colors.lightBlue[100],

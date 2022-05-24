@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:tabbar_bmi_app/jjh_message.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_message.dart';
 
 class MeasureBmi extends StatefulWidget {
   const MeasureBmi({Key? key}) : super(key: key);

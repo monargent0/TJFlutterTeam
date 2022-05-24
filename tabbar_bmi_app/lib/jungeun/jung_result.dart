@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/jung_massage.dart';
+import 'package:tabbar_bmi_app/jungeun/jung_massage.dart';
 
-class Result extends StatefulWidget {
-  const Result({Key? key}) : super(key: key);
+class JungResult extends StatefulWidget {
+  const JungResult({Key? key}) : super(key: key);
 
   @override
-  State<Result> createState() => _ResultState();
+  State<JungResult> createState() => _JungResultState();
 }
 
-class _ResultState extends State<Result> {
+class _JungResultState extends State<JungResult> {
   // late double result;
   late TextEditingController resultT;
   late String txt;

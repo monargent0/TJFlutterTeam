@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'jung_massage.dart';
 
-class Input extends StatefulWidget {
-  const Input({Key? key}) : super(key: key);
+class JungInput extends StatefulWidget {
+  const JungInput({Key? key}) : super(key: key);
 
   @override
-  State<Input> createState() => _InputState();
+  State<JungInput> createState() => _JungInputState();
 }
 
-class _InputState extends State<Input> {
+class _JungInputState extends State<JungInput> {
   late TextEditingController kg;
   late TextEditingController tall;
 
