@@ -13,6 +13,7 @@
     String epath = request.getParameter("epath");
     String ename = request.getParameter("ename");
     String did = request.getParameter("did");
+    String eid = request.getParameter("eid");
 
     JSONObject jsonList = new JSONObject();
     JSONArray itemList = new JSONArray();
@@ -32,7 +33,8 @@
             tempJson.put("dcontent", rs.getString(1));
             tempJson.put("epath", rs.getString(2));
             tempJson.put("ename", rs.getString(3));
-            tempJson.put("did", rs.getInt(4));
+            tempJson.put("did", Integer.parseInt(rs.getInt(4)));
+            tempJson.put("eid", Integer.parseInt(rs.getInt(5)));
             itemList.add(tempJson);
         }
         jsonList.put("results", itemList);
