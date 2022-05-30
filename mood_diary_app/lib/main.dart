@@ -3,7 +3,6 @@ import 'package:mood_diary_app/view/dailylist.dart';
 import 'package:mood_diary_app/view/dailycontent.dart';
 import 'package:mood_diary_app/view/login.dart';
 import 'package:mood_diary_app/view/register.dart';
-import 'package:mood_diary_app/view/signin.dart';
 
 void main() {
   runApp(const MyApp());
