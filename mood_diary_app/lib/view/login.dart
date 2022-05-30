@@ -19,6 +19,39 @@ class _LoginState extends State<Login> {
         backgroundColor: Colors.brown[100],
         elevation: 0,
       ),
+      body: Column(
+         children: [
+           CircleAvatar(
+             backgroundImage: AssetImage('images/happy.png'),
+             radius: 80,
+           ),
+           CircleAvatar(
+             backgroundImage: AssetImage('images/bad.png'),
+             radius: 80,
+           ),
+           CircleAvatar(
+             backgroundImage: AssetImage('images/perfect.png'),
+             radius: 80,
+             
+           ),
+           CircleAvatar(
+             backgroundImage: AssetImage('images/sad.png' ),
+             radius: 80,
+           ),
+          //  CircleAvatar(
+          //    backgroundImage: AssetImage('images/sick.png'),
+          //    radius: 80,
+          //  ),
+          //  CircleAvatar(
+          //    backgroundImage: AssetImage('images/sohappy.png'),
+          //    radius: 80,
+          //  ),
+          // //  CircleAvatar(
+          //    backgroundImage: AssetImage('images/soso.png'),
+          //    radius: 80,
+          //  ),
+         ],
+      ),
     );
   }
 }

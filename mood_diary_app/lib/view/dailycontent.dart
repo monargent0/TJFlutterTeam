@@ -413,4 +413,3 @@ class _DailyContentState extends State<DailyContent> {
   //   return true;
   // }
 
-
