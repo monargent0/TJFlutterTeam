@@ -34,18 +34,21 @@ class _DailyListState extends State<DailyList> {
         backgroundColor: Colors.brown[100],
         elevation: 0,
         actions: [
-          IconButton(
-              onPressed: () {
-                // setState(() {
-                //   Navigator.pushNamed(context, '/')
-                //       .then((value) => getJSONData());
-                // });
-              },
-              icon: const Icon(
-                Icons.emoji_nature,
-                color: Colors.lightGreen,
-                size: 40,
-              ))
+          SizedBox(
+            width: 70,
+            height: 50,
+            child: IconButton(
+                onPressed: () {
+                  // setState(() {
+                  //   Navigator.pushNamed(context, '/')
+                  //       .then((value) => getJSONData());
+                  // });
+                },
+                icon: Image.asset('images/tree.png' , 
+                color: Colors.green,
+                )
+                ),
+          )
         ],
       ),
       body: Center(
@@ -69,37 +72,63 @@ class _DailyListState extends State<DailyList> {
                   return GestureDetector(
                     onTap: () {
                       //
-                      
-
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
                       children: [
-                        Text('${diaryList[index]['ddate'].substring(0, 4)}년'),
-                        Card(
-                          color: Colors.white54,
-                          elevation: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage(diaryList[index]['epath']),
-                                  radius: 30,
-                                ),
-                                Column(
-                                  children: [
-                                    Text(diaryList[index]['dcontent']),
-                                    Text(
-                                      '${diaryList[index]['ddate'].substring(0, 4)}년 ${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
-                                      //diaryList[index]['ddate'].toString()
-                                      ),
-                                  ],
-                                ),
-                              ],
+                            SizedBox(
+                              height: index == 0 ? 40 : 10 ,
+                              child: Text(
+                              index == 0
+                              ? '${diaryList[index]['ddate'].substring(0, 4)}년'
+                              : '',
+                              style: const TextStyle( fontSize: 26 , fontWeight: FontWeight.bold , color: Colors.brown),
+                              ),
                             ),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 350,
+                              child: Card(
+                                color: Colors.white54,
+                                elevation: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage(diaryList[index]['epath']),
+                                        radius: 30,
+                                      ),
+                                      SizedBox(
+                                        width: 250,
+                                        child: Column(
+                                          children: [
+                                            Text( 
+                                            diaryList[index]['dcontent'].length > 15
+                                            ? '${diaryList[index]['dcontent'].substring(0,15)}...'
+                                            : diaryList[index]['dcontent']
+                                            ,
+                                            style: const TextStyle(fontSize: 17),),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  '${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
+                                                  style: const TextStyle(fontSize: 12 , color: Colors.brown),
+                                                  ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
