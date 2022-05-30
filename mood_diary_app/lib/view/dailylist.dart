@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 
 class DailyList extends StatefulWidget {
   const DailyList({Key? key}) : super(key: key);
@@ -106,10 +105,9 @@ class _DailyListState extends State<DailyList> {
                                         child: Column(
                                           children: [
                                             Text( 
-                                            diaryList[index]['dcontent'].length > 15
-                                            ? '${diaryList[index]['dcontent'].substring(0,15)}...'
-                                            : diaryList[index]['dcontent']
-                                            ,
+                                            diaryList[index]['dcontent'].length > 13
+                                            ? '${diaryList[index]['dcontent'].substring(0,13)}...'
+                                            : diaryList[index]['dcontent'],
                                             style: const TextStyle(fontSize: 17),),
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.end,
