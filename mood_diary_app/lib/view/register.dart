@@ -52,7 +52,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.brown[100],
       appBar: AppBar(
+        backgroundColor: Colors.brown[100],
+        elevation: 0,
         title: const Text('회원가입'),
       ),
       body: Padding(
