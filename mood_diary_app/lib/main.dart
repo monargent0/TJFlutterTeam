@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
 
         //---- 테스트용
         '/list': (context) => const DailyList(), // 일기 리스트 화면
-        '/test' :(context) => const DailyContent(
-              diaryList: {
-                "ename": "슬퍼",
-                "dcontent": "헤어졌다.",
-                "epath": "images/sad.png"
-              },)
+        // '/test' :(context) => const DailyContent(
+        //       diaryList: {
+        //         "ename": "슬퍼",
+        //         "dcontent": "헤어졌다.",
+        //         "epath": "images/sad.png"
+        //       },)
       },
-      initialRoute: '/test',
+      initialRoute: '/list',
       debugShowCheckedModeBanner: false,
     );
   }
