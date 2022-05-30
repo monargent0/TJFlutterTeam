@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:mood_diary_app/view/dailylist.dart';
+
 import 'package:http/http.dart' as http;
 
 class DailyContent extends StatefulWidget {
@@ -20,6 +22,7 @@ class _DailyContentState extends State<DailyContent> {
   late TextEditingController contentEdit; //dcontent
   late int did; //did
   late int eid;
+  late String result;
 
   @override
   void initState() {
@@ -316,10 +319,12 @@ class _DailyContentState extends State<DailyContent> {
                 onPressed: () {
                   _showDialog(context);
                 }),
+            //삭제
             FloatingActionButton(
                 foregroundColor: Colors.black,
                 child: const Icon(Icons.delete_forever_rounded),
                 onPressed: () {
+                  _showDeleteDialog(context);
                   //// 데이터가 있을수도 없을수도 있기 때문
                 }),
           ],
@@ -371,45 +376,145 @@ class _DailyContentState extends State<DailyContent> {
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       List result = dataConvertedJSON['result'];
-
-     
-    });}
-
-    _showfinishDialog(BuildContext context) {
-      showDialog(
-          context: context,
-          builder: (BuildContext ctx) {
-            return AlertDialog(
-              title: const Icon(Icons.edit_note_rounded),
-              content: const Text('수정이 완료되었습니다.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('확인'),
-                ),
-              ],
-            );
-          });
-    }
+    });
   }
-  // -- Functions           비동기 방식
-  // Future<bool> getJSONData() async {
-  //   data = []; // window는 ip어드레스 적어주어야 한다***
-  //   var url =
-  //       Uri.parse('http://localhost:8080/Flutter/daily_detailView_select.jsp');
-  //   var response = await http.get(url); // get방식을 많이사용 -> 사용 후 암호화
 
-  //   // 화면구성이 되었을 때 setState를 사용해준다.
-  //   setState(() {
-  //     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-  //     List result = dataConvertedJSON['results'];
-  //     // result value의 해당 데이터 2개를 가져옴
+  _showfinishDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(Icons.edit_note_rounded),
+            content: const Text('수정이 완료되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        });
+  }
 
-  //     data.addAll(result);
-  //   });
-  //   return true;
-  // }
+  DeleteAction() async {
+    var url =
+        Uri.parse('http://localhost:8080/Flutter/daily_delete.jsp?&did=$did');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+      if (result == 'OK') {
+        _showDeleteDialog2(context);
+      } else {
+        errorSnackBar(context);
+      }
+    });
+  }
 
+  _showDeleteDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.delete_forever_outlined,
+              color: Colors.red,
+              size: 30,
+            ),
+            content: const Text('삭제하시겠습니까?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  '취소',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Navigator.of(ctx).pop();
+                  // Navigator.of(context).pop();
+                  DeleteAction();
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        });
+  }
+
+  _showDeleteDialog2(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.task_alt,
+              color: Colors.blue,
+              size: 30,
+            ),
+            content: const Text('삭제가 완료 되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  // Navigator.of(ctx).pop();
+                  // Navigator.of(context).pop();
+
+                  setState(() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DailyList(),
+                        )).then((value) => getData());
+                  });
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        });
+  }
+
+  errorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('데이터 삭제에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+
+  getData() {
+    enameEdit;
+    emotionPath;
+    contentEdit.text;
+    did;
+    eid;
+  }
+}
+// -- Functions           비동기 방식
+// Future<bool> getJSONData() async {
+//   data = []; // window는 ip어드레스 적어주어야 한다***
+//   var url =
+//       Uri.parse('http://localhost:8080/Flutter/daily_detailView_select.jsp');
+//   var response = await http.get(url); // get방식을 많이사용 -> 사용 후 암호화
+
+//   // 화면구성이 되었을 때 setState를 사용해준다.
+//   setState(() {
+//     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+//     List result = dataConvertedJSON['results'];
+//     // result value의 해당 데이터 2개를 가져옴
+
+//     data.addAll(result);
+//   });
+//   return true;
+// }
