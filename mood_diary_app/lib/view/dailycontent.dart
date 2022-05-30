@@ -29,8 +29,8 @@ class _DailyContentState extends State<DailyContent> {
     enameEdit = widget.diaryList['ename'];
     emotionPath = widget.diaryList['epath'];
     contentEdit.text = widget.diaryList['dcontent'];
-    did = widget.diaryList['did'];
-    eid = widget.diaryList['eid'];
+    // did = widget.diaryList['did'];
+    // eid = widget.diaryList['eid'];
   }
 
   @override
