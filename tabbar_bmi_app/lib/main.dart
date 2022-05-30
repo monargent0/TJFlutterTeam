@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/jungeun.dart';
-
-import 'main_sy.dart';
+import 'package:tabbar_bmi_app/jjh/jjh_main.dart';
+import 'package:tabbar_bmi_app/dongwon/dongwon.dart';
+import 'package:tabbar_bmi_app/jungeun/jungeun.dart';
+import 'package:tabbar_bmi_app/sanga/sanga.dart';
+import 'package:tabbar_bmi_app/sy/sy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +32,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   // property
   late TabController controller;
 
@@ -44,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   void dispose() {
     controller.dispose();
     super.dispose();
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,47 +58,47 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       // ),
       body: TabBarView(
         controller: controller,
-        children: const [JungEun(),JungEun(),JungEun(),JungEun(),JungEun()], //동원 , 상아, 수연, 재환, 정은
+        children: const [BMIPage(), Sanga(), SY(),JJH(),JungEun()], //동원 , 상아, 수연, 재환, 정은
       ),
       bottomNavigationBar: Container(
-        color: Colors.deepOrange[200],
+        color: Colors.lightBlue[100],
         height: 100,
         child: TabBar(
           controller: controller,
-          labelColor: Colors.redAccent,
-          indicatorColor: Colors.red,
+          labelColor: Colors.deepPurple,
+          indicatorColor: Colors.blue,
           tabs: const [
             Tab(
               icon: Icon(
                 Icons.looks_one,
-                color: Colors.green,
+                color: Colors.red,
               ),
               text: "동원",
             ),
             Tab(
               icon: Icon(
                 Icons.looks_two,
-                color: Colors.blue,
+                color: Colors.orange,
               ),
               text: '상아',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
-                color: Colors.blue,
+                Icons.looks_3,
+                color: Colors.yellow,
               ),
               text: '수연',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
-                color: Colors.blue,
+                Icons.looks_4,
+                color: Colors.green,
               ),
               text: '재환',
             ),
             Tab(
               icon: Icon(
-                Icons.looks_two,
+                Icons.looks_5,
                 color: Colors.blue,
               ),
               text: '정은',
