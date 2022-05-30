@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(), // 로그인 화면
         '/sign': (context) => const RegisterPage(), // 회원 가입 화면
         '/list': (context) => const DailyList(),
-        // 그 외 화면 이동은 MaterialRoute방식으로 사용
+        '/signin': (context) => const LoginPage(), // 로그인 화면
+        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

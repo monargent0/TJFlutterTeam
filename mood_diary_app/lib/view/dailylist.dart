@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mood_diary_app/view/dailycontent.dart';
 
 class DailyList extends StatefulWidget {
   const DailyList({Key? key}) : super(key: key);
@@ -70,7 +71,13 @@ class _DailyListState extends State<DailyList> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      //
+                      setState(() {
+                         Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return DailyContent(diaryList: diaryList[index]); // Map으로 보내 
+                            },
+                          )).then((value) => getJSONData());
+                        });
                     },
                     child: Column(
                       children: [
