@@ -19,7 +19,7 @@ class _DailyContentState extends State<DailyContent> {
   late String emotionPath; //epath
   late TextEditingController contentEdit; //dcontent
   late int did; //did
-  late String eid;
+  late int eid;
 
   @override
   void initState() {
@@ -413,4 +413,4 @@ class _DailyContentState extends State<DailyContent> {
   //   return true;
   // }
 
-}
+
