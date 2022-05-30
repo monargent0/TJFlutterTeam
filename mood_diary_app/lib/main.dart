@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
       ),
       routes: {
-        '/' :(context) => const Login(), // 로그인 화면 
-        '/sign' :(context) => const SignIn(), // 회원 가입 화면 
+        '/': (context) => const Login(), // 로그인 화면
+        '/sign': (context) => const SignIn(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
       initialRoute: '/',
