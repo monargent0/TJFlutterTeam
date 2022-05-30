@@ -28,7 +28,7 @@ try{
   Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
   Statement stmt_mysql = conn_mysql.createStatement();
 
-  String act1 = "insert into user (uid, upw, uname";
+  String act1 = "insert into users (uid, upw, uname";
   String act2 = ") values (?,?,?)";
 
   ps = conn_mysql.prepareStatement(act1+act2);
