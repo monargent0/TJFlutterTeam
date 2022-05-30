@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
       body: TabBarView(
         controller: controller,
-        children: const [],
+        children: const [sybmi()],
       ),
       bottomNavigationBar: Container(
         color: Colors.deepOrange[200],
