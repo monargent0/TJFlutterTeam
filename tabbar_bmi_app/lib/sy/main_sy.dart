@@ -1,30 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:tabbar_bmi_app/check.dart';
-import 'package:tabbar_bmi_app/main.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class sybmi extends StatelessWidget {
-  const sybmi({Key? key}) : super(key: key);
+class Sybmi extends StatelessWidget {
+  const Sybmi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +24,7 @@ class sybmi extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const CheckBMI();
-                    },
-                  ),
-                );
+                Navigator.pushNamed(context, '/input');
               },
               style: ButtonStyle(
                   backgroundColor:

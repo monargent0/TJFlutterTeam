@@ -1,9 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:tabbar_bmi_app/message.dart';
-import 'package:tabbar_bmi_app/show.dart';
+import 'package:tabbar_bmi_app/sy/message.dart';
 
 class CheckBMI extends StatefulWidget {
   const CheckBMI({Key? key}) : super(key: key);
@@ -78,21 +75,14 @@ class _CheckBMIState extends State<CheckBMI> {
                    Message.resultBMI=textEditingController3.text;
                     },
                     );
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const Showresult();
-                      },
-                    ),
-                  );
-                  };
-                  
+                    Navigator.pushNamed(context, '/result');
+                  }
                 },
-                child: Text('BMI 확인하기'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green,
                 ),
+                child: const Text('BMI 확인하기'),
+                
               ),
             ],
           ),
