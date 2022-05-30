@@ -75,6 +75,7 @@ class _DailyListState extends State<DailyList> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Text('${diaryList[index]['ddate'].substring(0, 4)}년'),
                         Card(
                           color: Colors.white54,
                           elevation: 0,
@@ -91,7 +92,7 @@ class _DailyListState extends State<DailyList> {
                                   children: [
                                     Text(diaryList[index]['dcontent']),
                                     Text(
-                                      '${DateFormat().parse(diaryList[index]['ddate'])}'
+                                      '${diaryList[index]['ddate'].substring(0, 4)}년 ${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
                                       //diaryList[index]['ddate'].toString()
                                       ),
                                   ],
