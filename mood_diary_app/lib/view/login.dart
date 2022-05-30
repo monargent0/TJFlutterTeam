@@ -75,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(400, 60),
-                      primary: Color.fromARGB(255, 119, 216, 164),
+                      fixedSize: const Size(400, 60),
+                      primary: const Color.fromARGB(255, 119, 216, 164),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -97,7 +97,29 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 18,
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(400, 60),
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign');
+                    },
+                    child: const Text(
+                      '회원가입',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

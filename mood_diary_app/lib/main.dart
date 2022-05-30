@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mood_diary_app/view/dailylist.dart';
-import 'package:mood_diary_app/view/dailycontent.dart';
 import 'package:mood_diary_app/view/login.dart';
 import 'package:mood_diary_app/view/register.dart';
 
@@ -19,18 +18,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightGreen,
       ),
       routes: {
-        '/': (context) => const DailyContent(
-              diaryList: {
-                "ename": "슬퍼",
-                "dcontent": "헤어졌다.",
-                "epath": "images/sad.png"
-              },
-            ), // 로그인 화면
+        '/': (context) => const LoginPage(), // 로그인 화면
         '/sign': (context) => const RegisterPage(), // 회원 가입 화면
-        '/list': (context) => const DailyList(), // 회원 가입 화면
+        '/list': (context) => const DailyList(),
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/list',
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
     );
   }
