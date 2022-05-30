@@ -8,7 +8,7 @@
 
     request.setCharacterEncoding("utf-8");
     
-    String id =request.getParameter("id");
+    int did =request.getParameter("did");
 
     String url_mysql = "jdbc:mysql://localhost/team2?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
@@ -24,7 +24,7 @@
         String act1 ="delete from diary where did = ?";
 
         ps=conn_mysql.prepareStatement(act1);
-        ps.setString(1,id);
+        ps.setString(1,did);
 
         ps.executeUpdate();
         conn_mysql.close();
