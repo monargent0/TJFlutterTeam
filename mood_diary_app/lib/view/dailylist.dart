@@ -21,7 +21,6 @@ class _DailyListState extends State<DailyList> {
     super.initState();
     diaryList = [];
     getJSONData();
-   
   }
 
   //scafold
@@ -44,10 +43,10 @@ class _DailyListState extends State<DailyList> {
                   //       .then((value) => getJSONData());
                   // });
                 },
-                icon: Image.asset('images/tree.png' , 
-                color: Colors.green,
-                )
-                ),
+                icon: Image.asset(
+                  'images/tree.png',
+                  color: Colors.green,
+                )),
           )
         ],
       ),
@@ -72,24 +71,28 @@ class _DailyListState extends State<DailyList> {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return DailyContent(diaryList: diaryList[index]); // Map으로 보내 
-                            },
-                          )).then((value) => getJSONData());
-                        });
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return DailyContent(
+                                diaryList: diaryList[index]); // Map으로 보내
+                          },
+                        )).then((value) => getJSONData());
+                      });
                     },
                     child: Column(
                       children: [
-                            SizedBox(
-                              height: index == 0 ? 40 : 10 ,
-                              child: Text(
-                              index == 0
-                              ? '${diaryList[index]['ddate'].substring(0, 4)}년'
-                              : '',
-                              style: const TextStyle( fontSize: 26 , fontWeight: FontWeight.bold , color: Colors.brown),
-                              ),
-                            ),
+                        SizedBox(
+                          height: index == 0 ? 40 : 10,
+                          child: Text(
+                            index == 0
+                                ? '${diaryList[index]['ddate'].substring(0, 4)}년'
+                                : '',
+                            style: const TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.brown),
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -103,26 +106,34 @@ class _DailyListState extends State<DailyList> {
                                   child: Row(
                                     children: [
                                       CircleAvatar(
-                                        backgroundImage:
-                                            AssetImage(diaryList[index]['epath']),
+                                        backgroundImage: AssetImage(
+                                            diaryList[index]['epath']),
                                         radius: 30,
                                       ),
                                       SizedBox(
                                         width: 250,
                                         child: Column(
                                           children: [
-                                            Text( 
-                                            diaryList[index]['dcontent'].length > 13
-                                            ? '${diaryList[index]['dcontent'].substring(0,13)}...'
-                                            : diaryList[index]['dcontent'],
-                                            style: const TextStyle(fontSize: 17),),
+                                            Text(
+                                              diaryList[index]['dcontent']
+                                                          .length >
+                                                      13
+                                                  ? '${diaryList[index]['dcontent'].substring(0, 13)}...'
+                                                  : diaryList[index]
+                                                      ['dcontent'],
+                                              style:
+                                                  const TextStyle(fontSize: 17),
+                                            ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
                                               children: [
                                                 Text(
                                                   '${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
-                                                  style: const TextStyle(fontSize: 12 , color: Colors.brown),
-                                                  ),
+                                                  style: const TextStyle(
+                                                      fontSize: 12,
+                                                      color: Colors.brown),
+                                                ),
                                               ],
                                             ),
                                           ],
@@ -156,7 +167,6 @@ class _DailyListState extends State<DailyList> {
 
     setState(() {
       diaryList.addAll(result);
-      
     });
 
     return true;
