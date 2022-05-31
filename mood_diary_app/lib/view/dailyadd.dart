@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class DailyAdd extends StatefulWidget {
   final String uID;
   const DailyAdd({Key? key, required this.uID}) : super(key: key);
@@ -10,13 +11,12 @@ class DailyAdd extends StatefulWidget {
 }
 
 class _DailyAddState extends State<DailyAdd> {
-
-    // 타이틀, 이모지 사진경로, 이모지 이름
+  // 타이틀, 이모지 사진경로, 이모지 이름
   late String enameEdit; //ename
   late String emotionPath; //epath
   late TextEditingController contentEdit; //dcontent
   late int eid; // emotion
-  late String dcontent; 
+  late String dcontent;
   late String result;
   late String uid;
   @override
@@ -25,11 +25,12 @@ class _DailyAddState extends State<DailyAdd> {
 
     contentEdit = TextEditingController();
     enameEdit = "";
-    emotionPath =  "";
-    eid=0 ;
+    emotionPath = "";
+    eid = 0;
     result = '';
-    uid=widget.uID;
+    uid = widget.uID;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +41,7 @@ class _DailyAddState extends State<DailyAdd> {
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
-       body: SingleChildScrollView(
+      body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           const SizedBox(
@@ -335,51 +336,47 @@ class _DailyAddState extends State<DailyAdd> {
           const SizedBox(
             height: 80,
           ),
-           CircleAvatar(
-                backgroundColor: Colors.lime[200],
-                radius: 35,
-                child: IconButton(
-                    onPressed: () {
-                      dcontent=contentEdit.text;
-                   insertAction();
-                  Navigator.of(context).pop();
-           
-                    },
-                    icon: const Icon(Icons.add_circle_rounded)),
-              ),
+          CircleAvatar(
+            backgroundColor: Colors.lime[200],
+            radius: 35,
+            child: IconButton(
+                onPressed: () {
+                  dcontent = contentEdit.text;
+                  insertAction();
+                },
+                icon: const Icon(Icons.add_circle_rounded)),
+          ),
         ]),
       ),
-      
-      
     );
-    
   }
-  insertAction() async{
-  var url =Uri.parse(
-    'http://localhost:8080/Flutter/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid'
-  );
-  var response =await http.get(url);
-  setState(() {
-    var dataConvertedJSON =json.decode(utf8.decode(response.bodyBytes));
-    result = dataConvertedJSON['result'];
-    if(result=='OK'){
-      _showDialog(context);
 
-    }else{
-      errorSnackBar(context);
-    }
-  });
-}
-_showDialog(BuildContext context) {
+  insertAction() async {
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+      if (result == 'OK') {
+        _showDialog(context);
+      } else {
+        errorSnackBar(context);
+      }
+    });
+  }
+
+  _showDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (BuildContext ctx) {
           return AlertDialog(
             title: const Icon(Icons.check_circle_rounded),
             content: const Text('등록이 완료 되었습니다.'),
             actions: [
               TextButton(
                 onPressed: () {
+                  Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
                 },
                 child: const Text('OK'),
@@ -388,12 +385,14 @@ _showDialog(BuildContext context) {
           );
         });
   }
-errorSnackBar(BuildContext context){
-ScaffoldMessenger.of(context).showSnackBar(
-  const SnackBar(
-    content:  Text('사용자 정보 입력에 문제가 발생하였습니다.'),
-    duration: Duration(seconds: 2),
-    backgroundColor: Colors.red,
-  ),);
-}
+
+  errorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('사용자 정보 입력에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
 }
