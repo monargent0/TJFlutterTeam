@@ -216,9 +216,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     if (!isRegistering) {
                       checkRegist();
                     } else {
-                      setState(() {
-                        _showDialog(context);
-                      });
                       // print('registering');
                     }
                   },
@@ -315,6 +312,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   jsonDecode(utf8.decode(response.bodyBytes));
               bool isSuccess = dataConvertedJSON['results'];
               // print(isSuccess);
+              if(isSuccess){
+                setState(() {
+                  _showDialog(context);
+                });
+              }
+              
             }
           }
         }
