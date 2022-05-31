@@ -219,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       setState(() {
                         _showDialog(context);
                       });
-                      print('registering');
+                      // print('registering');
                     }
                   },
                   child: Text(
@@ -325,33 +325,27 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  _showDialog(BuildContext context) {
+_showDialog(BuildContext context) {
     showDialog(
-      context: context,
-      // alert 버튼 이외 부분 클릭시 이벤트 발생 X
-      barrierDismissible: false, // user must tap button !
-      builder: (BuildContext ctx) {
-        // Alert 함수
-        return AlertDialog(
-          title: const Text('성공'),
-          content: const Text('회원가입이 완료되었습니다.'),
-          actions: [
-            Center(
-              child: TextButton(
-                  onPressed: () {
-                    // 종료 이벤트
-                    Navigator.of(ctx).pop();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
-                        ));
-                  },
-                  child: const Text('로그인 화면으로')),
-            ),
-          ],
-        );
-      },
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('성공'),
+            content: const Text('회원가입이 완료 되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage()),
+                    );
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        });
   }
 }
