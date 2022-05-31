@@ -182,7 +182,7 @@ class _DailyListState extends State<DailyList> {
               builder: (context) {
                 return DailyAdd(uID: widget.users['uid']); // Map으로 보내
               },
-            ));
+            )).then((value) => getJSONData());
           }),
       drawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: [
