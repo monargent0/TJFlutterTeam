@@ -17,13 +17,11 @@ PreparedStatement ps = null;
 
   JSONObject jsonList = new JSONObject();
 
-
-
 try{
   Class.forName("com.mysql.cj.jdbc.Driver");
   Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 
-  ps = conn_mysql.prepareStatement("select uid from user where uid = ?");
+  ps = conn_mysql.prepareStatement("select uid from users where uid = ?");
   ps.setString(1, id);
 
   ResultSet rs = ps.executeQuery();
