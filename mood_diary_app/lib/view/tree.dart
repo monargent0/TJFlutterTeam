@@ -5,13 +5,11 @@ import 'package:lottie/lottie.dart';
 import 'package:video_player/video_player.dart';
 
 class TreeWgt extends StatefulWidget {
-  final int boxHeight;
   final int treeGrowth;
   final String weather;
   const TreeWgt(
       {Key? key,
       required this.weather,
-      required this.boxHeight,
       required this.treeGrowth})
       : super(key: key);
 
@@ -44,42 +42,58 @@ class _TreeWgtState extends State<TreeWgt> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        child: Stack(
-          children: [
-            AspectRatio(
-              aspectRatio: _vController.value.aspectRatio,
-              child: VideoPlayer(_vController),
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 270,
-                ),
-                Lottie.asset('assets/${widget.weather}.json', width: 120),
-              ],
-            ),
-            widget.weather == 'sunny'
-                ? Column(
-                    children: [
-                      const SizedBox(
-                        height: 230,
-                      ),
-                      Lottie.asset('assets/squirrels.json', width: 120),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      const SizedBox(
-                        height: 32,
-                      ),
-                      Lottie.asset('assets/${widget.weather}.json', width: 120),
-                    ],
-                  ),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text('도토리 마을'),
+        backgroundColor: Colors.grey[100],
+        foregroundColor: Colors.brown,
+        elevation: 0,
       ),
+      body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: _vController.value.aspectRatio,
+                child: VideoPlayer(_vController),
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 280,
+                  ),
+                  Lottie.asset('assets/${widget.weather}.json', width: 120),
+                ],
+              ),
+              widget.weather == 'sunny'
+                  ? Column(
+                      children: [
+                        const SizedBox(
+                          height: 230,
+                        ),
+                        Lottie.asset('assets/squirrels.json', width: 120),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            //
+                          },
+                          child: Lottie.asset('assets/${widget.weather}.json', width: 120)),
+                      ],
+                    ),
+            ],
+          ),
+        ],
+      ),
+    ),
     );
   }
 }
