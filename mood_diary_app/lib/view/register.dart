@@ -270,7 +270,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
       } else {
         var url = Uri.parse(
-            'http://localhost:8080/Flutter/idCheck.jsp?id=${_idController.text.trim()}');
+            'http://localhost:8080/Flutter/daily_idCheck.jsp?id=${_idController.text.trim()}');
         var response = await http.get(url);
         var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
         bool isIdExist = dataConvertedJSON['results'];
@@ -306,7 +306,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //통과
 
               var url = Uri.parse(
-                  'http://localhost:8080/Flutter/regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
+                  'http://localhost:8080/Flutter/daily_regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
               var response = await http.get(url);
               var dataConvertedJSON =
                   jsonDecode(utf8.decode(response.bodyBytes));
