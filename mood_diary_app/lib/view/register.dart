@@ -52,58 +52,157 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.brown[100],
+        backgroundColor: Colors.grey[100],
         elevation: 0,
-        title: const Text('회원가입'),
+        title: const Text(
+          'SIGN UP',
+          style: TextStyle(
+              color: Color.fromARGB(255, 119, 216, 164),
+              fontWeight: FontWeight.bold,
+              fontSize: 30),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _nameController,
-              decoration:
-                  InputDecoration(hintText: '이름', errorText: _nameErrorText),
-              keyboardType: TextInputType.text,
-              autocorrect: false,
-            ),
-            TextField(
-              controller: _idController,
-              decoration:
-                  InputDecoration(hintText: '이메일 주소', errorText: _idErrorText),
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-            ),
-            TextField(
-              controller: _pw1Controller,
-              decoration:
-                  InputDecoration(hintText: '비밀번호', errorText: _passErrorText),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-            ),
-            TextField(
-              controller: _pw2Controller,
-              decoration: InputDecoration(
-                  hintText: '비밀번호 확인', errorText: _pass2ErrorText),
-              keyboardType: TextInputType.emailAddress,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            ElevatedButton(
-                style: isRegistering
-                    ? ElevatedButton.styleFrom(
-                        primary: Colors.grey, fixedSize: Size(240, 40))
-                    : ElevatedButton.styleFrom(
-                        primary: Colors.blue, fixedSize: Size(240, 40)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  hintText: '이름 / 닉네임',
+                  errorText: _nameErrorText,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Color.fromARGB(255, 119, 216, 164)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+                autocorrect: false,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: _idController,
+                decoration: InputDecoration(
+                  hintText: '이메일 주소',
+                  errorText: _idErrorText,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Color.fromARGB(255, 119, 216, 164)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: _pw1Controller,
+                decoration: InputDecoration(
+                  hintText: '비밀번호',
+                  errorText: _passErrorText,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Color.fromARGB(255, 119, 216, 164)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: _pw2Controller,
+                decoration: InputDecoration(
+                  hintText: '비밀번호 확인',
+                  errorText: _pass2ErrorText,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Color.fromARGB(255, 119, 216, 164)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(width: 2, color: Colors.red),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: isRegistering
+                      ? Colors.grey
+                      : const Color.fromARGB(255, 119, 216, 164),
+                  fixedSize: const Size(300, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
                 onPressed: () {
                   if (!isRegistering) {
                     checkRegist();
@@ -111,13 +210,22 @@ class _RegisterPageState extends State<RegisterPage> {
                     print('registering');
                   }
                 },
-                child: Text(isRegistering ? '가입 중' : '회원가입'))
-          ],
+                child: Text(
+                  isRegistering ? '가입 중' : '회  원  가  입',
+                  style: const TextStyle(
+                      color: Colors.black54,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
+//---- Function
   checkRegist() async {
     setState(() {
       isRegistering = true;
