@@ -115,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/signup');
+
+                          Navigator.popAndPushNamed(context, '/signup');
                         },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(300, 50),
