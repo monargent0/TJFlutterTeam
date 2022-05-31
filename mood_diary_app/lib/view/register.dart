@@ -207,6 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (!isRegistering) {
                     checkRegist();
                   } else {
+                    
                     print('registering');
                   }
                 },
