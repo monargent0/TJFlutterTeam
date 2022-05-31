@@ -295,7 +295,7 @@ class _RegisterPageState extends State<RegisterPage> {
               var dataConvertedJSON =
                   jsonDecode(utf8.decode(response.bodyBytes));
               bool isSuccess = dataConvertedJSON['results'];
-              print(isSuccess);
+              // print(isSuccess);
             }
           }
         }
