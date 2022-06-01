@@ -57,7 +57,8 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: TextField(
                       controller: uId,
-                      decoration: const InputDecoration(labelText: "아이디를 입력하세요"),
+                      decoration:
+                          const InputDecoration(labelText: "아이디를 입력하세요"),
                       keyboardType: TextInputType.text,
                       autocorrect: false, // 자동완성 해제
                     ),
@@ -70,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: TextField(
                       controller: uPw,
-                      decoration: const InputDecoration(labelText: "비밀번호를 입력하세요"),
+                      decoration:
+                          const InputDecoration(labelText: "비밀번호를 입력하세요"),
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       autocorrect: false, // 자동완성 해제
@@ -93,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                           // 사용자 입력 값 JSON용 변수에 넣어줌
                           id = uId.text.trim();
                           pw = uPw.text.trim();
-    
+
                           // 공백 있으면 에러스낵바 아니면 쿼리문 작동
                           if (uId.text.trim().isEmpty ||
                               uPw.text.trim().isEmpty) {
@@ -115,7 +117,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-
                           Navigator.popAndPushNamed(context, '/signup');
                         },
                         style: ElevatedButton.styleFrom(
@@ -170,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     users = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
+        'http://172.30.1.37:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
