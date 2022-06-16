@@ -56,7 +56,8 @@ class _DailyListState extends State<DailyList> {
                   setState(() {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return const TreeWgt(weather: 'sunny', treeGrowth: 80); // Map으로 보내
+                        return const TreeWgt(
+                            weather: 'sunny', treeGrowth: 80); // Map으로 보내
                       },
                     )).then((value) => getJSONData());
                   });
