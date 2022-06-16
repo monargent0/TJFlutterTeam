@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 // DailyAdd페이지 String uid 받음  
 
 // TO.동원오빠..
-// jsp 파일 daily_로 시작하게 수정부탁.. , treeWgt constructor 뭐 넘겨야 하는지 알려주세요,, 
+// treeWgt constructor 뭐 넘겨야 하는지 알려주세요,, 
 // 회원가입 할 때 비밀번호 확인 입력 안해도 넘어가는것 같음 isEmpty 조건 추가,, 부탁,,
 // 회원 가입 성공 후 로그인 화면으로 이동도.....! 
 
