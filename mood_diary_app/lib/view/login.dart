@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 18,
                                 color: Colors.black54),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
