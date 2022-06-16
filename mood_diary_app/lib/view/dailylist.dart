@@ -53,14 +53,13 @@ class _DailyListState extends State<DailyList> {
             height: 50,
             child: IconButton(
                 onPressed: () {
-                  // 동원 - constructor 뭐 넘겨야 하는지 알려줘야함
-                  // setState(() {
-                  //   Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return TreeWgt(weather: weather, boxHeight: boxHeight, treeGrowth: treeGrowth); // Map으로 보내
-                  //     },
-                  //   )).then((value) => getJSONData());
-                  // });
+                  setState(() {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const TreeWgt(weather: 'sunny', treeGrowth: 80); // Map으로 보내
+                      },
+                    )).then((value) => getJSONData());
+                  });
                 },
                 icon: Image.asset(
                   'images/tree.png',
@@ -182,7 +181,7 @@ class _DailyListState extends State<DailyList> {
               builder: (context) {
                 return DailyAdd(uID: widget.users['uid']); // Map으로 보내
               },
-            ));
+            )).then((value) => getJSONData());
           }),
       drawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: [
