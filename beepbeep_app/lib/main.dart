@@ -1,8 +1,11 @@
 import 'package:beepbeep_app/predict/d0.dart';
 import 'package:beepbeep_app/predict/d1.dart';
 import 'package:beepbeep_app/predict/d2.dart';
-import 'package:beepbeep_app/predict/tabPage.dart';
-import 'package:beepbeep_app/predict/tabPage.dart';
+
+import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/login/loginPage.dart';
+
+import 'package:beepbeep_app/predict/d0.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Beep! Beep!',
       theme: ThemeData(
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.deepPurple,
       ),
       routes: {
         '/Dday': (context) => const Dday(), // 로그인 화면
@@ -28,8 +31,20 @@ class MyApp extends StatelessWidget {
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/Dday2',
-      debugShowCheckedModeBanner: false,
+      initialRoute: '/Dday',
+// ------------------------
+
+      // 삭제하지 마시오--- 상아엉니코드
+      // home: AnimatedSplashScreen(
+      //   splash: 'images/main_splash.png',
+      //   splashIconSize: 200,
+      //   duration: 1000,
+      //   splashTransition: SplashTransition.fadeTransition,
+      //   backgroundColor: Colors.deepPurple,
+      //     nextScreen: LoginPage(),),
+      // debugShowCheckedModeBanner: false,
+      // -------
+
     );
   }
 }
