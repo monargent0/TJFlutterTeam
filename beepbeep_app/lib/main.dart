@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 
 
 import 'main/d0.dart';
 
+=======
+import 'package:beepbeep_app/predict/tabPage.dart';
+import 'package:beepbeep_app/predict/tabPage.dart';
+import 'package:flutter/material.dart';
+
+>>>>>>> main
 void main() {
   runApp(const MyApp());
 }
@@ -10,6 +17,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+<<<<<<< HEAD
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,3 +56,20 @@ class MyApp extends StatelessWidget {
 // 회원 가입 성공 후 로그인 화면으로 이동도.....! 
 
 // DailyAdd 아무도 안 만들었어 ㅠㅠ ?? -> dailyContent 복사하고 조금만 수정하면 될 듯!
+=======
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Beep Beep!',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+     routes: {
+      '/':(context) => const TabPage(),
+     },
+     initialRoute: '/',
+    );
+  }
+}
+>>>>>>> main

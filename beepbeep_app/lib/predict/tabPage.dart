@@ -1,6 +1,6 @@
-import 'package:beepbeep_app/main/selectPredictPage.dart';
-import 'package:beepbeep_app/main/resultPredict.dart';
-import 'package:beepbeep_app/main/userPredict.dart';
+import 'package:beepbeep_app/predict/selectPredictPage.dart';
+import 'package:beepbeep_app/predict/resultPredict.dart';
+import 'package:beepbeep_app/predict/userPredict.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -24,6 +24,12 @@ class _TabPageState extends State<TabPage>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,13 +42,14 @@ class _TabPageState extends State<TabPage>
         ),
         
       ),
+      backgroundColor: Color.fromARGB(255, 211, 148, 222),
       bottomNavigationBar: Container(
         child: TabBar(
           onTap:(value) {
             //
           },
           controller: controller,
-          labelColor: Colors.cyan,
+          labelColor: Colors.black,
           indicatorColor: Colors.indigo,
           tabs: const [
               Tab(
@@ -59,7 +66,7 @@ class _TabPageState extends State<TabPage>
                   color: Colors.black,
                 ),
                 text: "나의 내역",
-              ),
+            ),
           ],
         ),
       ),
