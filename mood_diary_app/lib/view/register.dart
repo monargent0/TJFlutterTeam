@@ -274,6 +274,7 @@ class _RegisterPageState extends State<RegisterPage> {
         var response = await http.get(url);
         var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
         bool isIdExist = dataConvertedJSON['results'];
+        print(isIdExist);
 
         if (isIdExist) {
           setState(() {
@@ -295,7 +296,7 @@ class _RegisterPageState extends State<RegisterPage> {
             });
 
             //패스워드2 체크
-            if (_pw1Controller.text.trim() != _pw2Controller.text.trim()) {
+            if (_pw1Controller.text != _pw2Controller.text) {
               setState(() {
                 _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
               });
