@@ -1,5 +1,5 @@
-import 'package:beepbeep_app/predict/tabPage.dart';
-import 'package:beepbeep_app/predict/tabPage.dart';
+import 'package:beepbeep_app/login/loginPage.dart';
+import 'package:beepbeep_app/login/register.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,18 +9,20 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Beep Beep!',
+      title: 'Beep! Beep!',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-     routes: {
-      '/':(context) => const TabPage(),
-     },
-     initialRoute: '/',
+      routes: {
+        '/signin': (context) => const loginPage(), // 로그인 화면
+        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // 그 외 화면 이동은 MaterialRoute방식으로 사용
+      },
+      initialRoute: '/signin',
+      debugShowCheckedModeBanner: false,
     );
   }
 }
