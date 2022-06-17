@@ -1,4 +1,3 @@
-import 'package:beepbeep_app/chart/chartPage.dart';
 import 'package:beepbeep_app/chart/chartRouter.dart';
 import 'package:flutter/material.dart';
 

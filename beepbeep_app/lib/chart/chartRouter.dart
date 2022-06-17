@@ -10,7 +10,7 @@ class MyRouter extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const ChartPage(),
-        '/pop':(context) => PopChart.withRandomData()
+        '/pop':(context) => const PopChart()
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
