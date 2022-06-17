@@ -57,6 +57,8 @@ int hdaytype=0;
   late TextEditingController hspop;
   
 
+  
+
   @override
   void initState() {
     super.initState();
@@ -71,8 +73,8 @@ int hdaytype=0;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('d-day 소요시간 예측'),
-        backgroundColor: Colors.purple,
+        title: const Text('d-day 소요시간 예측aaa'),
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         
@@ -85,28 +87,23 @@ int hdaytype=0;
             style: TextStyle(fontSize: 25),
           ),
         
-        SizedBox(height: 30,),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 100, 20),
-            child: Text('시간',
-            ),
-          ),
+       
+          Text('시간'),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: DropdownButton(
-             
-             
               isExpanded: true,
-              underline: Container(
-                height: 2,
-                color: Colors.purple,
-              ),
+                underline: Container(
+                  height: 2,
+                  color: Colors.blue,
+                ),
               value: hstart,
               items: _timelist.map(
                 (e) {
                   return DropdownMenuItem(
+                    
                     value: e,
-                    child: Text('$e시'),
+                    child: Text('$e'),
                   );
                 },
               ).toList(),
@@ -120,7 +117,6 @@ int hdaytype=0;
               iconSize: 50,
             ),
           ),
-          
           Text('연휴길이'),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
@@ -165,32 +161,14 @@ int hdaytype=0;
               ],
             ),
           ),
-        //  RadioListTile(
-        //   title: Text("O"),
-        //   value: hweather, 
-          
-        //  groupValue: 0, 
-        //  onChanged: (value){
-        //   setState(() {
-        //     hweather=value.toString();
-        //   });
-        //  }),
-        //  RadioListTile(
-        //   title: Text("X"),
-        //   value: hweather, 
-        //  groupValue: 1, 
-        //  onChanged: (value){
-        //   setState(() {
-        //     hweather=value.toString();
-        //   });
-        //  }),
+        
           Text('1종 교통량'),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: TextField(
               controller: htraffic1,
               decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
             ),
           ),
           const SizedBox(
@@ -202,7 +180,7 @@ int hdaytype=0;
             child: TextField(
               controller: htraffic2,
               decoration: const InputDecoration(labelText: '2종 교통량 입력하기 '),
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
             ),
           ),
           Text('서울 인구수'),
@@ -211,7 +189,7 @@ int hdaytype=0;
             child: TextField(
               controller: hspop,
               decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
             ),
           ),
           const SizedBox(
@@ -223,11 +201,26 @@ int hdaytype=0;
             ),
             
             onPressed: () {
-              // SLength = sepalLength.text;
-              // SWidth = sepalWidth.text;
-              // PLength = petalLength.text;
-              // PWidth = petalWidth.text;
-              // insertAction();
+           if (htraffic1.text.trim().isEmpty ||
+                      htraffic2.text.trim().isEmpty||hspop.text.trim().isEmpty) {
+                    errorsnackbar(context);
+                 
+                  }else{
+                    setState(
+                      () {
+                      
+                   
+                    },
+                    );
+                  //   Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return const Showresult();
+                  //     },
+                  //   ),
+                  // );
+                  };
             },
             child: const Text("소요시간 보러가기",
             style: TextStyle(
@@ -262,4 +255,12 @@ int hdaytype=0;
   // }
 
 
-  
+   errorsnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('1,2종 교통량과 서울인구수를 입력하세요'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
