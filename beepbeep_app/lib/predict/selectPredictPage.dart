@@ -1,4 +1,4 @@
-import 'package:beepbeep_app/main/resultPredict.dart';
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';

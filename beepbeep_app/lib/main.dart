@@ -1,4 +1,4 @@
-import 'package:beepbeep_app/main/tabPage.dart';
+import 'package:beepbeep_app/predict/tabPage.dart';
 import 'package:beepbeep_app/predict/tabPage.dart';
 import 'package:flutter/material.dart';
 
