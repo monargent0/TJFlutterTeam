@@ -19,6 +19,11 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _pwController;
   late TextEditingController _pwokController;
 
+  late String? _idErrorText;
+  late String? _nameErrorText;
+  late String? _passErrorText;
+  late String? _pass2ErrorText;
+
   late bool isRegistering;
 
   @override
@@ -29,8 +34,22 @@ class _RegisterPageState extends State<RegisterPage> {
     _pwController = TextEditingController();
     _pwokController = TextEditingController();
 
+    _idErrorText = null;
+    _nameErrorText = null;
+    _passErrorText = null;
+    _pass2ErrorText = null;
+
     isRegistering = false;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _idController.dispose();
+    _pwController.dispose();
+    _pwokController.dispose();
+
+    super.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -218,7 +237,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -285,18 +304,86 @@ class _RegisterPageState extends State<RegisterPage> {
       isRegistering = true;
     });
 
-    var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
-    var response = await http.get(url);
-    var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
-    bool isSuccess = dataConvertedJSON['results'];
-    // print(isSuccess);
+    //이름 체크
+    RegExp nameReg = RegExp(r"^[가-힣]{2,6}$");
+    RegExp emailReg = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    RegExp passReg =
+        RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-    if (isSuccess) {
+    if (!nameReg.hasMatch((_nameController.text.trim()))) {
       setState(() {
-        _showDialog(context);
+        _nameErrorText = '2~6자의 한글 이름을 입력해주세요';
       });
+    } else {
+      setState(() {
+        _nameErrorText = null;
+      });
+
+      //아이디 체크
+      if (!emailReg.hasMatch(_idController.text.trim())) {
+        setState(() {
+          _idErrorText = '유효한 이메일을 입력해주세요';
+        });
+      } else {
+        var url = Uri.parse(
+            'http://192.168.5.83:8080/Flutter/beep_idCheck.jsp?buid=${_idController.text.trim()}');
+        var response = await http.get(url);
+        var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
+        bool isIdExist = dataConvertedJSON['results'];
+        print(isIdExist);
+
+        if (isIdExist) {
+          setState(() {
+            _idErrorText = '이미 존재하는 ID입니다.';
+          });
+        } else {
+          setState(() {
+            _idErrorText = null;
+          });
+
+          //패스워드 체크
+          if (!passReg.hasMatch(_pwController.text.trim())) {
+            setState(() {
+              _passErrorText = '영문, 숫자, 특수문자를 포함해 8자 이상으로 입력해주세요';
+            });
+          } else {
+            setState(() {
+              _passErrorText = null;
+            });
+
+            //패스워드2 체크
+            if (_pwController.text != _pwokController.text) {
+              setState(() {
+                _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+              });
+            } else {
+              setState(() {
+                _pass2ErrorText = null;
+              });
+
+              var url = Uri.parse(
+                  'http://192.168.5.83:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
+              var response = await http.get(url);
+              var dataConvertedJSON =
+                  jsonDecode(utf8.decode(response.bodyBytes));
+              bool isSuccess = dataConvertedJSON['results'];
+              // print(isSuccess);
+              if (isSuccess) {
+                setState(() {
+                  _showDialog(context);
+                });
+              }
+            }
+          }
+        }
+      }
     }
+    setState(
+      () {
+        isRegistering = false;
+      },
+    );
   }
 
   _showDialog(BuildContext context) {
