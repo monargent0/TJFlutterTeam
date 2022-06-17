@@ -1,5 +1,5 @@
-import 'package:beepbeep_app/main/mainPage.dart';
-import 'package:beepbeep_app/main/timePredict.dart';
+import 'package:beepbeep_app/main/selectPredictPage.dart';
+import 'package:beepbeep_app/main/resultPredict.dart';
 import 'package:beepbeep_app/main/userPredict.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -38,11 +38,15 @@ class _TabPageState extends State<TabPage>
       ),
       bottomNavigationBar: Container(
         child: TabBar(
+          onTap:(value) {
+            //
+          },
           controller: controller,
           labelColor: Colors.cyan,
           indicatorColor: Colors.indigo,
           tabs: const [
               Tab(
+                
                 icon: Icon(
                   Icons.pie_chart,
                   color: Colors.black,
@@ -51,7 +55,7 @@ class _TabPageState extends State<TabPage>
               ),
                Tab(
                 icon: Icon(
-                  Icons.person,
+                  Icons.person_outline,
                   color: Colors.black,
                 ),
                 text: "나의 내역",
