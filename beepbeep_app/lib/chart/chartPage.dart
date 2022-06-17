@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/chart/popChart.dart';
 import 'package:flutter/material.dart';
 
 class ChartPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _ChartPageState extends State<ChartPage> {
         child: Column(
           children: [
             TextButton(onPressed: () {
-              //
+              Navigator.pushNamed(context, '/pop');
             }, child: const Text('년도 별 인구'))
           ],
         ),

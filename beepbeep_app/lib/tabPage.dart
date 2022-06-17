@@ -1,6 +1,8 @@
+import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/predict/myhistory.dart';
+import 'package:beepbeep_app/predict/predictRouter.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/predict/resultPredict.dart';
-import 'package:beepbeep_app/predict/userPredict.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,7 +22,7 @@ class _TabPageState extends State<TabPage>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 2, vsync: this);
+    controller = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -38,7 +40,7 @@ class _TabPageState extends State<TabPage>
       body: Center(
         child: TabBarView(
           controller: controller,
-          children: const [MainPage(), UserRecord()]
+          children: const [ MyPredict(), MyChart() , MyHistory()]
         ),
         
       ),
@@ -58,8 +60,15 @@ class _TabPageState extends State<TabPage>
                   Icons.pie_chart,
                   color: Colors.black,
                 ),
-                text: "데이터분석",
+                text: "시간예측",
               ),
+               Tab(
+                icon: Icon(
+                  Icons.person_outline,
+                  color: Colors.black,
+                ),
+                text: "데이터분석",
+            ),
                Tab(
                 icon: Icon(
                   Icons.person_outline,
