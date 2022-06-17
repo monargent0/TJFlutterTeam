@@ -1,8 +1,9 @@
+import 'package:beepbeep_app/predict/d0.dart';
 import 'package:beepbeep_app/predict/tabPage.dart';
 import 'package:beepbeep_app/predict/tabPage.dart';
 import 'package:flutter/material.dart';
 
-import 'main/d0.dart';
+
 
 void main() {
   runApp(const MyApp());

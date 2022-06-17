@@ -73,29 +73,41 @@ int hdaytype=0;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('d-day 소요시간 예측aaa'),
-        backgroundColor: Colors.blue,
+        title: const Text('d-day 소요시간 예측'),
+        backgroundColor: Colors.purple,
       ),
       body: Column(
-        
+        crossAxisAlignment: CrossAxisAlignment.start
+        ,
         children: [
           SizedBox(
-            height: 20,
+            height: 40,
           ),
-          Text(
-            '설날 당일 출발',
-            style: TextStyle(fontSize: 25),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(140, 0, 100, 20),
+            child: Text(
+              '설날 당일 출발',
+              
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            
+              
+            ),
           ),
         
-       
-          Text('시간'),
+  
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('시간',
+            style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: DropdownButton(
               isExpanded: true,
                 underline: Container(
                   height: 2,
-                  color: Colors.blue,
+                  color: Colors.purple,
                 ),
               value: hstart,
               items: _timelist.map(
@@ -117,7 +129,12 @@ int hdaytype=0;
               iconSize: 50,
             ),
           ),
-          Text('연휴길이'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('연휴길이',
+             style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: DropdownButton(
@@ -151,7 +168,8 @@ int hdaytype=0;
             child: Row(
               children: [
                 Text("눈/비 오는날 ",
-                style: TextStyle(fontSize: 20),),
+                 style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
             Checkbox(value: hweather,
              onChanged: (check){
               setState(() {
@@ -162,9 +180,14 @@ int hdaytype=0;
             ),
           ),
         
-          Text('1종 교통량'),
           Padding(
-            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('1종 교통량',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
             child: TextField(
               controller: htraffic1,
               decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
@@ -174,7 +197,12 @@ int hdaytype=0;
           const SizedBox(
             height: 20,
           ),
-          Text('2종 교통량'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('2종 교통량',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: TextField(
@@ -183,7 +211,13 @@ int hdaytype=0;
               keyboardType: TextInputType.number,
             ),
           ),
-          Text('서울 인구수'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('서울 인구수',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: TextField(
@@ -195,37 +229,43 @@ int hdaytype=0;
           const SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            style:ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.purple)
-            ),
-            
-            onPressed: () {
-           if (htraffic1.text.trim().isEmpty ||
-                      htraffic2.text.trim().isEmpty||hspop.text.trim().isEmpty) {
-                    errorsnackbar(context);
-                 
-                  }else{
-                    setState(
-                      () {
-                      
+          Padding(
+            padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
+            child: ElevatedButton(
+              style:ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.purple)
+              ),
+              
+              onPressed: () {
+             if (htraffic1.text.trim().isEmpty ||
+                        htraffic2.text.trim().isEmpty||hspop.text.trim().isEmpty) {
+                      errorsnackbar(context);
                    
-                    },
-                    );
-                  //   Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return const Showresult();
-                  //     },
-                  //   ),
-                  // );
-                  };
-            },
-            child: const Text("소요시간 보러가기",
-            style: TextStyle(
-              fontSize: 20,
-            ),
+                    }else{
+                      setState(
+                        () {
+                        
+                     
+                      },
+                      );
+                    //   Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) {
+                    //       return const Showresult();
+                    //     },
+                    //   ),
+                    // );
+                    };
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text("소요시간 보러가기",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                ),
+              ),
             ),
           ),
          
