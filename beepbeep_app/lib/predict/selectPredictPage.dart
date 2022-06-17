@@ -4,14 +4,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 // d-2, d-1, d-day 선택하는 페이지
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class SelectPredictPage extends StatefulWidget {
+  const SelectPredictPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<SelectPredictPage> createState() => _SelectPredictPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _SelectPredictPageState extends State<SelectPredictPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +19,14 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text("서울에서 대전까지",
+            textAlign: TextAlign.right,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20
+              ),
+            ),
+            const SizedBox(height: 10,),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(

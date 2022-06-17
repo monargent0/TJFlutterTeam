@@ -285,7 +285,7 @@ class _DailyListState extends State<DailyList> {
   Future<bool> getJSONData() async {
     diaryList = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_list_flutter.jsp?uid=$id');
+        'http://192.168.5.83:8080/Flutter/daily_list_flutter.jsp?uid=$id');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =
