@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 import 'package:beepbeep_app/predict/d0.dart';
+import 'package:beepbeep_app/predict/d1.dart';
+import 'package:beepbeep_app/predict/d2.dart';
 import 'package:beepbeep_app/predict/tabPage.dart';
 import 'package:beepbeep_app/predict/tabPage.dart';
-=======
-import 'package:beepbeep_app/chart/chartRouter.dart';
-import 'package:beepbeep_app/login/loginPage.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
->>>>>>> main
 import 'package:flutter/material.dart';
 
 
@@ -21,30 +17,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
-      title: 'Mood Diary',
-=======
       title: 'Beep! Beep!',
->>>>>>> main
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-<<<<<<< HEAD
       routes: {
         '/Dday': (context) => const Dday(), // 로그인 화면
+        '/Dday1': (context) => const Dday1(), // 로그인 화면
+        '/Dday2': (context) => const Dday2(), // 로그인 화면
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/Dday',
-=======
-      home: AnimatedSplashScreen(
-        splash: 'images/main_splash.png',
-        splashIconSize: 200,
-        duration: 1000,
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.deepPurple,
-          nextScreen: loginPage(),),
->>>>>>> main
+      initialRoute: '/Dday2',
       debugShowCheckedModeBanner: false,
     );
   }

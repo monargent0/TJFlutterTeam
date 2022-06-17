@@ -14,7 +14,10 @@ class Dday extends StatefulWidget {
 }
 
 class _DdayState extends State<Dday> {
-  //field
+
+
+  //입력 받을 변수들 
+
 int hdaytype=0;
   //1.시간 설정
   final _timelist = [
@@ -47,16 +50,15 @@ int hdaytype=0;
   //2.연휴길이 설정
   final _holidaylist = ["3일", "4일", "5일"];
   var hholiday = "3일";
-  //날씨선택
+
+  //3.날씨선택
  bool hweather =false;
-
- 
-//1종2종 교통량
+//4.1종교통량
   late TextEditingController htraffic1;
+//5.2종 교통량
   late TextEditingController htraffic2;
+////6.인구수
   late TextEditingController hspop;
-  
-
   
 
   @override
@@ -83,21 +85,25 @@ int hdaytype=0;
           SizedBox(
             height: 40,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(140, 0, 100, 20),
-            child: Text(
-              '설날 당일 출발',
+
+          //제목
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '설날 당일 출발',
+                
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            
-              
-            ),
+                
+              ),
+            ],
           ),
         
-  
+        //시간선택
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
-            child: Text('시간',
+            child: Text('출발시간',
             style: TextStyle(fontSize: 18,
             fontWeight: FontWeight.bold),),
           ),
@@ -115,7 +121,7 @@ int hdaytype=0;
                   return DropdownMenuItem(
                     
                     value: e,
-                    child: Text('$e'),
+                    child: Text('$e시'),
                   );
                 },
               ).toList(),
@@ -129,6 +135,8 @@ int hdaytype=0;
               iconSize: 50,
             ),
           ),
+
+          //연휴길이 선택
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
             child: Text('연휴길이',
@@ -163,6 +171,7 @@ int hdaytype=0;
               iconSize: 50,
             ),
           ),
+          //눈비유무선택
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: Row(
@@ -179,7 +188,7 @@ int hdaytype=0;
               ],
             ),
           ),
-        
+        //1종 교통량 입력
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
             child: Text('1종 교통량',
@@ -197,6 +206,8 @@ int hdaytype=0;
           const SizedBox(
             height: 20,
           ),
+
+          //2종 교통량 입력
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
             child: Text('2종 교통량',
@@ -218,6 +229,8 @@ int hdaytype=0;
               fontWeight: FontWeight.bold),
             ),
           ),
+
+          //인구수 입력
           Padding(
             padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
             child: TextField(
@@ -258,13 +271,17 @@ int hdaytype=0;
                     // );
                     };
               },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Text("소요시간 보러가기",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-                ),
+
+              // 소요시간 보러가기 버튼
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("소요시간 보러가기",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                  ),
+                ],
               ),
             ),
           ),
