@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mood Diary',
       theme: ThemeData(
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.deepPurple,
       ),
       routes: {
         '/signin': (context) => const loginPage(), // 로그인 화면

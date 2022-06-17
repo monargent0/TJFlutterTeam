@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:http/http.dart' as http;
 
 class loginPage extends StatefulWidget {
   const loginPage({Key? key}) : super(key: key);
@@ -50,9 +52,11 @@ class _loginPageState extends State<loginPage> {
                         ),
                         // controller: uId,
                         decoration: InputDecoration(
-                          labelText: "아이디",
-                          labelStyle: TextStyle(color: Colors.deepPurple),
-                          enabledBorder: UnderlineInputBorder(),
+                          hintText: "아이디",
+                          hintStyle: TextStyle(color: Colors.deepPurple),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.deepPurple),
+                          ),
                         ),
                         keyboardType: TextInputType.text,
                         autocorrect: false, // 자동완성 해제
@@ -70,8 +74,12 @@ class _loginPageState extends State<loginPage> {
                         ),
                         // controller: uPw,
                         decoration: InputDecoration(
-                            labelText: "비밀번호",
-                            labelStyle: TextStyle(color: Colors.deepPurple)),
+                          hintText: "비밀번호",
+                          hintStyle: TextStyle(color: Colors.deepPurple),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.deepPurple),
+                          ),
+                        ),
                         keyboardType: TextInputType.text,
                         obscureText: true,
                         autocorrect: false, // 자동완성 해제
@@ -79,7 +87,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -91,7 +99,7 @@ class _loginPageState extends State<loginPage> {
                       ),
                     ),
                     onPressed: () {
-                      //
+                      Navigator.pushNamed(context, '/signup');
                     },
                     child: const Text(
                       '회원가입',
@@ -122,6 +130,9 @@ class _loginPageState extends State<loginPage> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     children: [
                       const SizedBox(
@@ -132,10 +143,16 @@ class _loginPageState extends State<loginPage> {
                           //
                         },
                         child: const Text(
-                          '아이디찾기 |',
+                          '아이디찾기',
                           style: TextStyle(
                             color: Colors.white,
                           ),
+                        ),
+                      ),
+                      Text(
+                        '|',
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                       TextButton(
@@ -143,7 +160,7 @@ class _loginPageState extends State<loginPage> {
                           //
                         },
                         child: const Text(
-                          '비밀번호찾기',
+                          ' 비밀번호찾기',
                           style: TextStyle(
                             color: Colors.white,
                           ),
