@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class UserRecord extends StatefulWidget {
-  const UserRecord({Key? key}) : super(key: key);
+class MyHistory extends StatefulWidget {
+  const MyHistory({Key? key}) : super(key: key);
 
   @override
-  State<UserRecord> createState() => _UserRecordState();
+  State<MyHistory> createState() => _MyHistoryState();
 }
 
-class _UserRecordState extends State<UserRecord> {
+class _MyHistoryState extends State<MyHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      //
     );
   }
 }
