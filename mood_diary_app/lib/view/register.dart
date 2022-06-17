@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:mood_diary_app/view/login.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -229,7 +229,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, '/signin');
                   },
                   child: const Text('뒤로가기'),
                 ),
@@ -270,7 +270,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
       } else {
         var url = Uri.parse(
-            'http://localhost:8080/Flutter/daily_idCheck.jsp?id=${_idController.text.trim()}');
+            'http://192.168.5.83:8080/Flutter/daily_idCheck.jsp?id=${_idController.text.trim()}');
         var response = await http.get(url);
         var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
         bool isIdExist = dataConvertedJSON['results'];
@@ -307,7 +307,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //통과
 
               var url = Uri.parse(
-                  'http://localhost:8080/Flutter/daily_regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
+                  'http://192.168.5.83:8080/Flutter/daily_regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
               var response = await http.get(url);
               var dataConvertedJSON =
                   jsonDecode(utf8.decode(response.bodyBytes));
@@ -331,18 +331,17 @@ class _RegisterPageState extends State<RegisterPage> {
   _showDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (BuildContext ctx) {
           return AlertDialog(
             title: const Text('성공'),
             content: const Text('회원가입이 완료 되었습니다.'),
             actions: [
               TextButton(
                 onPressed: () {
+                  Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
+                  Navigator.pushNamed(context, '/signin');
+                  
                 },
                 child: const Text('OK'),
               ),

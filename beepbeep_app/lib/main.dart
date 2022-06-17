@@ -1,4 +1,6 @@
 import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/login/loginPage.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,15 +10,20 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Beep! Beep!',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: const MyRouter(),
+      home: AnimatedSplashScreen(
+        splash: 'images/main_splash.png',
+        splashIconSize: 200,
+        duration: 1000,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.deepPurple,
+          nextScreen: loginPage(),),
       debugShowCheckedModeBanner: false,
     );
   }

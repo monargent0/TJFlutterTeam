@@ -45,97 +45,101 @@ class _LoginPageState extends State<LoginPage> {
               image: DecorationImage(
                   image: AssetImage('images/loginpage.png'), fit: BoxFit.fill),
             ),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 400,
-                ),
-                SizedBox(
-                  width: 300,
-                  height: 70,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: TextField(
-                      controller: uId,
-                      decoration: const InputDecoration(labelText: "아이디를 입력하세요"),
-                      keyboardType: TextInputType.text,
-                      autocorrect: false, // 자동완성 해제
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 400,
+                  ),
+                  SizedBox(
+                    width: 300,
+                    height: 70,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: TextField(
+                        controller: uId,
+                        decoration:
+                            const InputDecoration(labelText: "아이디를 입력하세요"),
+                        keyboardType: TextInputType.text,
+                        autocorrect: false, // 자동완성 해제
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 300,
-                  height: 70,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: TextField(
-                      controller: uPw,
-                      decoration: const InputDecoration(labelText: "비밀번호를 입력하세요"),
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      autocorrect: false, // 자동완성 해제
+                  SizedBox(
+                    width: 300,
+                    height: 70,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: TextField(
+                        controller: uPw,
+                        decoration:
+                            const InputDecoration(labelText: "비밀번호를 입력하세요"),
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        autocorrect: false, // 자동완성 해제
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(300, 50),
-                          primary: const Color.fromARGB(255, 119, 216, 164),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+                    child: Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(300, 50),
+                            primary: const Color.fromARGB(255, 119, 216, 164),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            // 사용자 입력 값 JSON용 변수에 넣어줌
+                            id = uId.text.trim();
+                            pw = uPw.text.trim();
+
+                            // 공백 있으면 에러스낵바 아니면 쿼리문 작동
+                            if (uId.text.trim().isEmpty ||
+                                uPw.text.trim().isEmpty) {
+                              errorSnackbar(context);
+                            } else {
+                              updateAction();
+                            }
+                          },
+                          child: const Text(
+                            '로 그 인',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Colors.black54),
                           ),
                         ),
-                        onPressed: () {
-                          // 사용자 입력 값 JSON용 변수에 넣어줌
-                          id = uId.text.trim();
-                          pw = uPw.text.trim();
-    
-                          // 공백 있으면 에러스낵바 아니면 쿼리문 작동
-                          if (uId.text.trim().isEmpty ||
-                              uPw.text.trim().isEmpty) {
-                            errorSnackbar(context);
-                          } else {
-                            updateAction();
-                          }
-                        },
-                        child: const Text(
-                          '로 그 인',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.black54),
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/signup');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(300, 50),
-                          primary: const Color.fromARGB(255, 89, 159, 122),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(300, 50),
+                            primary: const Color.fromARGB(255, 89, 159, 122),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: const Text(
+                            '회 원 가 입',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Colors.black54),
                           ),
                         ),
-                        child: const Text(
-                          '회 원 가 입',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.black54),
-                        ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -169,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     users = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
+        'http://192.168.5.83:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
