@@ -229,7 +229,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, '/signin');
                   },
                   child: const Text('뒤로가기'),
                 ),
@@ -331,19 +331,17 @@ class _RegisterPageState extends State<RegisterPage> {
 _showDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (BuildContext ctx) {
           return AlertDialog(
             title: const Text('성공'),
             content: const Text('회원가입이 완료 되었습니다.'),
             actions: [
               TextButton(
                 onPressed: () {
+                  Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage()),
-                    );
+                  Navigator.pushNamed(context, '/signin');
+                  
                 },
                 child: const Text('OK'),
               ),
