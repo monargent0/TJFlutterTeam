@@ -11,7 +11,6 @@ String buid = request.getParameter("buid");
 String upw = request.getParameter("upw");
 String uname = request.getParameter("uname");
 String uemail = request.getParameter("uemail");
-String utaltoedate = request.getParameter("utaltoedate");
 
 
 
