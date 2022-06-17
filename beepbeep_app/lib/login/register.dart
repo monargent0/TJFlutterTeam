@@ -19,6 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _pwController;
   late TextEditingController _pwokController;
 
+  late bool isRegistering;
+
   @override
   void initState() {
     _nameController = TextEditingController();
@@ -26,6 +28,8 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailController = TextEditingController();
     _pwController = TextEditingController();
     _pwokController = TextEditingController();
+
+    isRegistering = false;
     super.initState();
   }
 
@@ -277,6 +281,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // ---Fuction
   registOk() async {
+    setState(() {
+      isRegistering = true;
+    });
+
     var url = Uri.parse(
         'http://192.168.5.83:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
     var response = await http.get(url);
