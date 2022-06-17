@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class loginPage extends StatefulWidget {
-  const loginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _LoginPageState extends State<LoginPage> {
   late TextEditingController buid;
   late TextEditingController bpw;
   // late List busers;
