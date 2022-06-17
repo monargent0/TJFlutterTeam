@@ -1,5 +1,5 @@
-import 'package:beepbeep_app/predict/tabPage.dart';
-import 'package:beepbeep_app/predict/tabPage.dart';
+import 'package:beepbeep_app/chart/chartPage.dart';
+import 'package:beepbeep_app/chart/chartRouter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,10 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-     routes: {
-      '/':(context) => const TabPage(),
-     },
-     initialRoute: '/',
+      home: const MyRouter(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
