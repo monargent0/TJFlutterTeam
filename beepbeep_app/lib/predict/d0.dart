@@ -81,6 +81,7 @@ int hdaytype=0;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+    
       onTap: (() {
         FocusScope.of(context).unfocus();
       }),
@@ -90,7 +91,7 @@ int hdaytype=0;
           backgroundColor: Colors.purple,
         ),
         body: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start
             ,

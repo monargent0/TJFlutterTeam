@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/Dday',
+      initialRoute: '/Dday2',
 // ------------------------
 
       // 삭제하지 마시오--- 상아엉니코드
