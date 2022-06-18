@@ -19,19 +19,20 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("서울에서 대전까지",
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20
-              ),
+            const Text(
+              "서울에서 대전까지",
+              textAlign: TextAlign.right,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const ResultPredict()
-                ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ResultPredict()));
               },
               child: const Text('설날 전전날 출발 >'),
               style: ElevatedButton.styleFrom(
@@ -39,14 +40,12 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30 
-            ),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 //
@@ -57,19 +56,15 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30
-            ),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(
-                //   builder: (context) => const DDay()
-                // ));
+                Navigator.pushNamed(context, '/dday');
               },
               child: const Text('설날 당일 출발 >'),
               style: ElevatedButton.styleFrom(
@@ -77,7 +72,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
