@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:mood_diary_app/view/login.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -270,7 +270,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
       } else {
         var url = Uri.parse(
-            'http://localhost:8080/Flutter/daily_idCheck.jsp?id=${_idController.text.trim()}');
+            'http://192.168.5.83:8080/Flutter/daily_idCheck.jsp?id=${_idController.text.trim()}');
         var response = await http.get(url);
         var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
         bool isIdExist = dataConvertedJSON['results'];
@@ -307,7 +307,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //통과
 
               var url = Uri.parse(
-                  'http://localhost:8080/Flutter/daily_regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
+                  'http://192.168.5.83:8080/Flutter/daily_regist.jsp?uid=${_idController.text.trim()}&upw=${_pw1Controller.text.trim()}&uname=${_nameController.text.trim()}');
               var response = await http.get(url);
               var dataConvertedJSON =
                   jsonDecode(utf8.decode(response.bodyBytes));

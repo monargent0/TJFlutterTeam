@@ -2,15 +2,15 @@ import 'package:beepbeep_app/chart/chartPage.dart';
 import 'package:beepbeep_app/chart/popChart.dart';
 import 'package:flutter/material.dart';
 
-class MyRouter extends StatelessWidget {
-  const MyRouter({Key? key}) : super(key: key);
+class MyChart extends StatelessWidget {
+  const MyChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
         '/': (context) => const ChartPage(),
-        '/pop':(context) => PopChart.withRandomData()
+        '/pop':(context) => const PopChart()
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
