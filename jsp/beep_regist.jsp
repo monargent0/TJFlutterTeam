@@ -15,7 +15,7 @@ String uemail = request.getParameter("uemail");
 
 
 
-String url_mysql = "jdbc:mysql://192.168.5.83:8080/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
+String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
 
 String id_mysql = "root";
 String pw_mysql = "qwer1234";
