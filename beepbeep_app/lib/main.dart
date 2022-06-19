@@ -17,13 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: AnimatedSplashScreen(
-        splash: 'images/main_splash.png',
-        splashIconSize: 200,
-        duration: 1000,
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.deepPurple,
-          nextScreen: loginPage(),),
+      home: MyRouter(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -17,7 +17,10 @@ class _ChartPageState extends State<ChartPage> {
           children: [
             TextButton(onPressed: () {
               Navigator.pushNamed(context, '/pop');
-            }, child: const Text('년도 별 인구'))
+            }, child: const Text('년도 별 인구')),
+            TextButton(onPressed: () {
+              Navigator.pushNamed(context, '/total');
+            }, child: const Text('전체 데이터')),
           ],
         ),
       ),
