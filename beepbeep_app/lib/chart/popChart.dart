@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PopChart extends StatefulWidget {
-
   const PopChart({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +14,7 @@ class _PopChartState extends State<PopChart> {
   late List<charts.Series<XY, int>> _resultData;
 
   @override
-  void initState(){
+  void initState() {
     _resultData = [];
 
     getJSONData();
@@ -27,8 +26,8 @@ class _PopChartState extends State<PopChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        // child: charts.LineChart(_resultData, animate: true),
-      ),
+          // child: charts.LineChart(_resultData, animate: true),
+          ),
     );
   }
 
@@ -58,15 +57,14 @@ class XY {
   XY(this.x, this.y);
 }
 
-
 List<charts.Series<XY, int>> _createData(dynamic result) {
-    return [
-      charts.Series<XY, int>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (XY sales, _) => sales.x,
-        measureFn: (XY sales, _) => sales.y,
-        data: result,
-      )
-    ];
-  }
+  return [
+    charts.Series<XY, int>(
+      id: 'Sales',
+      colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+      domainFn: (XY sales, _) => sales.x,
+      measureFn: (XY sales, _) => sales.y,
+      data: result,
+    )
+  ];
+}
