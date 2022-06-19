@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Image.asset('images/beeplogo.png'),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   SizedBox(
                     width: 300,
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -160,9 +160,6 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
                   ),
                   Row(
                     children: [
