@@ -1,4 +1,5 @@
 import 'package:beepbeep_app/predict/d0.dart';
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,8 @@ class MyPredict extends StatelessWidget {
         '/': (context) => const SelectPredictPage(),
         '/Dday': (context) => const Dday(), //설날당일 입력화면
         '/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
-        '/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
+        '/Dday2': (context) => const Dday2(),
+        '/result': (context) => const ResultPredict(), // 설날D-2 입력화면
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

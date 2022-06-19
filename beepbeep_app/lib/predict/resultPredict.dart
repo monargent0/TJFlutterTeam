@@ -26,16 +26,14 @@ class _ResultPredictState extends State<ResultPredict> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    '소요 예상 시간'
-                  ),
+                  const Text('소요 예상 시간'),
                   const SizedBox(
                     height: 50,
                   ),
                   Text(
                     '1시간 30분(예시)',
                     style: TextStyle(fontSize: 40),
-                    ),
+                  ),
                 ],
               ),
             ),
@@ -48,14 +46,14 @@ class _ResultPredictState extends State<ResultPredict> {
                 const Text(
                   '내가 입력한 정보',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
+                ),
                 SizedBox(
                   width: 50,
                 ),
                 Text(
                   '*나의 이력에서 조회 가능',
                   style: TextStyle(fontSize: 10),
-                  )
+                )
               ],
             ),
           ],
@@ -64,26 +62,17 @@ class _ResultPredictState extends State<ResultPredict> {
     );
   }
 
-//   resultPredict() async{
-//   var url =Uri.parse(
-//     'http://localhost:8080/Rserve/response_iris.jsp?sepalLength=$sepalLength&sepalWidth=$sepalWidth&petalLength=$petalLength&petalWidth=$petalWidth'
-//   );
-//   var response =await http.get(url);
-//   setState(() {
-//     var dataConvertedJSON =json.decode(utf8.decode(response.bodyBytes));
-//     result = dataConvertedJSON['result'];
-//     if(result == 'setosa'){
-//       irisPath = 'images/setosa.jpg';
-//     }else if(result == 'versicolor'){
-//       irisPath = 'images/versicolor.jpg';
-//     }else if(result == 'virginica'){
-//       irisPath = 'images/virginica.jpg';
-//     }
-//     // 비동기 처리로 인해 같이 넣어줘야 함
-//     _showResult(context);
-//   });
-  
-// }
+  // resultPredict() async {
+  //   var url = Uri.parse(
+  //       'http://localhost:8080/Flutter/beep_result.jsp?hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2');
+  //   var response = await http.get(url);
+  //   setState(() {
+  //     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+  //     result = dataConvertedJSON['result'];
 
+  //     // 비동기 처리로 인해 같이 넣어줘야 함
+  //     _showResult(context);
+  //   });
+  // }
 
 }

@@ -1,10 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-
 
 class Dday1 extends StatefulWidget {
   const Dday1({Key? key}) : super(key: key);
@@ -14,11 +10,9 @@ class Dday1 extends StatefulWidget {
 }
 
 class _Dday1State extends State<Dday1> {
+  //입력 받을 변수들
 
-
-  //입력 받을 변수들 
-
-int hdaytype=1;
+  int hdaytype = 1;
   //1.시간 설정
   final _timelist = [
     "00",
@@ -51,28 +45,24 @@ int hdaytype=1;
   final _holidaylist = ["3", "4", "5"];
   var hholiday = "3";
 
-  
 ////6.인구수
   late TextEditingController hspoptext;
-    late String hspop;
-  
-  //계산결과  즉 소요시간 
-  late String result;
+  late String hspop;
 
+  //계산결과  즉 소요시간
+  late String result;
 
   @override
   void initState() {
     super.initState();
 
-    
-    hspoptext= TextEditingController();
-  result="";
+    hspoptext = TextEditingController();
+    result = "";
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    
       onTap: (() {
         FocusScope.of(context).unfocus();
       }),
@@ -84,47 +74,43 @@ int hdaytype=1;
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start
-            ,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 40,
               ),
-            
+
               //제목
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '설날 전날 출발',
-                    
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  
-                    
                   ),
                 ],
               ),
-            
-            //시간선택
+
+              //시간선택
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
-                child: Text('출발시간',
-                style: TextStyle(fontSize: 18,
-                fontWeight: FontWeight.bold),),
+                child: Text(
+                  '출발시간',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: DropdownButton(
                   isExpanded: true,
-                    underline: Container(
-                      height: 2,
-                      color: Colors.purple,
-                    ),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.purple,
+                  ),
                   value: hstart,
                   items: _timelist.map(
                     (e) {
                       return DropdownMenuItem(
-                        
                         value: e,
                         child: Text('$e시'),
                       );
@@ -140,27 +126,27 @@ int hdaytype=1;
                   iconSize: 50,
                 ),
               ),
-            
+
               //연휴길이 선택
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
-                child: Text('연휴길이',
-                 style: TextStyle(fontSize: 18,
-                fontWeight: FontWeight.bold),),
+                child: Text(
+                  '연휴길이',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: DropdownButton(
                   isExpanded: true,
-                    underline: Container(
-                      height: 2,
-                      color: Colors.purple,
-                    ),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.purple,
+                  ),
                   value: hholiday,
                   items: _holidaylist.map(
                     (e) {
                       return DropdownMenuItem(
-                        
                         value: e,
                         child: Text('$e일'),
                       );
@@ -176,16 +162,14 @@ int hdaytype=1;
                   iconSize: 50,
                 ),
               ),
-             
-           
-            
+
               //인구수 입력
-             
+
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
-                child: Text('서울 인구수',
-                 style: TextStyle(fontSize: 18,
-                  fontWeight: FontWeight.bold),
+                child: Text(
+                  '서울 인구수',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -202,55 +186,42 @@ int hdaytype=1;
               Padding(
                 padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
                 child: ElevatedButton(
-                  style:ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.purple)
-                  ),
-                  
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.purple)),
+
                   onPressed: () {
-                 if (hspoptext.text.trim().isEmpty) {
-                          errorsnackbar(context);
-                       
-                        }else{
-                       
-                        hspop=hspoptext.text;
-                          setState(
-                            () {
-                            
-                         
-                          },
-                          );
-                        //   Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) {
-                        //       return const Showresult();
-                        //     },
-                        //   ),
-                        // );
-                        };
+                    if (hspoptext.text.trim().isEmpty) {
+                      errorsnackbar(context);
+                    } else {
+                      hspop = hspoptext.text;
+                      setState(() {});
+                      Navigator.of(context, rootNavigator: true)
+                          .pushNamed('/result');
+                    }
+                    ;
                   },
-            
+
                   // 소요시간 보러가기 버튼
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("소요시간 보러가기",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                      const Text(
+                        "소요시간 보러가기",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-             
             ],
           ),
         ),
       ),
     );
   }
- 
 
   insertAction() async {
     var url = Uri.parse(
@@ -259,12 +230,10 @@ int hdaytype=1;
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
-     
     });
   }
 
-
-   errorsnackbar(BuildContext context) {
+  errorsnackbar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('서울인구수를 입력하세요'),
