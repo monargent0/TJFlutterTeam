@@ -21,7 +21,7 @@ try{
   Class.forName("com.mysql.cj.jdbc.Driver");
   Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 
-  ps = conn_mysql.prepareStatement("select buid from users where buid = ?");
+  ps = conn_mysql.prepareStatement("select buid from buser where buid = ?");
   ps.setString(1, buid);
 
   ResultSet rs = ps.executeQuery();

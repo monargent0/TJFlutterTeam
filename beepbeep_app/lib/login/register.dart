@@ -20,7 +20,6 @@ class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _pwokController;
 
   late String? _idErrorText;
-  late String? _nameErrorText;
   late String? _emailErrorText;
   late String? _passErrorText;
   late String? _pass2ErrorText;
@@ -36,7 +35,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _pwokController = TextEditingController();
 
     _idErrorText = null;
-    _nameErrorText = null;
     _emailErrorText = null;
     _passErrorText = null;
     _pass2ErrorText = null;
@@ -97,7 +95,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '닉네임',
-                    // errorText: _nameErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -127,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _idController,
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    // errorText: _nameErrorText,
+                    errorText: _idErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -157,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _emailController,
                   decoration: InputDecoration(
                     labelText: '이메일',
-                    // errorText: _nameErrorText,
+                    errorText: _emailErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -187,7 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _pwController,
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    // errorText: _passErrorText,
+                    errorText: _passErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -219,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _pwokController,
                   decoration: InputDecoration(
                     labelText: '비밀번호 확인',
-                    // errorText: _pass2ErrorText,
+                    errorText: _pass2ErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -306,76 +303,81 @@ class _RegisterPageState extends State<RegisterPage> {
       isRegistering = true;
     });
 
-    //이름 체크
-    // RegExp nameReg = RegExp(r"^[가-힣]{2,6}$");
-    // RegExp emailReg = RegExp(
-    //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    // RegExp passReg =
-    //     RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    // 정규식 적용
+    RegExp idReg = RegExp(r"^[0-9a-zA-Z]*$"); // 영문 + 숫자 + 길이 제한X
+    RegExp emailReg = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    RegExp pwReg =
+        RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-    // if (!nameReg.hasMatch((_nameController.text.trim()))) {
-    //   setState(() {
-    //     _nameErrorText = '2~6자의 한글 이름을 입력해주세요';
-    //   });
-    // } else {
-    //   setState(() {
-    //     _nameErrorText = null;
-    //   });
-
-    //   //이메일 체크
-    //   if (!emailReg.hasMatch(_idController.text.trim())) {
-    //     setState(() {
-    //       _idErrorText = '유효한 이메일을 입력해주세요';
-    //     });
-    //   } else {
-    //     var url = Uri.parse(
-    //         'http://192.168.123.114:8080/Flutter/beep_idCheck.jsp?buid=${_idController.text.trim()}');
-    //     var response = await http.get(url);
-    //     var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
-    //     bool isIdExist = dataConvertedJSON['results'];
-    //     print(isIdExist);
-
-    //     if (isIdExist) {
-    //       setState(() {
-    //         _idErrorText = '이미 존재하는 ID입니다.';
-    //       });
-    //     } else {
-    //       setState(() {
-    //         _idErrorText = null;
-    //       });
-
-    //       //패스워드 체크
-    //       if (!passReg.hasMatch(_pwController.text.trim())) {
-    //         setState(() {
-    //           _passErrorText = '영문, 숫자, 특수문자를 포함해 8자 이상으로 입력해주세요';
-    //         });
-    //       } else {
-    //         setState(() {
-    //           _passErrorText = null;
-    //         });
-
-    //         //패스워드2 체크
-    //         if (_pwController.text != _pwokController.text) {
-    //           setState(() {
-    //             _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
-    //           });
-    //         } else {
-    //           setState(() {
-    //             _pass2ErrorText = null;
-    //           });
-
-    var url = Uri.parse(
-        'http://192.168.123.114:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
-    var response = await http.get(url);
-    var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
-    bool isSuccess = dataConvertedJSON['results'];
-    // print(isSuccess);
-    if (isSuccess) {
+    if (!idReg.hasMatch(_idController.text.trim())) {
       setState(() {
-        _showDialog(context);
+        _idErrorText = 'ID 형식에 맞추어주세요';
       });
-    }
+    } else {
+      var url = Uri.parse(
+          'http://172.30.1.37:8080/Flutter/beep_idCheck.jsp?buid=${_idController.text.trim()}');
+      var response = await http.get(url);
+      var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
+      bool isIdExist = dataConvertedJSON['results'];
+      print(isIdExist);
 
+      if (isIdExist) {
+        setState(() {
+          _idErrorText = '이미 존재하는 ID입니다.';
+        });
+      } else {
+        setState(() {
+          _idErrorText = null;
+        });
+
+        //이메일 체크
+        if (!emailReg.hasMatch(_emailController.text.trim())) {
+          setState(() {
+            _emailErrorText = '유효한 이메일을 입력해주세요';
+          });
+        } else {
+          setState(() {
+            _emailErrorText = null;
+          });
+        }
+
+        //패스워드 체크
+        if (!pwReg.hasMatch(_pwController.text.trim())) {
+          setState(() {
+            _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
+          });
+        } else {
+          setState(() {
+            _passErrorText = null;
+          });
+
+          //패스워드 다시 확인
+          if (_pwokController.text != _pwController.text) {
+            setState(() {
+              _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+            });
+          } else {
+            setState(() {
+              _pass2ErrorText = null;
+            });
+
+            //통과
+            var url = Uri.parse(
+                'http://172.30.1.37:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
+            var response = await http.get(url);
+            var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
+            bool isSuccess = dataConvertedJSON['results'];
+            // print(isSuccess);
+            if (isSuccess) {
+              setState(() {
+                _showDialog(context);
+              });
+            }
+          }
+        }
+      }
+    }
     setState(() {
       isRegistering = false;
     });

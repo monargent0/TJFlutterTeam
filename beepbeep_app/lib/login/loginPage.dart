@@ -56,6 +56,10 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundImage: AssetImage('images/logo.png'),
                     radius: 50,
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Image.asset('images/beeplogo.png'),
                   const SizedBox(
                     height: 50,
                   ),
@@ -105,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -229,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://192.168.123.114:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://172.30.1.37:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
