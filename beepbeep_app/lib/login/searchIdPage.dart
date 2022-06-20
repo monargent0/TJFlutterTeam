@@ -289,7 +289,7 @@ emptyPw(BuildContext context){
                 },
                 child: const Text('닫기')),
                 TextButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> loginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
                 },
                 child: const Text('로그인 하기',
                 style: TextStyle(fontWeight: FontWeight.bold),)),
