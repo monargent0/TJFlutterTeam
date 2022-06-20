@@ -82,12 +82,7 @@ class _DdayState extends State<Dday> {
       }),
       child: Scaffold(
         
-        appBar: AppBar(
-          
-          title: const Text('d-day 소요시간 예측'),
-          backgroundColor: Colors.purple,
-  
-        ),
+       
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -204,7 +199,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '1종 교통량',
+                  '1종 교통량(933164~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -214,6 +209,7 @@ class _DdayState extends State<Dday> {
                   controller: htraffic1text,
                   decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
                   keyboardType: TextInputType.number,
+
                 ),
               ),
               const SizedBox(
@@ -224,7 +220,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '2종 교통량',
+                  '2종 교통량(39185~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -239,7 +235,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수',
+                  '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -257,58 +253,54 @@ class _DdayState extends State<Dday> {
                 height: 20,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                 
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text("돌아가기"),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.purple)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 100, 20),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.purple)),
-                      //
-                      onPressed: () async {
-                        if (htraffic1text.text.trim().isEmpty ||
-                            htraffic2text.text.trim().isEmpty ||
-                            hspoptext.text.trim().isEmpty) {
-                          errorsnackbar(context);
-                        } else {
-                          htraffic1 = htraffic1text.text;
-                          htraffic2 = htraffic2text.text;
-                          hspop = hspoptext.text;
-                          await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                // 예측값 보내기
-                                return ResultPredict(
-                                    busers: widget.busers, result: result);
-                              },
-                            ),
-                          );
-                        }
-                      },
-
-                      // 소요시간 보러가기 버튼
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "소요시간 보러가기",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
+                    style:ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
+                ),
+              ),
+                    onPressed: () async {
+                      if (htraffic1text.text.trim().isEmpty ||
+                          htraffic2text.text.trim().isEmpty ||
+                          hspoptext.text.trim().isEmpty) {
+                        errorsnackbar(context);
+                      } else {
+                        htraffic1 = htraffic1text.text;
+                        htraffic2 = htraffic2text.text;
+                        hspop = hspoptext.text;
+                        await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              // 예측값 보내기
+                              return ResultPredict(
+                                  busers: widget.busers, result: result);
+                            },
                           ),
-                        ],
-                      ),
+                        );
+                      }
+                    },
+
+                    // 소요시간 보러가기 버튼
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "소요시간 보러가기",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -316,6 +308,12 @@ class _DdayState extends State<Dday> {
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }

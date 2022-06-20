@@ -71,10 +71,7 @@ class _Dday1State extends State<Dday1> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('d-1 소요시간 예측'),
-          backgroundColor: Colors.purple,
-        ),
+      
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -95,7 +92,7 @@ class _Dday1State extends State<Dday1> {
                 ],
               ),
 
-              //시간선택
+             //시간선택
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
                 child: Text(
@@ -126,7 +123,7 @@ class _Dday1State extends State<Dday1> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle( fontSize: 20),
+                  style: TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
@@ -172,7 +169,7 @@ class _Dday1State extends State<Dday1> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수',
+                  '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -190,10 +187,15 @@ class _Dday1State extends State<Dday1> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
                 child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
 
+                  style: ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
+                ),
+              ),
                   onPressed: () async{
                     if (hspoptext.text.trim().isEmpty) {
                       errorsnackbar(context);
@@ -218,6 +220,8 @@ class _Dday1State extends State<Dday1> {
                         "소요시간 보러가기",
                         style: TextStyle(
                           fontSize: 20,
+                           fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
                         ),
                       ),
                     ],
@@ -227,6 +231,12 @@ class _Dday1State extends State<Dday1> {
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }
