@@ -3,7 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class MyHistory extends StatefulWidget {
-  const MyHistory({Key? key}) : super(key: key);
+  final Map busers;
+  const MyHistory({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<MyHistory> createState() => _MyHistoryState();
