@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 // d-2, d-1, d-day 선택하는 페이지
 class SelectPredictPage extends StatefulWidget {
-  const SelectPredictPage({Key? key}) : super(key: key);
+  final Map users;
+  const SelectPredictPage({Key? key, required this.users}) : super(key: key);
 
   @override
   State<SelectPredictPage> createState() => _SelectPredictPageState();

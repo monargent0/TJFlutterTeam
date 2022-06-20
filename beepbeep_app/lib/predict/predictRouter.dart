@@ -14,7 +14,7 @@ class MyPredict extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const SelectPredictPage(),
+        //'/': (context) => const SelectPredictPage(users: ,),
         '/Dday': (context) => const Dday(), //설날당일 입력화면
         '/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
         '/Dday2': (context) => const Dday2(),
