@@ -26,6 +26,7 @@ class _MyHistoryState extends State< MyHistory> {
     super.initState();
     data = [];
     buid=widget.busers['buid'];
+  
     getJSONData();
   }
 
@@ -33,27 +34,38 @@ class _MyHistoryState extends State< MyHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('기록 '),
+        title: const Text('나의 기록 '),
         backgroundColor: Colors.purple,
       ),
       body: Center(
           child: data.isEmpty
-              ? const Text('데이터가 없습니다.')
+              ? const Text('검색 기록이 없습니다.')
               : ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                         shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),),
-                                  color:Color.fromARGB(255, 177, 137, 185),
+                      child: Container(
+                        height: 100,
+      
+                        child: Card(
+                          
+                           shape: RoundedRectangleBorder(
 
-                        child: Row(
-                          children: [
-                            data[index]['hpredict']
-                          ],
-                        )
+                                    borderRadius: BorderRadius.circular(50),),
+                                    color:Color.fromARGB(255, 227, 207, 231),
+
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                         
+                              Text('D-${data[index]['hdaytype']} ${data[index]['hstart']}시 출발 ' ,
+                              style: TextStyle(fontSize: 20),),
+                              Text('소요시간 :${data[index]['hpredict']}분',
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                            ],
+                          )
+                        ),
                       ),
                     );
                   })),
@@ -81,4 +93,5 @@ class _MyHistoryState extends State< MyHistory> {
     //print(data[0]);
     return true;
   }
+
 }
