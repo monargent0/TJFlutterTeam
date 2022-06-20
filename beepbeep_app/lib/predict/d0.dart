@@ -199,7 +199,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '1종 교통량',
+                  '1종 교통량(933164~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -209,6 +209,7 @@ class _DdayState extends State<Dday> {
                   controller: htraffic1text,
                   decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
                   keyboardType: TextInputType.number,
+
                 ),
               ),
               const SizedBox(
@@ -219,7 +220,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '2종 교통량',
+                  '2종 교통량(39185~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -234,7 +235,7 @@ class _DdayState extends State<Dday> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수',
+                  '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
