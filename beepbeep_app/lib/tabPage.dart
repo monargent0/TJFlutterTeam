@@ -8,15 +8,15 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class TabPage extends StatefulWidget {
-  const TabPage({Key? key}) : super(key: key);
+  final Map users;
+  const TabPage({Key? key, required this.users}) : super(key: key);
 
   @override
   State<TabPage> createState() => _TabPageState();
 }
-// 탭바 메인 페이지
-class _TabPageState extends State<TabPage> 
-  with SingleTickerProviderStateMixin {
 
+// 탭바 메인 페이지
+class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   late TabController controller;
 
   @override
@@ -39,42 +39,39 @@ class _TabPageState extends State<TabPage>
       ),
       body: Center(
         child: TabBarView(
-          controller: controller,
-          children: const [ MyPredict(), MyChart() , MyHistory()]
-        ),
-        
+            controller: controller,
+            children: const [MyPredict(), MyChart(), MyHistory()]),
       ),
       backgroundColor: Color.fromARGB(255, 211, 148, 222),
       bottomNavigationBar: Container(
         child: TabBar(
-          onTap:(value) {
+          onTap: (value) {
             //
           },
           controller: controller,
           labelColor: Colors.black,
           indicatorColor: Colors.indigo,
           tabs: const [
-              Tab(
-                
-                icon: Icon(
-                  Icons.pie_chart,
-                  color: Colors.black,
-                ),
-                text: "시간예측",
+            Tab(
+              icon: Icon(
+                Icons.pie_chart,
+                color: Colors.black,
               ),
-               Tab(
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Colors.black,
-                ),
-                text: "데이터분석",
+              text: "시간예측",
             ),
-               Tab(
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Colors.black,
-                ),
-                text: "나의 내역",
+            Tab(
+              icon: Icon(
+                Icons.person_outline,
+                color: Colors.black,
+              ),
+              text: "데이터분석",
+            ),
+            Tab(
+              icon: Icon(
+                Icons.person_outline,
+                color: Colors.black,
+              ),
+              text: "나의 내역",
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:beepbeep_app/login/register.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
+import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -260,7 +261,7 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return SelectPredictPage(users: busers[0]); // Map으로 보내
+              return TabPage(users: busers[0]); // Map으로 보내
             },
           ),
         ); // 로그인 성공 메인 화면으로 이동
