@@ -40,7 +40,7 @@ class _TabPageState extends State<TabPage>
       body: Center(
         child: TabBarView(
           controller: controller,
-          children: const [ MyPredict(), MyChart() , MyList()]
+          children: const [ MyPredict(), MyChart() , MyList(users: {},)]
         ),
         
       ),

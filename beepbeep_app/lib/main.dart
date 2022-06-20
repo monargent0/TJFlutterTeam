@@ -1,5 +1,6 @@
 
-import 'package:beepbeep_app/predict/d0.dart';
+
+import 'package:beepbeep_app/predict/myhistory.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -21,12 +24,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       routes: {
-        '/tab':(context) => const TabPage(),
+        '/tab':(context) => TabPage(busers: {},),
         '/signin': (context) => const LoginPage(), // 로그인 화면
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+  
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/tab',
+      initialRoute: '/signin',
       debugShowCheckedModeBanner: false,
 // ------------------------
 

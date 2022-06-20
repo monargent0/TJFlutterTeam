@@ -10,8 +10,8 @@ import 'package:http/http.dart' as http;
 
 
 class MyList extends StatefulWidget {
-  final Map users;
-  const MyList({Key? key, required this.users}) : super(key: key);
+  final Map busers;
+  const MyList({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<MyList> createState() => _MyListState();
@@ -25,7 +25,7 @@ class _MyListState extends State<MyList> {
   void initState() {
     super.initState();
     data = [];
-    bid=widget.users['bid'];
+    bid=widget.busers['bid'];
     getJSONData();
   }
 
@@ -64,8 +64,8 @@ class _MyListState extends State<MyList> {
                             Row(
                               children: [
                                 const Text(
-                                  '시작시간 :',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  '출발시간 :',
+                                  
                                 ),
                                 Text(
                                   data[index]['hstart'],

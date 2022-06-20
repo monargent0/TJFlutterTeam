@@ -5,8 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 // d-2, d-1, d-day 선택하는 페이지
 class SelectPredictPage extends StatefulWidget {
-  final Map users;
-  const SelectPredictPage({Key? key, required this.users}) : super(key: key);
+  final Map busers;
+  const SelectPredictPage({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<SelectPredictPage> createState() => _SelectPredictPageState();
@@ -33,7 +33,8 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ResultPredict()));
+                        builder: (context) =>  ResultPredict(busers: widget.busers,)));
+
               },
               child: const Text('설날 전전날 출발 >'),
               style: ElevatedButton.styleFrom(
