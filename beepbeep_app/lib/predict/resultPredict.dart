@@ -1,20 +1,34 @@
-import 'dart:convert';
-
+import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ResultPredict extends StatefulWidget {
-   final Map busers;
-  const ResultPredict({Key? key, required this.busers}) : super(key: key);
+  final Map busers;
+  final String result;
+  const ResultPredict({Key? key, required this.busers, required this.result})
+      : super(key: key);
 
   @override
   State<ResultPredict> createState() => _ResultPredictState();
 }
 
 class _ResultPredictState extends State<ResultPredict> {
+  late List predictList;
+  late String buid;
+  late String result;
+
+  @override
+  void initState() {
+    super.initState();
+    predictList = [];
+    buid = widget.busers['buid'];
+    result = "${widget.result}분";
+    //getJSONData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +48,7 @@ class _ResultPredictState extends State<ResultPredict> {
                     height: 50,
                   ),
                   Text(
-                    '1시간 30분(예시)',
+                    result,
                     style: TextStyle(fontSize: 40),
                   ),
                 ],
@@ -59,6 +73,17 @@ class _ResultPredictState extends State<ResultPredict> {
                 )
               ],
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return SelectPredictPage(busers: widget.busers);
+                  },
+                ));
+              },
+              child: const Text("다시 측정하기"),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.purple)),
+            ),
           ],
         ),
       ),
@@ -81,7 +106,7 @@ class _ResultPredictState extends State<ResultPredict> {
   //   Future<bool> getJSONData() async {
   //   predictList = []; // 초기화
   //   var url = Uri.parse(
-  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
+  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?buser_buid=$buid');
 
   //   var response = await http.get(url); // 빌드가 끝날 때까지 기다려
   //   var dataConvertedJSON =
@@ -90,10 +115,10 @@ class _ResultPredictState extends State<ResultPredict> {
   //   List result = dataConvertedJSON['results'];
 
   //   setState(() {
-  //     diaryList.addAll(result);
+  //     predictList.addAll(result);
   //   });
 
   //   return true;
   // }
-}
 
+}

@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -56,10 +57,12 @@ class _Dday2State extends State<Dday2> {
   //계산결과  즉 소요시간
   late String result;
 
+  late String buid;
+
   @override
   void initState() {
     super.initState();
-
+    buid = widget.busers['buid'];
     htraffic1text = TextEditingController();
     htraffic2text = TextEditingController();
     hspoptext = TextEditingController();
@@ -196,7 +199,7 @@ class _Dday2State extends State<Dday2> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.purple)),
 
-                  onPressed: () {
+                  onPressed: () async{
                     if (htraffic1text.text.trim().isEmpty ||
                         htraffic2text.text.trim().isEmpty ||
                         hspoptext.text.trim().isEmpty) {
@@ -205,11 +208,14 @@ class _Dday2State extends State<Dday2> {
                       htraffic1 = htraffic1text.text;
                       htraffic2 = htraffic2text.text;
                       hspop = hspoptext.text;
-                      setState(
-                        () {},
-                      );
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
+                      await insertAction();
+                      Navigator.push(context, 
+                      MaterialPageRoute(
+                        builder: (context) {
+                          // 예측값 보내기
+                          return ResultPredict(busers: widget.busers, result: result);
+                        },),
+                        );
                     }
                   },
 
@@ -236,7 +242,7 @@ class _Dday2State extends State<Dday2> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.150.132:8080/Flutter/beep_predict_2.jsp?hdaytype=$hdaytype&hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
+        'http://localhost:8080/Flutter/beep_predict_2.jsp?hdaytype=$hdaytype&hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

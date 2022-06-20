@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -255,43 +256,62 @@ class _DdayState extends State<Dday> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
-
-                  onPressed: () {
-                    if (htraffic1text.text.trim().isEmpty ||
-                        htraffic2text.text.trim().isEmpty ||
-                        hspoptext.text.trim().isEmpty) {
-                      errorsnackbar(context);
-                    } else {
-                      htraffic1 = htraffic1text.text;
-                      htraffic2 = htraffic2text.text;
-                      hspop = hspoptext.text;
-                      setState(
-                        () {},
-                      );
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
-                    }
-                  },
-
-                  // 소요시간 보러가기 버튼
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "소요시간 보러가기",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("돌아가기"),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.purple)),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 100, 20),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.purple)),
+                      //
+                      onPressed: () async {
+                        if (htraffic1text.text.trim().isEmpty ||
+                            htraffic2text.text.trim().isEmpty ||
+                            hspoptext.text.trim().isEmpty) {
+                          errorsnackbar(context);
+                        } else {
+                          htraffic1 = htraffic1text.text;
+                          htraffic2 = htraffic2text.text;
+                          hspop = hspoptext.text;
+                          await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                // 예측값 보내기
+                                return ResultPredict(
+                                    busers: widget.busers, result: result);
+                              },
+                            ),
+                          );
+                        }
+                      },
+
+                      // 소요시간 보러가기 버튼
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "소요시간 보러가기",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -315,6 +335,7 @@ class _DdayState extends State<Dday> {
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
+      print(result);
     });
   }
 
