@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MyPage extends StatefulWidget {
-  final Map userdata;
-  const MyPage({Key? key, required this.userdata}) : super(key: key);
+  final Map busers;
+  const MyPage({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<MyPage> createState() => _MyPageState();
@@ -19,10 +19,14 @@ class _MyPageState extends State<MyPage> {
   late TextEditingController _pwController;
   late TextEditingController _pwokController;
 
-  late String id;
-  late String pw;
-  late String name;
-  late String email;
+  // late String id;
+  // late String pw;
+  // late String name;
+  // late String email;
+  String? id;
+  String? pw;
+  String? name;
+  String? email;
 
   late String result;
 
@@ -41,10 +45,11 @@ class _MyPageState extends State<MyPage> {
     _pwController = TextEditingController();
     _pwokController = TextEditingController();
 
-    _nameController.text = widget.userdata['buid'];
-    _idController.text = widget.userdata['uname'];
-    // _emailController.text = widget.userdata['uemail'];
-    _pwController.text = widget.userdata['upw'];
+    _idController.text = widget.busers['buid'];
+    _nameController.text = widget.busers['uname'];
+    _emailController.text = widget.busers['uemail'];
+    _pwController.text = widget.busers['upw'];
+    _pwokController.text;
 
     _emailErrorText = null;
     _nameErrorText = null;
@@ -120,7 +125,7 @@ class _MyPageState extends State<MyPage> {
                   height: 20,
                 ),
                 TextField(
-                  //  controller: _nameController,
+                  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '닉네임',
                     errorText: _nameErrorText,
@@ -355,49 +360,22 @@ class _MyPageState extends State<MyPage> {
       } else {
         setState(() {
           _pass2ErrorText = null;
-
-          // 통과하면 수정 의사
-          _editShowDialog(BuildContext context) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext ctx) {
-                return AlertDialog(
-                  title: const Icon(
-                    Icons.edit_note_rounded,
-                    color: Colors.deepPurple,
-                  ),
-                  content: const Text('            수정하시겠습니까?'),
-                  actions: [
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: const Text(
-                              '취소',
-                              style: TextStyle(color: Colors.amber),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                              updateAction();
-                            },
-                            child: const Text('확인'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
+        });
+        // 통과하면 수정 의사
+        var url = Uri.parse(
+            'http://192.168.123.149:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
+        var response = await http.get(url);
+        var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+        result = dataConvertedJSON['result'];
+        //print(result);
+        setState(() {
+          if (result == 'OK') {
+            _showfinishDialog(context);
+          } else {
+            editerrorSnackBar(context);
           }
         });
+        return result;
       }
     }
     setState(() {
@@ -405,22 +383,46 @@ class _MyPageState extends State<MyPage> {
     }); // else
   } // async
 
-  Future<String> updateAction() async {
-    var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
-    var response = await http.get(url);
-    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-    result = dataConvertedJSON['result'];
-    //print(result);
-    setState(() {
-      if (result == 'OK') {
-        _showfinishDialog(context);
-      } else {
-        editerrorSnackBar(context);
-      }
-    });
-    return result;
-  }
+  //   _editShowDialog(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (BuildContext ctx) {
+  //       return AlertDialog(
+  //         title: const Icon(
+  //           Icons.edit_note_rounded,
+  //           color: Colors.deepPurple,
+  //         ),
+  //         content: const Text('            수정하시겠습니까?'),
+  //         actions: [
+  //           Center(
+  //             child: Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //               children: [
+  //                 TextButton(
+  //                   onPressed: () {
+  //                     Navigator.of(ctx).pop();
+  //                   },
+  //                   child: const Text(
+  //                     '취소',
+  //                     style: TextStyle(color: Colors.amber),
+  //                   ),
+  //                 ),
+  //                 TextButton(
+  //                   onPressed: () {
+  //                     Navigator.of(ctx).pop();
+  //                     //updateAction();
+  //                   },
+  //                   child: const Text('확인'),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   // 수정 완료
   _showfinishDialog(BuildContext context) {
@@ -502,7 +504,7 @@ class _MyPageState extends State<MyPage> {
 // 탈퇴 JSON
   Future<String> leaveAction() async {
     var url =
-        Uri.parse('http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=$id');
+        Uri.parse('http://192.168.123.149:8080/Flutter/beep_leave.jsp?buid=$id');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
