@@ -411,6 +411,7 @@ class _myPageState extends State<myPage> {
     }); // else
   } // async
 
+  // 수정 JSON
   Future<String> updateAction() async {
     var url = Uri.parse(
         'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
