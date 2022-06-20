@@ -341,7 +341,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
                   Navigator.pushNamed(context, '/signin');
-                  
                 },
                 child: const Text('OK'),
               ),

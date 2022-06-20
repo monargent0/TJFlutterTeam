@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 // d-2, d-1, d-day 선택하는 페이지
 class SelectPredictPage extends StatefulWidget {
-  const SelectPredictPage({Key? key}) : super(key: key);
+  final Map users;
+  const SelectPredictPage({Key? key, required this.users}) : super(key: key);
 
   @override
   State<SelectPredictPage> createState() => _SelectPredictPageState();
@@ -19,19 +20,20 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("서울에서 대전까지",
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20
-              ),
+            const Text(
+              "서울에서 대전까지",
+              textAlign: TextAlign.right,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const ResultPredict()
-                ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ResultPredict()));
               },
               child: const Text('설날 전전날 출발 >'),
               style: ElevatedButton.styleFrom(
@@ -39,14 +41,12 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30 
-            ),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 //
@@ -57,14 +57,12 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30
-            ),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 // Navigator.push(context, MaterialPageRoute(
@@ -77,7 +75,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
-                  
+
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
