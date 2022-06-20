@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.4
   animated_splash_screen: ^1.2.0
   fl_chart: ^0.55.0
+  json_table: ^2.0.1
 
 dev_dependencies:
   flutter_test:
