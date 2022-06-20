@@ -40,8 +40,8 @@ class _TimeChartState extends State<TimeChart> {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               gradient: LinearGradient(
                 colors: [
-                  Colors.deepPurple,
-                  Colors.blueGrey,
+                  Color.fromARGB(153, 66, 5, 90),
+                  Color.fromARGB(128, 236, 236, 236)
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
