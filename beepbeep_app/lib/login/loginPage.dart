@@ -215,7 +215,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  } //--- Function
+  }
+  //--- Function
 
   // 공백 에러창
   errorSnackbar(BuildContext context) {
