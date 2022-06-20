@@ -60,6 +60,7 @@ class _TabPageState extends State<TabPage>
           controller: controller,
           labelColor: Colors.black,
           indicatorColor: Colors.indigo,
+          
           tabs: const [
               Tab(
                 
