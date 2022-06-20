@@ -320,7 +320,7 @@ hweather =0;
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.150.132:8080/Rserve/beep_predict.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
+        'http://192.168.150.132:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
