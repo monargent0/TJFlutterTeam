@@ -1,4 +1,3 @@
-import 'package:beepbeep_app/chart/popChart.dart';
 import 'package:flutter/material.dart';
 
 class ChartPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _ChartPageState extends State<ChartPage> {
         ),
       ),
       appBar: AppBar(
-        title: Image.asset('images/logo.png'),
+        title: Image.asset('images/beeplogo.png'),
         backgroundColor: Colors.white,
         elevation: 0, 
       ),
