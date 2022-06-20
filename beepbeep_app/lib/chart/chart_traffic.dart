@@ -27,12 +27,16 @@ class _TrafficChartState extends State<TrafficChart> {
     return Scaffold(
       body: Center(
         child: Container(
-          height: 400,
+          height: 480,
           width: 380,
           child: Column(
             children: [
-              Text('${widget.num}종 교통량'),
-              const SizedBox(height: 12,),
+              Center(
+                child: Text('시간대 별 ${widget.num}종 교통량', style: const TextStyle(fontSize: 20,
+                fontWeight: FontWeight.bold,
+                )),
+              ),
+              const SizedBox(height: 40,),
               Expanded(child: LineChart(LineChartData(
                 minY: 0,
                 minX: -1,
@@ -62,7 +66,10 @@ class _TrafficChartState extends State<TrafficChart> {
                     topTitles: AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
                     ),)
-              )))
+              ))),
+              const SizedBox(height: 16,),
+              const Text('출처: KOSIS 국가통계포털'),
+              const Text('단위: 대/시')
             ],
           ),
         ),
