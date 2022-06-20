@@ -236,6 +236,12 @@ class _Dday2State extends State<Dday2> {
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }

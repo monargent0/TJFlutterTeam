@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         duration: 1000,
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.deepPurple,
-          nextScreen: TabPage(busers: busers),),
+          nextScreen: LoginPage()),
       // routes: {
       //   //'/': (context) => const SelectPredictPage(),
       //   //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면

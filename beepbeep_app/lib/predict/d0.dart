@@ -82,12 +82,7 @@ class _DdayState extends State<Dday> {
       }),
       child: Scaffold(
         
-        appBar: AppBar(
-          
-          title: const Text('d-day 소요시간 예측'),
-          backgroundColor: Colors.purple,
-  
-        ),
+       
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -257,58 +252,48 @@ class _DdayState extends State<Dday> {
                 height: 20,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                 
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text("돌아가기"),
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.purple)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 100, 20),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.purple)),
-                      //
-                      onPressed: () async {
-                        if (htraffic1text.text.trim().isEmpty ||
-                            htraffic2text.text.trim().isEmpty ||
-                            hspoptext.text.trim().isEmpty) {
-                          errorsnackbar(context);
-                        } else {
-                          htraffic1 = htraffic1text.text;
-                          htraffic2 = htraffic2text.text;
-                          hspop = hspoptext.text;
-                          await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                // 예측값 보내기
-                                return ResultPredict(
-                                    busers: widget.busers, result: result);
-                              },
-                            ),
-                          );
-                        }
-                      },
-
-                      // 소요시간 보러가기 버튼
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "소요시간 보러가기",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
+                    //
+                    onPressed: () async {
+                      if (htraffic1text.text.trim().isEmpty ||
+                          htraffic2text.text.trim().isEmpty ||
+                          hspoptext.text.trim().isEmpty) {
+                        errorsnackbar(context);
+                      } else {
+                        htraffic1 = htraffic1text.text;
+                        htraffic2 = htraffic2text.text;
+                        hspop = hspoptext.text;
+                        await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              // 예측값 보내기
+                              return ResultPredict(
+                                  busers: widget.busers, result: result);
+                            },
                           ),
-                        ],
-                      ),
+                        );
+                      }
+                    },
+
+                    // 소요시간 보러가기 버튼
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "소요시간 보러가기",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -316,6 +301,12 @@ class _DdayState extends State<Dday> {
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }
