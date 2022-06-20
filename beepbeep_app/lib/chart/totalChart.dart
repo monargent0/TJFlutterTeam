@@ -50,7 +50,7 @@ class _TotalChartState extends State<TotalChart> {
         child: Column(
           children: [
             SizedBox(
-              width: 800,
+              width: 400,
               child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
           ],
         ),
