@@ -8,8 +8,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class TabPage extends StatefulWidget {
-  final Map users;
-  const TabPage({Key? key, required this.users}) : super(key: key);
+  final Map busers;
+  const TabPage({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<TabPage> createState() => _TabPageState();
