@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class MyPredict extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        // '/': (context) => const SelectPredictPage(),
+        '/': (context) => const ResultPredict(),
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

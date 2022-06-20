@@ -15,7 +15,7 @@ class _ChartPageState extends State<ChartPage> {
         child: Column(
           children: [
             TextButton(onPressed: () {
-              Navigator.pushNamed(context, '/pop');
+              Navigator.pushNamed(context, '/spop');
             }, child: const Text('년도 별 인구')),
             TextButton(onPressed: () {
               Navigator.pushNamed(context, '/total');
