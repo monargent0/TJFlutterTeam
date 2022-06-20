@@ -19,6 +19,7 @@ class _ResultPredictState extends State<ResultPredict> {
   late List predictList;
   late String buid;
   late String result;
+  late int hid;
 
   @override
   void initState() {
@@ -26,15 +27,13 @@ class _ResultPredictState extends State<ResultPredict> {
     predictList = [];
     buid = widget.busers['buid'];
     result = "${widget.result}분";
-    //getJSONData();
+    getJSONData();
+    hid = predictList[0]['hid'];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BEEP BEEP!'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -103,22 +102,22 @@ class _ResultPredictState extends State<ResultPredict> {
   //   });
   // }
 
-  //   Future<bool> getJSONData() async {
-  //   predictList = []; // 초기화
-  //   var url = Uri.parse(
-  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?buser_buid=$buid');
+    Future<bool> getJSONData() async {
+    predictList = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
 
-  //   var response = await http.get(url); // 빌드가 끝날 때까지 기다려
-  //   var dataConvertedJSON =
-  //       json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
 
-  //   List result = dataConvertedJSON['results'];
+    setState(() {
+      var dataConvertedJSON =
+        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
 
-  //   setState(() {
-  //     predictList.addAll(result);
-  //   });
+      List result = dataConvertedJSON['results'];
+      predictList.addAll(result);
+    });
 
-  //   return true;
-  // }
+    return true;
+  }
 
 }
