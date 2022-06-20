@@ -34,7 +34,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               },
               child: const Text('설날 전전날 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 172, 16, 224),
+                primary: const Color.fromARGB(255, 132, 6, 173),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
@@ -50,7 +50,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               },
               child: const Text('설날 전날 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 172, 16, 224),
+                primary: Color.fromARGB(255, 132, 6, 173),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
@@ -66,7 +66,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               },
               child: const Text('설날 당일 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 172, 16, 224),
+                primary: const Color.fromARGB(255, 132, 6, 173),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절

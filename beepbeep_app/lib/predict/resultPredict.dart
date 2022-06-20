@@ -17,14 +17,14 @@ class ResultPredict extends StatefulWidget {
 
 class _ResultPredictState extends State<ResultPredict> {
   late List predictList;
-  late String id;
+  late String buid;
   late String result;
 
   @override
   void initState() {
     super.initState();
     predictList = [];
-    id = widget.busers['buid'];
+    buid = widget.busers['buid'];
     result = "${widget.result}분";
     //getJSONData();
   }
@@ -106,7 +106,7 @@ class _ResultPredictState extends State<ResultPredict> {
   //   Future<bool> getJSONData() async {
   //   predictList = []; // 초기화
   //   var url = Uri.parse(
-  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
+  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?buser_buid=$buid');
 
   //   var response = await http.get(url); // 빌드가 끝날 때까지 기다려
   //   var dataConvertedJSON =
