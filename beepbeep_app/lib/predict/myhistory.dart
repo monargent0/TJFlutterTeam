@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 //http setting
@@ -11,7 +10,8 @@ import 'package:http/http.dart' as http;
 
 
 class MyList extends StatefulWidget {
-  const MyList({Key? key}) : super(key: key);
+  final Map users;
+  const MyList({Key? key, required this.users}) : super(key: key);
 
   @override
   State<MyList> createState() => _MyListState();
@@ -19,11 +19,13 @@ class MyList extends StatefulWidget {
 
 class _MyListState extends State<MyList> {
   late List data;
+  late String bid;
 
   @override
   void initState() {
     super.initState();
     data = [];
+    bid=widget.users['bid'];
     getJSONData();
   }
 
@@ -81,8 +83,9 @@ class _MyListState extends State<MyList> {
 
   //future 는 다른거 다한 다음 순서라는 의미
   Future<bool> getJSONData() async {
+    data=[];
     //async가 비동기라는 의미 38번째줄이랑 42번째줄이 같이 시작됨
-    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp');
+    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?bid=$bid');
     var response = await http.get(url); //get방식으로 많이씀 그래야 암호화해서 압축해서옴, await는 정보받아올때까지 기다렸다가 띄우기 위해
 
     setState(() {
