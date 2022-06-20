@@ -12,7 +12,7 @@ class Dday extends StatefulWidget {
 
 class _DdayState extends State<Dday> {
   //입력 받을 변수들
-
+  late String buid;
   int hdaytype = 0;
   //1.시간 설정
   final _timelist = [
@@ -66,6 +66,7 @@ class _DdayState extends State<Dday> {
   void initState() {
     super.initState();
 
+    buid=widget.busers['buid'];
     htraffic1text = TextEditingController();
     htraffic2text = TextEditingController();
     hspoptext = TextEditingController();
@@ -79,9 +80,12 @@ class _DdayState extends State<Dday> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
+        
         appBar: AppBar(
+          
           title: const Text('d-day 소요시간 예측'),
           backgroundColor: Colors.purple,
+  
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -306,7 +310,7 @@ class _DdayState extends State<Dday> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
+        'http://localhost:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

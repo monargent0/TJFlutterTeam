@@ -38,9 +38,7 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('images/beeplogo.png'),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        title: const Text('BEEP BEEP!'),
       ),
       body: Center(
         child: TabBarView(controller: controller, children: [

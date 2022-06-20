@@ -48,9 +48,9 @@ class MyApp extends StatelessWidget {
         // },
       ),
       debugShowCheckedModeBanner: false,
-// ------------------------
+// ————————————
 
-      // 삭제하지 마시오--- 상아엉니코드
+      // 삭제하지 마시오— 상아엉니코드
       // home: AnimatedSplashScreen(
       //   splash: 'images/main_splash.png',
       //   splashIconSize: 200,
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
       //   nextScreen: const LoginPage(),
       // ),
       // debugShowCheckedModeBanner: false,
-      // -------
+      // ———
     );
   }
 }

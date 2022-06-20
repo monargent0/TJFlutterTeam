@@ -7,7 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 
 class ResultPredict extends StatefulWidget {
-  final Map busers;
+   final Map busers;
   const ResultPredict({Key? key, required this.busers}) : super(key: key);
 
   @override

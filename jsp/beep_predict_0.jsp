@@ -1,12 +1,15 @@
 <%@ page import="org.rosuda.REngine.Rserve.RConnection"%>
-
+<%@page import="java.sql.*"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.JSONArray"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
     request.setCharacterEncoding("utf-8");
 
-   //int hdaytype = Integer.parseInt(request.getParameter("hdaytype"));
+   String buid=request.getParameter("buser_buid");
+  String  hdaytype = request.getParameter("hdaytype");
     int hstart = Integer.parseInt(request.getParameter("hstart"));
     int hholiday =  Integer.parseInt(request.getParameter("hholiday"));
     int hweather =  Integer.parseInt(request.getParameter("hweather"));
@@ -40,7 +43,38 @@
     }
     String result1 = conn.eval("result1").asString();
     String result2 = conn.eval("result2").asString();
-    
-  
+String conResult = result1.toString() + "~" + result2.toString();
+
+    // 컬럼, 예측값 DB history table에 저장
+    String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
+    String id_mysql="root";
+    String pw_mysql="qwer1234";
+
+    PreparedStatement ps =null;
+
+    try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+        Statement stmt_mysql = conn_mysql.createStatement();
+
+        String act1 ="insert into history(hdaytype, hpredict, hstart, hholiday, hweather, htraffic1, htraffic2, hspop, buser_buid";
+        String act2=") values (?,?,?,?,?,?,?,?,?)";
+
+        ps=conn_mysql.prepareStatement(act1+act2);
+        ps.setString(1,hdaytype);
+        ps.setString(2,conResult);
+        ps.setInt(3,hstart);
+        ps.setInt(4,hholiday);
+        ps.setInt(5,hweather);
+        ps.setInt(6,htraffic1);
+        ps.setInt(7,htraffic2);
+        ps.setInt(8,hspop);
+        ps.setString(9,buid);
+
+        ps.executeUpdate();
+        conn_mysql.close(); 
+    }catch(Exception e){
+      e.printStackTrace();
+    }
 %>
 {"result":"<%=result1%>~<%=result2%>"}
