@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:json_table/json_table.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -23,13 +24,34 @@ class _TotalChartState extends State<TotalChart> {
     super.initState();
   }
 
+  var columns = [
+      JsonTableColumn("cweather", label: "강수여부"),
+      JsonTableColumn("ctraffic2", label: "2종 교통량"),
+      JsonTableColumn("cdate", label: "날짜",),
+      JsonTableColumn("cstart", label: "출발시간대",),
+      JsonTableColumn("cspop", label: "서울 인구수"),
+      JsonTableColumn("cdaytype", label: "설날 D-Day"),
+      JsonTableColumn("choliday", label: "연휴길이"),
+      JsonTableColumn("cdriving", label: "소요시간"),
+      JsonTableColumn("ctraffic1", label: "1종 교통량"),
+    ];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        //https://pub.dev/packages/json_table
-        child: _resultData.isNotEmpty ? JsonTable(_resultData) : null,
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {
+          Navigator.pop(context);
+        }, icon: const Icon(Icons.arrow_back)),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            SizedBox(child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+          ],
+        ),
       ),
     );
   }
