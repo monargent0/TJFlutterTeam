@@ -69,7 +69,7 @@ class _TrafficChartState extends State<TrafficChart> {
               ))),
               const SizedBox(height: 16,),
               const Text('출처: KOSIS 국가통계포털'),
-              const Text('단위: 대/시')
+              const Text('단위: 대 / 시')
             ],
           ),
         ),
