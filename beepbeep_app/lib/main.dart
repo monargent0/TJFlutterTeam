@@ -4,6 +4,7 @@ import 'package:beepbeep_app/chart/chart_time.dart';
 import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:beepbeep_app/predict/d0.dart';
+import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 
       //---------------------개인 테스트용
       routes: {
-        '/': (context) => const SpopChart(), // 로그인 화면
+        '/': (context) => const TabPage(), // 로그인 화면
         // '/': (context) => const TimeChart(), // 로그인 화면
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용

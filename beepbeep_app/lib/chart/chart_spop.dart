@@ -28,11 +28,11 @@ class _SpopChartState extends State<SpopChart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Image.asset('images/beeplogo.png'),
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   title: Image.asset('images/beeplogo.png'),
+      //   elevation: 0,
+      // ),
       body: Center(
         child: Column(
           children: [

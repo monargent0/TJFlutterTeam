@@ -40,11 +40,11 @@ class _TotalChartState extends State<TotalChart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        }, icon: const Icon(Icons.arrow_back)),
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(onPressed: () {
+      //     Navigator.pop(context);
+      //   }, icon: const Icon(Icons.arrow_back)),
+      // ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Column(

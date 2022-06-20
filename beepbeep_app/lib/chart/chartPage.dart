@@ -13,9 +13,10 @@ class _ChartPageState extends State<ChartPage> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(onPressed: () {
-              Navigator.pushNamed(context, '/pop');
+              Navigator.pushNamed(context, '/spop');
             }, child: const Text('년도 별 인구')),
             TextButton(onPressed: () {
               Navigator.pushNamed(context, '/total');
@@ -23,11 +24,11 @@ class _ChartPageState extends State<ChartPage> {
           ],
         ),
       ),
-      appBar: AppBar(
-        title: Image.asset('images/beeplogo.png'),
-        backgroundColor: Colors.white,
-        elevation: 0, 
-      ),
+      // appBar: AppBar(
+      //   title: Image.asset('images/beeplogo.png'),
+      //   backgroundColor: Colors.white,
+      //   elevation: 0, 
+      // ),
     );
   }
 }
