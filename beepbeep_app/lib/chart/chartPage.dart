@@ -1,4 +1,3 @@
-import 'package:beepbeep_app/chart/popChart.dart';
 import 'package:flutter/material.dart';
 
 class ChartPage extends StatefulWidget {
@@ -17,12 +16,15 @@ class _ChartPageState extends State<ChartPage> {
           children: [
             TextButton(onPressed: () {
               Navigator.pushNamed(context, '/pop');
-            }, child: const Text('년도 별 인구'))
+            }, child: const Text('년도 별 인구')),
+            TextButton(onPressed: () {
+              Navigator.pushNamed(context, '/total');
+            }, child: const Text('전체 데이터')),
           ],
         ),
       ),
       appBar: AppBar(
-        title: Image.asset('images/logo.png'),
+        title: Image.asset('images/beeplogo.png'),
         backgroundColor: Colors.white,
         elevation: 0, 
       ),
