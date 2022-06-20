@@ -6,8 +6,8 @@
 
     <%
     request.setCharacterEncoding("utf-8");
-   // String uId = request.getParameter("uid");
-String buid=request.getParameter("buser_buid");
+    String buid = request.getParameter("buid");
+
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
     String pw_mysql="qwer1234";
@@ -22,7 +22,7 @@ String buid=request.getParameter("buser_buid");
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String whereDefault ="select hid, hdaytype, d.dcontent, hpreict, hstart,hholiday,hweather,htraffic1,htraffic2,hspop,buser_build from history  where buser_build=?";
+        String whereDefault ="select hid, hdaytype, hpredict, hstart,hholiday,hweather,htraffic1,htraffic2,hspop,buser_buid from history  where buser_buid=?";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, buid);
@@ -33,14 +33,14 @@ String buid=request.getParameter("buser_buid");
             JSONObject tempJson = new JSONObject();
             tempJson.put("hid", rs.getInt(1));
             tempJson.put("hdaytype", rs.getString(2));
-            tempJson.put("hpreict", rs.getString(3));
+            tempJson.put("hpredict", rs.getString(3));
             tempJson.put("hstart", rs.getInt(4));
             tempJson.put("hholiday", rs.getInt(5));
             tempJson.put("hweather", rs.getInt(6));
             tempJson.put("htraffic1", rs.getInt(7));
             tempJson.put("htraffic2", rs.getInt(8));
             tempJson.put("hspop", rs.getInt(9));
-            tempJson.put("buser_build", rs.getString(10));
+            tempJson.put("buser_buid", rs.getString(10));
            
             itemList.add(tempJson);
             
