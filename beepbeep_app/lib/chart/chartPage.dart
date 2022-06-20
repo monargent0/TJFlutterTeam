@@ -20,8 +20,12 @@ class _ChartPageState extends State<ChartPage> {
             }, child: const Text('년도 별 인구')),
             const SizedBox(height: 12,),
             ElevatedButton(onPressed: () {
-              Navigator.pushNamed(context, '/spop');
-            }, child: const Text('교통량')),
+              Navigator.pushNamed(context, '/traffic1');
+            }, child: const Text('1종 교통량')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/traffic2');
+            }, child: const Text('2종 교통량')),
             const SizedBox(height: 12,),
             ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/spop');
