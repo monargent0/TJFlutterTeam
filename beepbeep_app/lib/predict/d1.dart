@@ -177,7 +177,9 @@ class _Dday1State extends State<Dday1> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기',
+                 
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),

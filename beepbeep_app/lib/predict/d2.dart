@@ -145,7 +145,8 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: TextField(
                   controller: htraffic1text,
-                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
+                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 ',
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -165,7 +166,8 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: htraffic2text,
-                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 '),
+                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -182,7 +184,7 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),
