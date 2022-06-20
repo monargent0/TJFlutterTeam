@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -51,16 +52,16 @@ class _Dday1State extends State<Dday1> {
   late String hspop;
 
   //계산결과  즉 소요시간
-  late String result1;
-  late String result2;
+  late String result;
+
+  late String buid;
 
   @override
   void initState() {
     super.initState();
-
+    buid = widget.busers['buid'];
     hspoptext = TextEditingController();
-    result1 = "";
-    result2 = "";
+    result = "";
   }
 
   @override
@@ -193,16 +194,20 @@ class _Dday1State extends State<Dday1> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.purple)),
 
-                  onPressed: () {
+                  onPressed: () async{
                     if (hspoptext.text.trim().isEmpty) {
                       errorsnackbar(context);
                     } else {
                       hspop = hspoptext.text;
-                      setState(() {});
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
+                      await insertAction();
+                      Navigator.push(context, 
+                      MaterialPageRoute(
+                        builder: (context) {
+                          // 예측값 보내기
+                          return ResultPredict(busers: widget.busers, result: result);
+                        },),
+                        );
                     }
-                    ;
                   },
 
                   // 소요시간 보러가기 버튼
@@ -228,12 +233,11 @@ class _Dday1State extends State<Dday1> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Rserve/beep_predict_1.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop');
+        'http://localhost:8080/Flutter/beep_predict_1.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-      result1 = dataConvertedJSON['result1'];
-      result2 = dataConvertedJSON['result2'];
+      result = dataConvertedJSON['result'];
     });
   }
 

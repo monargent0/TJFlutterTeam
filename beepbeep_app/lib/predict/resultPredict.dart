@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,24 +7,25 @@ import 'package:http/http.dart' as http;
 
 class ResultPredict extends StatefulWidget {
   final Map busers;
-  final String result1;
-  final String result2;
-  const ResultPredict({Key? key, required this.busers, required this.result1, required this.result2}) : super(key: key);
+  final String result;
+  const ResultPredict({Key? key, required this.busers, required this.result})
+      : super(key: key);
 
   @override
   State<ResultPredict> createState() => _ResultPredictState();
 }
 
 class _ResultPredictState extends State<ResultPredict> {
-
   late List predictList;
   late String id;
+  late String result;
 
   @override
   void initState() {
     super.initState();
     predictList = [];
     id = widget.busers['buid'];
+    result = "${widget.result}분";
     //getJSONData();
   }
 
@@ -46,7 +48,7 @@ class _ResultPredictState extends State<ResultPredict> {
                     height: 50,
                   ),
                   Text(
-                    '${widget.result1} ~ ${widget.result2}',
+                    result,
                     style: TextStyle(fontSize: 40),
                   ),
                 ],
@@ -70,6 +72,17 @@ class _ResultPredictState extends State<ResultPredict> {
                   style: TextStyle(fontSize: 10),
                 )
               ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return SelectPredictPage(busers: widget.busers);
+                  },
+                ));
+              },
+              child: const Text("다시 측정하기"),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.purple)),
             ),
           ],
         ),

@@ -61,8 +61,7 @@ class _DdayState extends State<Dday> {
   late String hspop;
 
   //계산결과  즉 소요시간
-  late String result1;
-  late String result2;
+  late String result;
 
   @override
   void initState() {
@@ -71,8 +70,7 @@ class _DdayState extends State<Dday> {
     htraffic1text = TextEditingController();
     htraffic2text = TextEditingController();
     hspoptext = TextEditingController();
-    result1 = "";
-    result2 = "";
+    result = "";
   }
 
   @override
@@ -254,48 +252,62 @@ class _DdayState extends State<Dday> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
-
-                  onPressed: () {
-                    if (htraffic1text.text.trim().isEmpty ||
-                        htraffic2text.text.trim().isEmpty ||
-                        hspoptext.text.trim().isEmpty) {
-                      errorsnackbar(context);
-                    } else {
-                      htraffic1 = htraffic1text.text;
-                      htraffic2 = htraffic2text.text;
-                      hspop = hspoptext.text;
-                      setState(
-                        () {},
-                      );
-                      Navigator.push(context, 
-                      MaterialPageRoute(
-                        builder: (context) {
-                          // 예측값 보내기
-                          return ResultPredict(busers: widget.busers, result1: result1,result2: result2,);
-                        },),
-                        );
-                    }
-                  },
-
-                  // 소요시간 보러가기 버튼
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "소요시간 보러가기",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("돌아가기"),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.purple)),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 100, 20),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.purple)),
+                      //
+                      onPressed: () async {
+                        if (htraffic1text.text.trim().isEmpty ||
+                            htraffic2text.text.trim().isEmpty ||
+                            hspoptext.text.trim().isEmpty) {
+                          errorsnackbar(context);
+                        } else {
+                          htraffic1 = htraffic1text.text;
+                          htraffic2 = htraffic2text.text;
+                          hspop = hspoptext.text;
+                          await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                // 예측값 보내기
+                                return ResultPredict(
+                                    busers: widget.busers, result: result);
+                              },
+                            ),
+                          );
+                        }
+                      },
+
+                      // 소요시간 보러가기 버튼
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "소요시간 보러가기",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -314,12 +326,12 @@ class _DdayState extends State<Dday> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
+        'http://localhost:8080/Flutter/beep_predict_0.jsp?hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-      result1 = dataConvertedJSON['result1'];
-      result2 = dataConvertedJSON['result2'];
+      result = dataConvertedJSON['result'];
+      print(result);
     });
   }
 
