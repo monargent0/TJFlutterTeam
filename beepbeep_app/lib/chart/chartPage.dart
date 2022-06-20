@@ -16,13 +16,9 @@ class _ChartPageState extends State<ChartPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
              const SizedBox(
-              height: 50,
+              height: 100,
             ),
-            Text('차트 선택', style: TextStyle(fontSize: 20, color: Colors.deepPurple, fontWeight: FontWeight.bold),),
-            const SizedBox(
-              height: 60,
-            ),
-
+          
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[100],
@@ -44,7 +40,7 @@ class _ChartPageState extends State<ChartPage> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -63,7 +59,7 @@ class _ChartPageState extends State<ChartPage> {
                   color: Colors.deepPurple,
                 ),)),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -82,7 +78,7 @@ class _ChartPageState extends State<ChartPage> {
                   color: Colors.deepPurple,
                 ),)),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -101,7 +97,7 @@ class _ChartPageState extends State<ChartPage> {
                   color: Colors.deepPurple,
                 ),)),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(

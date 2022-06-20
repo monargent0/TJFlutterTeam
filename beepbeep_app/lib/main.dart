@@ -16,9 +16,11 @@ void main() {
   runApp(const MyApp());
 }
 
+late Map busers = {'buid' : 'a'};
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,11 +33,8 @@ class MyApp extends StatelessWidget {
         //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
         //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
         //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
-        '/': (context) => const LoginPage(), // 로그인 화면
+        '/': (context) =>  TabPage(busers: busers), // 로그인 화면
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-        // 그 외 화면 이동은 MaterialRoute방식으로 사용
-        // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-        // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
