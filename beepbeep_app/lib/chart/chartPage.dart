@@ -15,7 +15,11 @@ class _ChartPageState extends State<ChartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+<<<<<<< HEAD
+            TextButton(onPressed: () {
+=======
             ElevatedButton(onPressed: () {
+>>>>>>> 7b18dbdd82da032c50eca4ec507a92e6d8c72261
               Navigator.pushNamed(context, '/spop');
             }, child: const Text('년도 별 인구')),
             const SizedBox(height: 12,),

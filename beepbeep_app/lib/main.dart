@@ -1,6 +1,14 @@
+import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/chart/chart_spop.dart';
+import 'package:beepbeep_app/chart/chart_time.dart';
+import 'package:beepbeep_app/login/loginPage.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:beepbeep_app/login/register.dart';
+import 'package:beepbeep_app/predict/d0.dart';
+import 'package:beepbeep_app/predict/d1.dart';
+import 'package:beepbeep_app/predict/d2.dart';
+import 'package:beepbeep_app/predict/selectPredictPage.dart';
 
-
-import 'package:beepbeep_app/predict/myhistory.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
@@ -24,23 +32,29 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       routes: {
-<<<<<<< HEAD
+
         '/tab':(context) => TabPage(busers: {},),
-=======
-        '/': (context) => const TabPage(), // 로그인 화면
+// 로그인 화면
         // '/': (context) => const TimeChart(), // 로그인 화면
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
->>>>>>> main
+
         '/signin': (context) => const LoginPage(), // 로그인 화면
+
+        //'/': (context) => const SelectPredictPage(),
+        //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
+        //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
+        //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
+        '/': (context) => const LoginPage(), // 로그인 화면
+
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
   
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
+        // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-<<<<<<< HEAD
+
       initialRoute: '/signin',
-=======
-      initialRoute: '/',
->>>>>>> main
+
       debugShowCheckedModeBanner: false,
 // ------------------------
 

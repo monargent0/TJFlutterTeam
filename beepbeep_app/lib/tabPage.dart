@@ -16,14 +16,18 @@ class TabPage extends StatefulWidget {
 }
 // 탭바 메인 페이지
 class _TabPageState extends State<TabPage> 
+
   with SingleTickerProviderStateMixin {
 
   late TabController controller;
-  
+
+  late String buid;
+
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 3, vsync: this);
+    buid = widget.busers['buid'];
   }
 
   @override
@@ -41,7 +45,7 @@ class _TabPageState extends State<TabPage>
       body: Center(
         child: TabBarView(
           controller: controller,
-          children:  [ MyPredict(busers:widget.busers), MyChart() , MyList(busers:widget.busers,)]
+          children: [ MyPredict(busers: widget.busers), const MyChart() , MyHistory(busers: widget.busers)]
         ),
         
       ),

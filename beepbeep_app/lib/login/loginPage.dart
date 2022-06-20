@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:beepbeep_app/login/register.dart';
+import 'package:beepbeep_app/main.dart';
+import 'package:beepbeep_app/predict/predictRouter.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
@@ -254,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
         loginfailSnackbar(context); // 로그인 실패 알림창
       } else {
         busers.addAll(result);
-        // print(users); // 결과 확인용
+        // print(busers); // 결과 확인용
 
         Navigator.pop(context);
         Navigator.push(
