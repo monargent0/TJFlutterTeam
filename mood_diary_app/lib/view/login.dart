@@ -172,10 +172,10 @@ class _LoginPageState extends State<LoginPage> {
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 일기 리스트 화면으로 바로 넘어가기
   Future<bool> updateAction() async {
     users = []; // 초기화
-    var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
-        // get 방식으로 데이터 받아와서 넘기기
-        );
+    var url =
+        Uri.parse('http://192.168.5.222/Flutter/daily_login.jsp?uid=$id&upw=$pw'
+            // get 방식으로 데이터 받아와서 넘기기
+            );
     var response = await http.get(url);
 
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

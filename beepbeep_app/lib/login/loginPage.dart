@@ -1,22 +1,25 @@
 import 'dart:convert';
 
 import 'package:beepbeep_app/login/register.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:beepbeep_app/main.dart';
+import 'package:beepbeep_app/predict/predictRouter.dart';
+import 'package:beepbeep_app/predict/selectPredictPage.dart';
+import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class loginPage extends StatefulWidget {
-  const loginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _LoginPageState extends State<LoginPage> {
   late TextEditingController buid;
   late TextEditingController bpw;
-  // late List busers;
+  late List busers;
 
   // JSON
   late String id;
@@ -25,7 +28,7 @@ class _loginPageState extends State<loginPage> {
   @override
   void initState() {
     super.initState();
-    // busers = [];
+    busers = [];
     buid = TextEditingController();
     bpw = TextEditingController();
   }
@@ -55,10 +58,24 @@ class _loginPageState extends State<loginPage> {
                     backgroundImage: AssetImage('images/logo.png'),
                     radius: 50,
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Image.asset('images/beeplogo.png'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '서울-대전 교통 알림 서비스',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    ),
                   ),
                   const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
                     width: 300,
                     height: 50,
                     child: Padding(
@@ -67,7 +84,7 @@ class _loginPageState extends State<loginPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                        // controller: uId,
+                        controller: buid,
                         decoration: InputDecoration(
                           hintText: "아이디",
                           hintStyle: TextStyle(color: Colors.deepPurple),
@@ -80,7 +97,7 @@ class _loginPageState extends State<loginPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 300,
                     height: 50,
                     child: Padding(
@@ -89,7 +106,7 @@ class _loginPageState extends State<loginPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                        // controller: uPw,
+                        controller: bpw,
                         decoration: InputDecoration(
                           hintText: "비밀번호",
                           hintStyle: TextStyle(color: Colors.deepPurple),
@@ -104,7 +121,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -138,7 +155,16 @@ class _loginPageState extends State<loginPage> {
                       ),
                     ),
                     onPressed: () {
-                      //
+                      // 사용자 입력 값 JSON용 변수에 넣어줌
+                      id = buid.text.trim();
+                      pw = bpw.text.trim();
+
+                      // 공백 있으면 에러스낵바 아니면 쿼리문 작동
+                      if (buid.text.trim().isEmpty || bpw.text.trim().isEmpty) {
+                        errorSnackbar(context);
+                      } else {
+                        updateAction();
+                      }
                     },
                     child: const Text(
                       '로그인',
@@ -146,9 +172,6 @@ class _loginPageState extends State<loginPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
                   ),
                   Row(
                     children: [
@@ -166,7 +189,7 @@ class _loginPageState extends State<loginPage> {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         '|',
                         style: TextStyle(
                           color: Colors.white,
@@ -199,7 +222,7 @@ class _loginPageState extends State<loginPage> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('아이디와 비밀번호를 입력해주세요.'),
       duration: Duration(seconds: 2),
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.deepPurple,
     ));
   }
 
@@ -208,7 +231,7 @@ class _loginPageState extends State<loginPage> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('아이디와 비밀번호가 일치하지 않습니다.'),
       duration: Duration(seconds: 2),
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.deepPurple,
     ));
   }
 
@@ -216,38 +239,38 @@ class _loginPageState extends State<loginPage> {
   // 택스트필드에서 id,pw를 받아와서 로그인 버튼을 누르면 실행된다.
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 다음 화면으로 바로 넘어가기
 
-  // Future<bool> updateAction() async {
-  //   busers = []; // 초기화
-  //   var url = Uri.parse(
-  //       'http://192.168.5.83:8080/Flutter/beep_login.jsp?buid=$id&bpw=$pw'
-  //       // get 방식으로 데이터 받아와서 넘기기
-  //       );
-  //   var response = await http.get(url);
+  Future<bool> updateAction() async {
+    busers = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        // get 방식으로 데이터 받아와서 넘기기
+        );
+    var response = await http.get(url);
 
-  //   var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-  //   List result = dataConvertedJSON['results'];
+    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+    List result = dataConvertedJSON['results'];
 
-  //   setState(() {
-  //     if (result[0] == 'ERROR') {
-  //       // print(result); // 결과 확인용
-  //       loginfailSnackbar(context); // 로그인 실패 알림창
-  //     } else {
-  //       busers.addAll(result);
-  //       // print(users); // 결과 확인용
+    setState(() {
+      if (result[0] == 'ERROR') {
+        // print(result); // 결과 확인용
+        loginfailSnackbar(context); // 로그인 실패 알림창
+      } else {
+        busers.addAll(result);
+        // print(busers); // 결과 확인용
 
-  //       Navigator.pop(context);
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) {
-  //             return RegisterPage(users: busers[0]); // Map으로 보내
-  //           },
-  //         ),
-  //       ); // 로그인 성공 리스트 화면으로 이동
-  //     }
-  //   });
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return TabPage(busers: busers[0]); // Map으로 보내
+            },
+          ),
+        ); // 로그인 성공 메인 화면으로 이동
+      }
+    });
 
-  //   return true;
-  // } // Login
+    return true;
+  } // Login
 
 } // End
