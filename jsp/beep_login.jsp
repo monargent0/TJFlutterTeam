@@ -8,6 +8,7 @@
     request.setCharacterEncoding("utf-8");
     String buid = request.getParameter("buid");
     String upw = request.getParameter("upw");
+    String utaltoedate = request.getParameter("utaltoedate");
 
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
@@ -24,7 +25,7 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String whereDefault ="select buid , upw , uname from buser where buid = ? and upw = ? ";
+        String whereDefault ="select buid , upw , uname from buser where buid = ? and upw = ? and utaltoedate is null ";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, buid);
@@ -37,6 +38,7 @@
             tempJson.put("buid", rs.getString(1));
             tempJson.put("upw", rs.getString(2));
             tempJson.put("uname", rs.getString(3));
+            tempJson.put("utaltoedate", rs.getString(4));
             itemList.add(tempJson);
             
         }else{

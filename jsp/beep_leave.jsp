@@ -6,7 +6,6 @@
 
     request.setCharacterEncoding("utf-8");
     String buid =request.getParameter("buid");
-    String utaltoedate =request.getParameter("utaltoedate");
 
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
@@ -19,14 +18,12 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String act1 = "delete from buser where buid = ?";
-        String act2 = "insert into buser (utaltoedate";
-        String act3 = ") values now()";
+        String act1 = "update buser set utaltoedate = now()";
+        String act2 = "where buid = ?";
       
 
-        ps=conn_mysql.prepareStatement(act1+act2+act3);
+        ps=conn_mysql.prepareStatement(act1+act2);
         ps.setString(1,buid);
-        ps.setString(2,utaltoedate);
 
         ps.executeUpdate();
         conn_mysql.close();
