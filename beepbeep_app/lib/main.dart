@@ -1,4 +1,6 @@
 import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/chart/chart_spop.dart';
+import 'package:beepbeep_app/chart/chart_time.dart';
 import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:beepbeep_app/login/register.dart';
@@ -36,14 +38,10 @@ class MyApp extends StatelessWidget {
       //   duration: 1000,
       //   splashTransition: SplashTransition.fadeTransition,
       //   backgroundColor: Colors.deepPurple,
-      //     nextScreen: LoginPage(),),
+      //   nextScreen: const LoginPage(),
+      // ),
       // debugShowCheckedModeBanner: false,
       // -------
     );
   }
 }
-
-// @@@@ user 테이블 이름 워크벤치에서 오류나서 users로 수정!! @@@@ 
-// tree 연결 , add화면 추가 하면 끝! 
-
-
