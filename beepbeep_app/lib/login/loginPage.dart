@@ -242,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://192.168.5.83:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);

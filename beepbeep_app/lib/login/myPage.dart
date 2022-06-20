@@ -341,69 +341,69 @@ class _myPageState extends State<myPage> {
       setState(() {
         _emailErrorText = null;
       });
-    }
 
-    //패스워드 체크
-    if (!pwReg.hasMatch(_pwController.text.trim())) {
-      setState(() {
-        _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
-      });
-    } else {
-      setState(() {
-        _passErrorText = null;
-      });
-
-      //패스워드 다시 확인
-      if (_pwokController.text != _pwController.text) {
+      //패스워드 체크
+      if (!pwReg.hasMatch(_pwController.text.trim())) {
         setState(() {
-          _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+          _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
         });
       } else {
         setState(() {
-          _pass2ErrorText = null;
-
-          // 통과하면 수정 의사
-          _editShowDialog(BuildContext context) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext ctx) {
-                return AlertDialog(
-                  title: const Icon(
-                    Icons.edit_note_rounded,
-                    color: Colors.deepPurple,
-                  ),
-                  content: const Text('            수정하시겠습니까?'),
-                  actions: [
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: const Text(
-                              '취소',
-                              style: TextStyle(color: Colors.amber),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                              updateAction();
-                            },
-                            child: const Text('확인'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
-          }
+          _passErrorText = null;
         });
+
+        //패스워드 다시 확인
+        if (_pwokController.text != _pwController.text) {
+          setState(() {
+            _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+          });
+        } else {
+          setState(() {
+            _pass2ErrorText = null;
+
+            // 통과하면 수정 의사
+            _editShowDialog(BuildContext context) {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext ctx) {
+                  return AlertDialog(
+                    title: const Icon(
+                      Icons.edit_note_rounded,
+                      color: Colors.deepPurple,
+                    ),
+                    content: const Text('            수정하시겠습니까?'),
+                    actions: [
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              child: const Text(
+                                '취소',
+                                style: TextStyle(color: Colors.amber),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                                updateAction();
+                              },
+                              child: const Text('확인'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          });
+        }
       }
     }
     setState(() {
