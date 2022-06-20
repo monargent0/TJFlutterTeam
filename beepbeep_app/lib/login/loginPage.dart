@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (buid.text.trim().isEmpty || bpw.text.trim().isEmpty) {
                         errorSnackbar(context);
                       } else {
-                        updateAction();
+                        loginAction();
                       }
                     },
                     child: const Text(
@@ -239,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
   // 택스트필드에서 id,pw를 받아와서 로그인 버튼을 누르면 실행된다.
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 다음 화면으로 바로 넘어가기
 
-  Future<bool> updateAction() async {
+  Future<bool> loginAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
         'http://192.168.5.83:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
