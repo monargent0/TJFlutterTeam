@@ -34,7 +34,8 @@ class _ChartPageState extends State<ChartPage> {
             ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/total');
             }, child: const Text('전체 데이터')),
-            TextButton(onPressed: () {
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/time');
             }, child: const Text('소요시간 데이터')),
           ],

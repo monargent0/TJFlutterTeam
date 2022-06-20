@@ -17,6 +17,7 @@ class MyChart extends StatelessWidget {
         '/total':(context) => const TotalChart(), //전체 DB
         '/traffic1':(context) => TrafficChart(num:"1"), //교통량 그래프
         '/traffic2':(context) => TrafficChart(num:"2"), //교통량 그래프
+        '/time':(context) => const TimeChart(), //교통량 그래프
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
