@@ -35,7 +35,7 @@ class DeveloperPop extends StatelessWidget {
                 Expanded(
                   child: charts.BarChart(
                     series,
-                    animationDuration: const Duration(seconds: 3),
+                    animationDuration: const Duration(milliseconds: 500),
                     animate: true,
                   ),
                 )
