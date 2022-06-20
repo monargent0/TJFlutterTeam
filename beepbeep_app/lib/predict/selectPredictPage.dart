@@ -20,13 +20,15 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "서울에서 대전까지",
-              textAlign: TextAlign.right,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+            Image.asset("images/logo.png",
+            width: 180),
+            // const Text(
+            //   "서울에서 대전으로 언제 ?",
+            //   textAlign: TextAlign.right,
+            //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            // ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             ElevatedButton(
               onPressed: () {
@@ -37,6 +39,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple,
+                  fontSize: 20,
                 ),
               ),
               style: ElevatedButton.styleFrom(
@@ -58,6 +61,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple,
+                   fontSize: 20,
                 ),
               ),
               style: ElevatedButton.styleFrom(
@@ -79,6 +83,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple,
+                   fontSize: 20,
                 ),
               ),
               style: ElevatedButton.styleFrom(
