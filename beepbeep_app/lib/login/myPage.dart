@@ -1,25 +1,32 @@
 import 'dart:convert';
 
-import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class myPage extends StatefulWidget {
+  final Map userdata;
+  const myPage({Key? key, required this.userdata}) : super(key: key);
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<myPage> createState() => _myPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _myPageState extends State<myPage> {
   late TextEditingController _nameController;
   late TextEditingController _idController;
   late TextEditingController _emailController;
   late TextEditingController _pwController;
   late TextEditingController _pwokController;
 
-  late String? _idErrorText;
+  late String id;
+  late String pw;
+  late String name;
+  late String email;
+
+  late String result;
+
+  late String? _nameErrorText;
   late String? _emailErrorText;
   late String? _passErrorText;
   late String? _pass2ErrorText;
@@ -34,35 +41,33 @@ class _RegisterPageState extends State<RegisterPage> {
     _pwController = TextEditingController();
     _pwokController = TextEditingController();
 
-    _idErrorText = null;
+    _nameController.text = widget.userdata['buid'];
+    _idController.text = widget.userdata['uname'];
+    _emailController.text = widget.userdata['uemail'];
+    _pwController.text = widget.userdata['upw'];
+    _pwokController.text = widget.userdata['upw'];
+
     _emailErrorText = null;
+    _nameErrorText = null;
     _passErrorText = null;
     _pass2ErrorText = null;
 
-    isRegistering = false;
+    result = '';
     super.initState();
   }
 
   @override
-  void dispose() {
-    _idController.dispose();
-    _pwController.dispose();
-    _pwokController.dispose();
-
-    super.dispose();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
-          '회원가입',
+        title: const Text(
+          '회원정보 수정',
           style: TextStyle(
               color: Colors.deepPurple,
               fontWeight: FontWeight.bold,
@@ -70,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -84,47 +89,18 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(32.0),
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: AssetImage('images/logo.png'),
                   radius: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: '닉네임',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 2, color: Colors.red),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 2, color: Colors.red),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  keyboardType: TextInputType.text,
-                  autocorrect: false,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextField(
+                  readOnly: true,
                   controller: _idController,
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    errorText: _idErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -147,7 +123,37 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.text,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  //  controller: _nameController,
+                  decoration: InputDecoration(
+                    labelText: '닉네임',
+                    errorText: _nameErrorText,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 2, color: Colors.deepPurple),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 2, color: Colors.deepPurple),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(width: 2, color: Colors.red),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(width: 2, color: Colors.red),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  keyboardType: TextInputType.text,
+                  autocorrect: false,
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -177,7 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -209,7 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -241,9 +247,25 @@ class _RegisterPageState extends State<RegisterPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
+                Row(children: [
+                  const SizedBox(
+                    width: 300,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      _showLeaveDialog(context);
+                    },
+                    child: const Text(
+                      '탈퇴하기',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ]),
                 Row(
                   children: [
                     ElevatedButton(
@@ -266,7 +288,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(
@@ -278,10 +300,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       onPressed: () {
-                        registOk();
+                        userUpdateOk();
                       },
                       child: const Text(
-                        '가입하기',
+                        '수정하기',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -297,115 +319,242 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // ---Fuction
-  registOk() async {
+  // ---Function
+
+  userUpdateOk() async {
     setState(() {
       isRegistering = true;
     });
 
     // 정규식 적용
-    RegExp idReg = RegExp(r"^[0-9a-zA-Z]*$"); // 영문 + 숫자 + 길이 제한X
     RegExp emailReg = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     RegExp pwReg =
         RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-    if (!idReg.hasMatch(_idController.text.trim())) {
+    //이메일 체크
+    if (!emailReg.hasMatch(_emailController.text.trim())) {
       setState(() {
-        _idErrorText = 'ID 형식에 맞추어주세요';
+        _emailErrorText = '유효한 이메일을 입력해주세요';
       });
     } else {
-      var url = Uri.parse(
-          'http://192.168.5.83:8080/Flutter/beep_idCheck.jsp?buid=${_idController.text.trim()}');
-      var response = await http.get(url);
-      var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
-      bool isIdExist = dataConvertedJSON['results'];
-      print(isIdExist);
+      setState(() {
+        _emailErrorText = null;
+      });
+    }
 
-      if (isIdExist) {
+    //패스워드 체크
+    if (!pwReg.hasMatch(_pwController.text.trim())) {
+      setState(() {
+        _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
+      });
+    } else {
+      setState(() {
+        _passErrorText = null;
+      });
+
+      //패스워드 다시 확인
+      if (_pwokController.text != _pwController.text) {
         setState(() {
-          _idErrorText = '이미 존재하는 ID입니다.';
+          _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
         });
       } else {
         setState(() {
-          _idErrorText = null;
-        });
+          _pass2ErrorText = null;
 
-        //이메일 체크
-        if (!emailReg.hasMatch(_emailController.text.trim())) {
-          setState(() {
-            _emailErrorText = '유효한 이메일을 입력해주세요';
-          });
-        } else {
-          setState(() {
-            _emailErrorText = null;
-          });
-        }
-
-        //패스워드 체크
-        if (!pwReg.hasMatch(_pwController.text.trim())) {
-          setState(() {
-            _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
-          });
-        } else {
-          setState(() {
-            _passErrorText = null;
-          });
-
-          //패스워드 다시 확인
-          if (_pwokController.text != _pwController.text) {
-            setState(() {
-              _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
-            });
-          } else {
-            setState(() {
-              _pass2ErrorText = null;
-            });
-
-            //통과
-            var url = Uri.parse(
-                'http://192.168.5.83:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
-            var response = await http.get(url);
-            var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
-            bool isSuccess = dataConvertedJSON['results'];
-            // print(isSuccess);
-            if (isSuccess) {
-              setState(() {
-                _showDialog(context);
-              });
-            }
+          // 통과하면 수정 의사
+          _editShowDialog(BuildContext context) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext ctx) {
+                return AlertDialog(
+                  title: const Icon(
+                    Icons.edit_note_rounded,
+                    color: Colors.deepPurple,
+                  ),
+                  content: const Text('            수정하시겠습니까?'),
+                  actions: [
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: const Text(
+                              '취소',
+                              style: TextStyle(color: Colors.amber),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                              updateAction();
+                            },
+                            child: const Text('확인'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
           }
-        }
+        });
       }
     }
     setState(() {
       isRegistering = false;
+    }); // else
+  } // async
+
+  Future<String> updateAction() async {
+    var url = Uri.parse(
+        'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
+    var response = await http.get(url);
+    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+    result = dataConvertedJSON['result'];
+    //print(result);
+    setState(() {
+      if (result == 'OK') {
+        _showfinishDialog(context);
+      } else {
+        editerrorSnackBar(context);
+      }
     });
+    return result;
   }
 
-  _showDialog(BuildContext context) {
+  // 수정 완료
+  _showfinishDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (BuildContext ctx) {
           return AlertDialog(
             title: const Icon(
               Icons.task_alt,
               color: Colors.deepPurple,
             ),
-            content: const Text('         가입이 완료 되었습니다.'),
+            content: const Text('         수정이 완료되었습니다.'),
             actions: [
               TextButton(
                 onPressed: () {
+                  Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
+                },
+                child: const Center(child: Text('확인')),
+              ),
+            ],
+          );
+        });
+  }
+
+// 수정 실패 시 에러바
+  editerrorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('수정에 실패하였습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.redAccent,
+      ),
+    );
+  }
+
+  //----------------------------------------------------------
+  // 탈퇴 의사 확인 알림창
+  _showLeaveDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.delete_forever_outlined,
+              color: Colors.red,
+              size: 30,
+            ),
+            content: const Text('            탈퇴하시겠습니까?'),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: const Text(
+                      '취소',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                      leaveAction();
+                    },
+                    child: const Text('확인'),
+                  ),
+                ],
+              ),
+            ],
+          );
+        });
+  }
+
+// 탈퇴 JSON
+  Future<String> leaveAction() async {
+    var url =
+        Uri.parse('http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=$id');
+    var response = await http.get(url);
+    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+    result = dataConvertedJSON['result'];
+    setState(() {
+      if (result == 'OK') {
+        _leaveFinishDialog(context);
+      } else {
+        leaveerrorSnackBar(context);
+      }
+    });
+    return result;
+  }
+
+// 탈퇴 완료 후 확인창
+  _leaveFinishDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.task_alt,
+              color: Colors.red,
+              size: 30,
+            ),
+            content: const Text('          탈퇴가 완료 되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
                 },
                 child: const Text('확인'),
               ),
             ],
           );
         });
+  }
+
+// 탈퇴 실패 에러바
+  leaveerrorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('탈퇴에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 } // End

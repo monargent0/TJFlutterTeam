@@ -8,7 +8,7 @@ class MyPredict extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const SelectPredictPage(),
+        // '/': (context) => const SelectPredictPage(),
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
