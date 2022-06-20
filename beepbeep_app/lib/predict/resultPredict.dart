@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 
 class ResultPredict extends StatefulWidget {
-  const ResultPredict({Key? key}) : super(key: key);
+  final Map busers;
+  const ResultPredict({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<ResultPredict> createState() => _ResultPredictState();
@@ -75,4 +76,22 @@ class _ResultPredictState extends State<ResultPredict> {
   //   });
   // }
 
+    Future<bool> getJSONData() async {
+    predictList = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
+
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    var dataConvertedJSON =
+        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+
+    List result = dataConvertedJSON['results'];
+
+    setState(() {
+      diaryList.addAll(result);
+    });
+
+    return true;
+  }
+}
 }

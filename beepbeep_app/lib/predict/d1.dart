@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Dday1 extends StatefulWidget {
-  const Dday1({Key? key}) : super(key: key);
+  final Map busers; 
+  const Dday1({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<Dday1> createState() => _Dday1State();
@@ -225,7 +226,7 @@ class _Dday1State extends State<Dday1> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.150.132:8080/Rserve/beep_predict.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop');
+        'http://192.168.150.132:8080/Rserve/beep_predict_1.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

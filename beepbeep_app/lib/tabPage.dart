@@ -8,21 +8,26 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class TabPage extends StatefulWidget {
-  const TabPage({Key? key}) : super(key: key);
+  final Map busers;
+  const TabPage({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<TabPage> createState() => _TabPageState();
 }
 // 탭바 메인 페이지
 class _TabPageState extends State<TabPage> 
+
   with SingleTickerProviderStateMixin {
 
   late TabController controller;
+
+  late String buid;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 3, vsync: this);
+    buid = widget.busers['buid'];
   }
 
   @override
@@ -40,7 +45,7 @@ class _TabPageState extends State<TabPage>
       body: Center(
         child: TabBarView(
           controller: controller,
-          children: const [ MyPredict(), MyChart() , MyHistory()]
+          children: [ MyPredict(busers: widget.busers), const MyChart() , MyHistory(busers: widget.busers)]
         ),
         
       ),
