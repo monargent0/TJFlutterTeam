@@ -12,11 +12,13 @@ import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
+import 'login/searchMain.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
-late Map busers = {'buid': 'a'};
+late Map busers = {"buid": '0'};
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -28,16 +30,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      routes: {
-        //'/': (context) => const SelectPredictPage(),
-        //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
-        //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
-        //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
-        // '/': (context) =>  TabPage(busers: busers), // 탭페이지 화면
-        '/': (context) => const LoginPage(), // 로그인 화면
-        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-      },
-      initialRoute: '/',
+      home: AnimatedSplashScreen(
+        splash: 'images/main_splash.png',
+        splashIconSize: 200,
+        duration: 1000,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.deepPurple,
+        // nextScreen: TabPage(busers: busers),),
+        nextScreen: LoginPage(),
+        // routes: {
+        //   //'/': (context) => const SelectPredictPage(),
+        //   //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
+        //   //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
+        //   //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
+        //   // '/': (context) =>  TabPage(busers: busers), // 로그인 화면
+        //   '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // },
+      ),
       debugShowCheckedModeBanner: false,
 // ------------------------
 

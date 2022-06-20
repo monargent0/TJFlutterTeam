@@ -54,6 +54,7 @@ class _TotalChartState extends State<TotalChart> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
         child: const Icon(Icons.arrow_back),
         onPressed: () {
           Navigator.pop(context);
