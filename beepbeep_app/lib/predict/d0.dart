@@ -256,10 +256,14 @@ class _DdayState extends State<Dday> {
                 children: [
                  
                   ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.purple)),
-                    //
+                    style:ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
+                ),
+              ),
                     onPressed: () async {
                       if (htraffic1text.text.trim().isEmpty ||
                           htraffic2text.text.trim().isEmpty ||
@@ -291,6 +295,8 @@ class _DdayState extends State<Dday> {
                           "소요시간 보러가기",
                           style: TextStyle(
                             fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
                           ),
                         ),
                       ],

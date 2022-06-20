@@ -71,10 +71,7 @@ class _Dday1State extends State<Dday1> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('d-1 소요시간 예측'),
-          backgroundColor: Colors.purple,
-        ),
+      
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -97,7 +94,7 @@ class _Dday1State extends State<Dday1> {
 
               //시간선택
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+                padding: const EdgeInsets.fromLTRB(100, 100, 100, 0),
                 child: Text(
                   '출발시간',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -190,10 +187,15 @@ class _Dday1State extends State<Dday1> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
                 child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
 
+                  style: ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
+                ),
+              ),
                   onPressed: () async{
                     if (hspoptext.text.trim().isEmpty) {
                       errorsnackbar(context);
@@ -218,6 +220,8 @@ class _Dday1State extends State<Dday1> {
                         "소요시간 보러가기",
                         style: TextStyle(
                           fontSize: 20,
+                           fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
                         ),
                       ),
                     ],
