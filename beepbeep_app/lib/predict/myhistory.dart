@@ -33,11 +33,9 @@ class _MyHistoryState extends State< MyHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('나의 기록 '),
-        backgroundColor: Colors.purple,
-      ),
+     
       body: Center(
+        
           child: data.isEmpty
               ? const Text('검색 기록이 없습니다.')
               : ListView.builder(
