@@ -4,24 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// void main() {
-//   runApp(const MyApp());
-// }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const MyHomePage(),
-//     );
-//   }
-// }
 
 class Dday extends StatefulWidget {
   const Dday({Key? key}) : super(key: key);
@@ -32,132 +15,265 @@ class Dday extends StatefulWidget {
 
 class _DdayState extends State<Dday> {
   //field
-  late TextEditingController hstart;
-  late TextEditingController hholiday;
-  late TextEditingController hweather;
+int hdaytype=0;
+  //1.시간 설정
+  final _timelist = [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23"
+  ];
+  var hstart = "00";
+  //2.연휴길이 설정
+  final _holidaylist = ["3일", "4일", "5일"];
+  var hholiday = "3일";
+  //날씨선택
+ bool hweather =false;
+
+ 
+//1종2종 교통량
   late TextEditingController htraffic1;
   late TextEditingController htraffic2;
+  late TextEditingController hspop;
+  
 
-  late String dropdownValue;
-  late int Time;
-  late String PLength;
-  late String PWidth;
-  late String result;
+  
 
   @override
   void initState() {
     super.initState();
-    hstart = TextEditingController();
-    hholiday = TextEditingController();
-    hweather = TextEditingController();
+
     htraffic1 = TextEditingController();
     htraffic2 = TextEditingController();
+    hspop = TextEditingController();
 
-    result = "";
-    dropdownValue="00";
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('d-day 소요시간 예측'),
-        backgroundColor: Colors.purple
-        ,
+        backgroundColor: Colors.purple,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-               SizedBox(height: 20,),
-              Text('설날 당일 출발',
-              style: TextStyle(fontSize: 25),),
-              SizedBox(height: 20,),
-               Text('시간'),
-              GestureDetector(
-                child: DropdownButton(
-                    value: dropdownValue,
-                    items: 
-                      ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","!9","20","21","22","23"].map((e) => 
-                        DropdownMenuItem(
-                        value: e,
-                        child: Text('$e시'),
-                      )
-                      ).toList(),
-                      onTap: (){
-                        value :e;
-                      },
-                    onChanged: (value) {
-                      
-                      
-                    },
-                    underline: Container( ),
-                  ),
-              ),
-                
-
-              // TextField(
-              //   controller: sepalLength,
-              //   decoration: const InputDecoration(
-              //       labelText: 'Sepal Length의 크기를 입력하세요 '),
-              //   keyboardType: TextInputType.text,
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextField(
-              //   controller: sepalWidth,
-              //   decoration:
-              //       const InputDecoration(labelText: 'Sepal Width의 크기를 입력하세요 '),
-              //   keyboardType: TextInputType.text,
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextField(
-              //   controller: petalLength,
-              //   decoration: const InputDecoration(
-              //       labelText: 'Petal Length의 크기를 입력하세요 '),
-              //   keyboardType: TextInputType.text,
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // TextField(
-              //   controller: petalWidth,
-              //   decoration:
-              //       const InputDecoration(labelText: 'Pepal Width의 크기를 입력하세요 '),
-              //   keyboardType: TextInputType.text,
-              // ),
-              // const SizedBox(
-              //   height: 30,
-              // ),
-              ElevatedButton(
-                onPressed: () {
-                  // SLength = sepalLength.text;
-                  // SWidth = sepalWidth.text;
-                  // PLength = petalLength.text;
-                  // PWidth = petalWidth.text;
-                  // insertAction();
-                },
-                child: const Text("입력"),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              // CircleAvatar(
-              //   backgroundImage: AssetImage(img),
-              //   radius: 100,
-              // ),
-            ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start
+        ,
+        children: [
+          SizedBox(
+            height: 40,
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(140, 0, 100, 20),
+            child: Text(
+              '설날 당일 출발',
+              
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            
+              
+            ),
+          ),
+        
+  
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('시간',
+            style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            child: DropdownButton(
+              isExpanded: true,
+                underline: Container(
+                  height: 2,
+                  color: Colors.purple,
+                ),
+              value: hstart,
+              items: _timelist.map(
+                (e) {
+                  return DropdownMenuItem(
+                    
+                    value: e,
+                    child: Text('$e'),
+                  );
+                },
+              ).toList(),
+              onChanged: (value) {
+                setState(() {
+                  hstart = value.toString();
+                });
+              },
+              elevation: 2,
+              style: TextStyle(color: Colors.purple, fontSize: 20),
+              iconSize: 50,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('연휴길이',
+             style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            child: DropdownButton(
+              isExpanded: true,
+                underline: Container(
+                  height: 2,
+                  color: Colors.purple,
+                ),
+              value: hholiday,
+              items: _holidaylist.map(
+                (e) {
+                  return DropdownMenuItem(
+                    
+                    value: e,
+                    child: Text('$e'),
+                  );
+                },
+              ).toList(),
+              onChanged: (value) {
+                setState(() {
+                  hholiday = value.toString();
+                });
+              },
+              elevation: 2,
+              style: TextStyle(color: Colors.purple, fontSize: 20),
+              iconSize: 50,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            child: Row(
+              children: [
+                Text("눈/비 오는날 ",
+                 style: TextStyle(fontSize: 18,
+            fontWeight: FontWeight.bold),),
+            Checkbox(value: hweather,
+             onChanged: (check){
+              setState(() {
+                hweather=check!;
+              });
+             }),
+              ],
+            ),
+          ),
+        
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('1종 교통량',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: TextField(
+              controller: htraffic1,
+              decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('2종 교통량',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            child: TextField(
+              controller: htraffic2,
+              decoration: const InputDecoration(labelText: '2종 교통량 입력하기 '),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Text('서울 인구수',
+             style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.bold),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+            child: TextField(
+              controller: hspop,
+              decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
+            child: ElevatedButton(
+              style:ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.purple)
+              ),
+              
+              onPressed: () {
+             if (htraffic1.text.trim().isEmpty ||
+                        htraffic2.text.trim().isEmpty||hspop.text.trim().isEmpty) {
+                      errorsnackbar(context);
+                   
+                    }else{
+                      setState(
+                        () {
+                        
+                     
+                      },
+                      );
+                    //   Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) {
+                    //       return const Showresult();
+                    //     },
+                    //   ),
+                    // );
+                    };
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text("소요시간 보러가기",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                ),
+              ),
+            ),
+          ),
+         
+        ],
       ),
     );
   }
-
+}
   // insertAction() async {
   //   var url = Uri.parse(
   //       'http://192.168.150.132:8080/Rserve/response_iris.jsp?sepalLength=$SLength&sepalWidth=$SWidth&petalLength=$PLength&petalWidth=$PWidth');
@@ -178,28 +294,13 @@ class _DdayState extends State<Dday> {
   //   });
   // }
 
-  _showDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('품종 예측 결과'),
-            content: Text("입력하신 품종은 $result 입니다"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        });
-  }
-}
 
-time(){
-  for(int i=0; i<=23 ;i++){
-    return i;
+   errorsnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('1,2종 교통량과 서울인구수를 입력하세요'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
-}

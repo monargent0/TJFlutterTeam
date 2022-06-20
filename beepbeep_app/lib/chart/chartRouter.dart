@@ -3,8 +3,8 @@ import 'package:beepbeep_app/chart/popChart.dart';
 import 'package:beepbeep_app/chart/totalChart.dart';
 import 'package:flutter/material.dart';
 
-class MyRouter extends StatelessWidget {
-  const MyRouter({Key? key}) : super(key: key);
+class MyChart extends StatelessWidget {
+  const MyChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
