@@ -75,7 +75,7 @@ class _myPageState extends State<myPage> {
         ),
         leading: IconButton(
           onPressed: () {
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -127,7 +127,7 @@ class _myPageState extends State<myPage> {
                   height: 20,
                 ),
                 TextField(
-                  //  controller: _nameController,
+                  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '닉네임',
                     errorText: _nameErrorText,
@@ -261,7 +261,7 @@ class _myPageState extends State<myPage> {
                     child: const Text(
                       '탈퇴하기',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
                     ),
                   ),
