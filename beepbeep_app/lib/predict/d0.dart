@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -12,7 +13,7 @@ class Dday extends StatefulWidget {
 
 class _DdayState extends State<Dday> {
   //입력 받을 변수들
-
+  late String buid;
   int hdaytype = 0;
   //1.시간 설정
   final _timelist = [
@@ -66,6 +67,7 @@ class _DdayState extends State<Dday> {
   void initState() {
     super.initState();
 
+    buid=widget.busers['buid'];
     htraffic1text = TextEditingController();
     htraffic2text = TextEditingController();
     hspoptext = TextEditingController();
@@ -79,10 +81,8 @@ class _DdayState extends State<Dday> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('d-day 소요시간 예측'),
-          backgroundColor: Colors.purple,
-        ),
+        
+       
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -251,47 +251,62 @@ class _DdayState extends State<Dday> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                 
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.purple)),
+                    //
+                    onPressed: () async {
+                      if (htraffic1text.text.trim().isEmpty ||
+                          htraffic2text.text.trim().isEmpty ||
+                          hspoptext.text.trim().isEmpty) {
+                        errorsnackbar(context);
+                      } else {
+                        htraffic1 = htraffic1text.text;
+                        htraffic2 = htraffic2text.text;
+                        hspop = hspoptext.text;
+                        await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              // 예측값 보내기
+                              return ResultPredict(
+                                  busers: widget.busers, result: result);
+                            },
+                          ),
+                        );
+                      }
+                    },
 
-                  onPressed: () {
-                    if (htraffic1text.text.trim().isEmpty ||
-                        htraffic2text.text.trim().isEmpty ||
-                        hspoptext.text.trim().isEmpty) {
-                      errorsnackbar(context);
-                    } else {
-                      htraffic1 = htraffic1text.text;
-                      htraffic2 = htraffic2text.text;
-                      hspop = hspoptext.text;
-                      setState(
-                        () {},
-                      );
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
-                    }
-                  },
-
-                  // 소요시간 보러가기 버튼
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "소요시간 보러가기",
-                        style: TextStyle(
-                          fontSize: 20,
+                    // 소요시간 보러가기 버튼
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "소요시간 보러가기",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }
@@ -306,11 +321,12 @@ class _DdayState extends State<Dday> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop');
+        'http://localhost:8080/Flutter/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
+      print(result);
     });
   }
 

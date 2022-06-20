@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -53,10 +54,12 @@ class _Dday1State extends State<Dday1> {
   //계산결과  즉 소요시간
   late String result;
 
+  late String buid;
+
   @override
   void initState() {
     super.initState();
-
+    buid = widget.busers['buid'];
     hspoptext = TextEditingController();
     result = "";
   }
@@ -123,7 +126,7 @@ class _Dday1State extends State<Dday1> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: TextStyle( fontSize: 20),
                   iconSize: 50,
                 ),
               ),
@@ -191,16 +194,20 @@ class _Dday1State extends State<Dday1> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.purple)),
 
-                  onPressed: () {
+                  onPressed: () async{
                     if (hspoptext.text.trim().isEmpty) {
                       errorsnackbar(context);
                     } else {
                       hspop = hspoptext.text;
-                      setState(() {});
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
+                      await insertAction();
+                      Navigator.push(context, 
+                      MaterialPageRoute(
+                        builder: (context) {
+                          // 예측값 보내기
+                          return ResultPredict(busers: widget.busers, result: result);
+                        },),
+                        );
                     }
-                    ;
                   },
 
                   // 소요시간 보러가기 버튼
@@ -220,13 +227,19 @@ class _Dday1State extends State<Dday1> {
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.150.132:8080/Rserve/beep_predict_1.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop');
+        'http://localhost:8080/Flutter/beep_predict_1.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
