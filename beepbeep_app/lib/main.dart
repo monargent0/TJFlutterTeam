@@ -12,6 +12,9 @@ import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
+import 'login/searchMain.dart';
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -28,6 +31,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
+      home: AnimatedSplashScreen(
+        splash: 'images/main_splash.png',
+        splashIconSize: 200,
+        duration: 1000,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.deepPurple,
+          nextScreen: SearchMainPage(),),
       routes: {
         //'/': (context) => const SelectPredictPage(),
         //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
