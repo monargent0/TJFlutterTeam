@@ -25,15 +25,15 @@ class _TotalChartState extends State<TotalChart> {
   }
 
   var columns = [
-      JsonTableColumn("cweather", label: "강수여부"),
-      JsonTableColumn("ctraffic2", label: "2종 교통량"),
-      JsonTableColumn("cdate", label: "날짜",),
       JsonTableColumn("cstart", label: "출발시간대",),
-      JsonTableColumn("cspop", label: "서울 인구수"),
+      JsonTableColumn("cdriving", label: "소요시간"),
       JsonTableColumn("cdaytype", label: "설날 D-Day"),
       JsonTableColumn("choliday", label: "연휴길이"),
-      JsonTableColumn("cdriving", label: "소요시간"),
       JsonTableColumn("ctraffic1", label: "1종 교통량"),
+      JsonTableColumn("ctraffic2", label: "2종 교통량"),
+      JsonTableColumn("cspop", label: "서울 인구수"),
+      JsonTableColumn("cweather", label: "강수여부"),
+      JsonTableColumn("cdate", label: "날짜",),
     ];
 
 
@@ -46,10 +46,12 @@ class _TotalChartState extends State<TotalChart> {
         }, icon: const Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         child: Column(
           children: [
-            SizedBox(child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+            SizedBox(
+              width: 800,
+              child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
           ],
         ),
       ),
