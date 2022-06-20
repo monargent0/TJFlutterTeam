@@ -5,8 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 // d-2, d-1, d-day 선택하는 페이지
 class SelectPredictPage extends StatefulWidget {
-  final Map users;
-  const SelectPredictPage({Key? key, required this.users}) : super(key: key);
+  final Map busers;
+  const SelectPredictPage({Key? key, required this.busers}) : super(key: key);
 
   @override
   State<SelectPredictPage> createState() => _SelectPredictPageState();
@@ -30,14 +30,11 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ResultPredict()));
+                Navigator.pushNamed(context, '/Dday2');
               },
               child: const Text('설날 전전날 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 16, 134, 224),
+                primary: Color.fromARGB(255, 172, 16, 224),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
@@ -49,11 +46,11 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                //
+                Navigator.pushNamed(context, '/Dday1');
               },
               child: const Text('설날 전날 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 16, 134, 224),
+                primary: const Color.fromARGB(255, 172, 16, 224),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
@@ -65,13 +62,11 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(
-                //   builder: (context) => const DDay()
-                // ));
+                Navigator.pushNamed(context, '/Dday');
               },
               child: const Text('설날 당일 출발 >'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 16, 134, 224),
+                primary: const Color.fromARGB(255, 172, 16, 224),
                 minimumSize: const Size(250, 60),
                 shape: RoundedRectangleBorder(
                   // 버튼 모서리 조절
