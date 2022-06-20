@@ -18,22 +18,28 @@ class _TimeChartState extends State<TimeChart> {
   // property
   late List<FlSpot> data = [];
   late List<FlSpot> data2 = [];
+  late List<FlSpot> data3 = [];
+  bool day1Checked = true;
+  bool day2Checked = true;
+  bool dayChecked = true;
+
   // init
   @override
   void initState() {
     super.initState();
     getJSONData();
-    // getJSONData2();
+    getJSONData2();
+    getJSONData3();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Image.asset('images/beeplogo.png'),
-          elevation: 0,
-        ),
+        floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
         body: Center(
           child: Container(
             height: 400,
@@ -52,7 +58,32 @@ class _TimeChartState extends State<TimeChart> {
             ),
             child: Column(
               children: [
-                const Text('Day 2 출발시간별 소요시간'),
+                const Text('출발시간별 소요시간'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('D-2'),
+                    Checkbox(value: day2Checked, onChanged: (bool? val){
+                      setState(() {
+                          day2Checked = val!;
+                      });
+                    }),
+                    const SizedBox(width: 16,),
+                    const Text('D-1'),
+                    Checkbox(value: day1Checked, onChanged: (bool? val){
+                      setState(() {
+                        day1Checked = val!;
+                      });
+                    }),
+                    const SizedBox(width: 16,),
+                    const Text('D-Day'),
+                    Checkbox(value: dayChecked, onChanged: (bool? val){
+                      setState(() {
+                        dayChecked = val!;
+                      });
+                    }),
+                  ],
+                ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -84,13 +115,13 @@ class _TimeChartState extends State<TimeChart> {
                             verticalInterval: 4),
                         lineBarsData: [
                           LineChartBarData(
-                            spots: data,
+                            spots: day2Checked ? data: [],
                             isCurved: true,
                             barWidth: 5,
                             dotData: FlDotData(show: false),
                             belowBarData: BarAreaData(
                               show: true,
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
                                   Color.fromARGB(78, 77, 12, 103),
                                   Color.fromARGB(91, 233, 30, 98),
@@ -102,13 +133,13 @@ class _TimeChartState extends State<TimeChart> {
                             color: Colors.pink,
                           ),
                           LineChartBarData(
-                            spots: data2,
+                            spots: day1Checked ? data2 : [],
                             isCurved: true,
                             barWidth: 5,
                             dotData: FlDotData(show: false),
                             belowBarData: BarAreaData(
                               show: true,
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
                                   Color.fromARGB(78, 27, 129, 246),
                                   Color.fromARGB(91, 43, 25, 242),
@@ -118,6 +149,24 @@ class _TimeChartState extends State<TimeChart> {
                               ),
                             ),
                             color: Colors.cyan,
+                          ),
+                          LineChartBarData(
+                            spots: dayChecked ? data3 : [],
+                            isCurved: true,
+                            barWidth: 5,
+                            dotData: FlDotData(show: false),
+                            belowBarData: BarAreaData(
+                              show: true,
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color.fromARGB(78, 246, 126, 27),
+                                  Color.fromARGB(91, 242, 217, 25),
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                            ),
+                            color: Colors.orange,
                           ),
                         ],
                         titlesData: FlTitlesData(
@@ -286,6 +335,27 @@ class _TimeChartState extends State<TimeChart> {
     setState(() {
       for (int i = 0; i < result.length; i++) {
         data2.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
+      }
+    });
+
+    return true;
+  }
+  Future<bool> getJSONData3() async {
+    data3 = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_getdata.jsp?queryType=D');
+
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    var dataConvertedJSON =
+        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+
+    List result = dataConvertedJSON['results'];
+
+    print(result.length); // test
+
+    setState(() {
+      for (int i = 0; i < result.length; i++) {
+        data3.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
       }
     });
 

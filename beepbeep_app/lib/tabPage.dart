@@ -49,40 +49,41 @@ class _TabPageState extends State<TabPage>
         ),
         
       ),
-      backgroundColor: Color.fromARGB(255, 211, 148, 222),
-      bottomNavigationBar: Container(
-        child: TabBar(
-          onTap:(value) {
+      backgroundColor: Colors.indigo[50],
+      bottomNavigationBar: TabBar(
+        onTap:(value) {
+          setState(() {
             //
-          },
-          controller: controller,
-          labelColor: Colors.black,
-          indicatorColor: Colors.indigo,
-          tabs: const [
-              Tab(
-                
-                icon: Icon(
-                  Icons.pie_chart,
-                  color: Colors.black,
-                ),
-                text: "시간예측",
+          });
+        },
+        controller: controller,
+        labelColor: Colors.deepPurple,
+        labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        indicatorColor: Colors.indigo,
+        unselectedLabelColor: Colors.black,
+        tabs: [
+            Tab(
+              icon: Icon(
+                Icons.browse_gallery_outlined,
+                color: controller.index== 0 ? Colors.deepPurple : Colors.black ,
               ),
-               Tab(
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Colors.black,
-                ),
-                text: "데이터분석",
+              text: "시간 예측",
             ),
-               Tab(
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Colors.black,
-                ),
-                text: "나의 내역",
-            ),
-          ],
-        ),
+             Tab(
+              icon: Icon(
+                Icons.insert_chart_outlined_outlined ,
+                color: controller.index== 1 ? Colors.deepPurple : Colors.black ,
+              ),
+              text: "데이터 차트",
+          ),
+             Tab(
+              icon: Icon(
+                Icons.person_outline,
+                color: controller.index== 2 ? Colors.deepPurple : Colors.black ,
+              ),
+              text: "나의 내역",
+          ),
+        ],
       ),
     );
   }

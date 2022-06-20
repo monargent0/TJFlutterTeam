@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/d0.dart';
 import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';

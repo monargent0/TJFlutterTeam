@@ -15,8 +15,9 @@ class MyChart extends StatelessWidget {
         '/': (context) => const ChartPage(), // 차트 선택
         '/spop': (context) => const SpopChart(), // 인구수 그래프
         '/total':(context) => const TotalChart(), //전체 DB
-        '/traffic1':(context) => TrafficChart(num:"1"), //교통량 그래프
-        '/traffic2':(context) => TrafficChart(num:"2"), //교통량 그래프
+        '/traffic1':(context) => TrafficChart(num:"1"), //1종 교통량 그래프
+        '/traffic2':(context) => TrafficChart(num:"2"), //2종 교통량 그래프
+        '/time':(context) => const TimeChart(), //소요시간 그래프
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

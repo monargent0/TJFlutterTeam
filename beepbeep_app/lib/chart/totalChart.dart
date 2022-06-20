@@ -41,16 +41,20 @@ class _TotalChartState extends State<TotalChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Column(
-          children: [
-            SizedBox(
-              width: 400,
-              child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
-          ],
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            children: [
+              SizedBox(
+                width: 350,
+                child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
         child: const Icon(Icons.arrow_back),
         onPressed: () {
           Navigator.pop(context);
