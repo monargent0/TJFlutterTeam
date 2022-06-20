@@ -77,21 +77,20 @@ class _ResultPredictState extends State<ResultPredict> {
   // }
 
     Future<bool> getJSONData() async {
-    predictList = []; // 초기화
-    var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
+    // predictList = []; // 초기화
+    // var url = Uri.parse(
+    //     'http://localhost:8080/Flutter/beep_resultPredict.jsp?hid=$hid');
 
-    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
-    var dataConvertedJSON =
-        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+    // var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    // var dataConvertedJSON =
+    //     json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
 
-    List result = dataConvertedJSON['results'];
+    // List result = dataConvertedJSON['results'];
 
-    setState(() {
-      diaryList.addAll(result);
-    });
+    // setState(() {
+    //   diaryList.addAll(result);
+    // });
 
     return true;
   }
-}
 }

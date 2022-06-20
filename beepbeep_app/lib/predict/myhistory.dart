@@ -9,23 +9,23 @@ import 'package:http/http.dart' as http;
 
 
 
-class MyList extends StatefulWidget {
+class  MyHistory extends StatefulWidget {
   final Map busers;
-  const MyList({Key? key, required this.busers}) : super(key: key);
+  const  MyHistory({Key? key, required this.busers}) : super(key: key);
 
   @override
-  State<MyList> createState() => _MyListState();
+  State< MyHistory> createState() => _MyHistoryState();
 }
 
-class _MyListState extends State<MyList> {
+class _MyHistoryState extends State< MyHistory> {
   late List data;
-  late String bid;
+  late String buid;
 
   @override
   void initState() {
     super.initState();
     data = [];
-    bid=widget.busers['bid'];
+    buid=widget.busers['buid'];
     getJSONData();
   }
 
@@ -45,36 +45,15 @@ class _MyListState extends State<MyList> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
-                        child: Column(
+                         shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),),
+                                  color:Color.fromARGB(255, 177, 137, 185),
+
+                        child: Row(
                           children: [
-                            Row(
-                              children: [
-                                const Text(
-                                  '소요시간 :',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  data[index]['hpredict'],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                const Text(
-                                  '출발시간 :',
-                                  
-                                ),
-                                Text(
-                                  data[index]['hstart'],
-                                ),
-                              ],
-                            ),
-                            
+                            data[index]['hpredict']
                           ],
-                        ),
+                        )
                       ),
                     );
                   })),
@@ -85,7 +64,7 @@ class _MyListState extends State<MyList> {
   Future<bool> getJSONData() async {
     data=[];
     //async가 비동기라는 의미 38번째줄이랑 42번째줄이 같이 시작됨
-    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?bid=$bid');
+    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?buid=$buid');
     var response = await http.get(url); //get방식으로 많이씀 그래야 암호화해서 압축해서옴, await는 정보받아올때까지 기다렸다가 띄우기 위해
 
     setState(() {
@@ -97,7 +76,7 @@ class _MyListState extends State<MyList> {
       data.addAll(result);
     });
 
-    //print(result);
+    print(data[0]);
     // print(result[0]['code']);
     //print(data[0]);
     return true;
