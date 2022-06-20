@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:beepbeep_app/login/register.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -60,8 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10,
                   ),
                   Image.asset('images/beeplogo.png'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '서울-대전 교통 알림 서비스',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   SizedBox(
                     width: 300,
@@ -109,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -177,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         '|',
                         style: TextStyle(
                           color: Colors.white,
@@ -230,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://172.30.1.37:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://192.168.5.83:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class myPage extends StatefulWidget {
-  // fianl Map userdata;
-  const myPage({Key? key}) : super(key: key);
+  final Map userdata;
+  const myPage({Key? key, required this.userdata}) : super(key: key);
 
   @override
   State<myPage> createState() => _myPageState();
@@ -26,7 +26,7 @@ class _myPageState extends State<myPage> {
 
   late String result;
 
-  late String? _idErrorText;
+  late String? _nameErrorText;
   late String? _emailErrorText;
   late String? _passErrorText;
   late String? _pass2ErrorText;
@@ -41,17 +41,18 @@ class _myPageState extends State<myPage> {
     _pwController = TextEditingController();
     _pwokController = TextEditingController();
 
-    // _nameController.text = widget.userdata['buid'];
-    // _idController.text = widget.userdata['uname'];
-    // _emailController.text = widget.userdata['uemail'];
-    // _pwController.text = widget.userdata['upw'];
-    // _pwokController.text = widget.userdata['upw'];
+    _nameController.text = widget.userdata['buid'];
+    _idController.text = widget.userdata['uname'];
+    _emailController.text = widget.userdata['uemail'];
+    _pwController.text = widget.userdata['upw'];
+    _pwokController.text = widget.userdata['upw'];
 
-    _idErrorText = null;
     _emailErrorText = null;
+    _nameErrorText = null;
     _passErrorText = null;
     _pass2ErrorText = null;
 
+    result = '';
     super.initState();
   }
 
@@ -60,12 +61,12 @@ class _myPageState extends State<myPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           '회원정보 수정',
           style: TextStyle(
               color: Colors.deepPurple,
@@ -88,19 +89,18 @@ class _myPageState extends State<myPage> {
             padding: const EdgeInsets.all(32.0),
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: AssetImage('images/logo.png'),
                   radius: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
                   readOnly: true,
-                  //  controller: _idController,
+                  controller: _idController,
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    //  errorText: _idErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -123,13 +123,14 @@ class _myPageState extends State<myPage> {
                   keyboardType: TextInputType.text,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
                   //  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '닉네임',
+                    errorText: _nameErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -152,14 +153,14 @@ class _myPageState extends State<myPage> {
                   keyboardType: TextInputType.text,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
-                  //  controller: _emailController,
+                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: '이메일',
-                    //  errorText: _emailErrorText,
+                    errorText: _emailErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -182,14 +183,14 @@ class _myPageState extends State<myPage> {
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
-                  //  controller: _pwController,
+                  controller: _pwController,
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    //  errorText: _passErrorText,
+                    errorText: _passErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -214,14 +215,14 @@ class _myPageState extends State<myPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
-                  // controller: _pwokController,
+                  controller: _pwokController,
                   decoration: InputDecoration(
                     labelText: '비밀번호 확인',
-                    // errorText: _pass2ErrorText,
+                    errorText: _pass2ErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
@@ -246,7 +247,7 @@ class _myPageState extends State<myPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(children: [
@@ -255,7 +256,7 @@ class _myPageState extends State<myPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      //
+                      _showLeaveDialog(context);
                     },
                     child: const Text(
                       '탈퇴하기',
@@ -287,7 +288,7 @@ class _myPageState extends State<myPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(
@@ -299,8 +300,7 @@ class _myPageState extends State<myPage> {
                         ),
                       ),
                       onPressed: () {
-                        // userUpdateOk();
-                        // editShowDialog();
+                        userUpdateOk();
                       },
                       child: const Text(
                         '수정하기',
@@ -321,47 +321,6 @@ class _myPageState extends State<myPage> {
 
   // ---Function
 
-  _editShowDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext ctx) {
-        return AlertDialog(
-          title: const Icon(
-            Icons.edit_note_rounded,
-            color: Colors.amber,
-          ),
-          content: const Text('            수정하시겠습니까?'),
-          actions: [
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                    child: const Text(
-                      '취소',
-                      style: TextStyle(color: Colors.amber),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                      userUpdateOk();
-                    },
-                    child: const Text('확인'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   userUpdateOk() async {
     setState(() {
       isRegistering = true;
@@ -372,20 +331,6 @@ class _myPageState extends State<myPage> {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     RegExp pwReg =
         RegExp(r'^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-
-    var url = Uri.parse(
-        'http://172.30.1.37:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
-    var response = await http.get(url);
-    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-    result = dataConvertedJSON['result'];
-    //print(result);
-    setState(() {
-      if (result == 'OK') {
-        _showfinishDialog(context);
-      } else {
-        editerrorSnackBar(context);
-      }
-    });
 
     //이메일 체크
     if (!emailReg.hasMatch(_emailController.text.trim())) {
@@ -416,6 +361,48 @@ class _myPageState extends State<myPage> {
       } else {
         setState(() {
           _pass2ErrorText = null;
+
+          // 통과하면 수정 의사
+          _editShowDialog(BuildContext context) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext ctx) {
+                return AlertDialog(
+                  title: const Icon(
+                    Icons.edit_note_rounded,
+                    color: Colors.deepPurple,
+                  ),
+                  content: const Text('            수정하시겠습니까?'),
+                  actions: [
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: const Text(
+                              '취소',
+                              style: TextStyle(color: Colors.amber),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                              updateAction();
+                            },
+                            child: const Text('확인'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
         });
       }
     }
@@ -423,6 +410,23 @@ class _myPageState extends State<myPage> {
       isRegistering = false;
     }); // else
   } // async
+
+  Future<String> updateAction() async {
+    var url = Uri.parse(
+        'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
+    var response = await http.get(url);
+    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+    result = dataConvertedJSON['result'];
+    //print(result);
+    setState(() {
+      if (result == 'OK') {
+        _showfinishDialog(context);
+      } else {
+        editerrorSnackBar(context);
+      }
+    });
+    return result;
+  }
 
   // 수정 완료
   _showfinishDialog(BuildContext context) {
@@ -432,7 +436,7 @@ class _myPageState extends State<myPage> {
           return AlertDialog(
             title: const Icon(
               Icons.task_alt,
-              color: Colors.amber,
+              color: Colors.deepPurple,
             ),
             content: const Text('         수정이 완료되었습니다.'),
             actions: [
@@ -457,5 +461,100 @@ class _myPageState extends State<myPage> {
         backgroundColor: Colors.redAccent,
       ),
     );
-  } // End
-}
+  }
+
+  //----------------------------------------------------------
+  // 탈퇴 의사 확인 알림창
+  _showLeaveDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.delete_forever_outlined,
+              color: Colors.red,
+              size: 30,
+            ),
+            content: const Text('            탈퇴하시겠습니까?'),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: const Text(
+                      '취소',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                      leaveAction();
+                    },
+                    child: const Text('확인'),
+                  ),
+                ],
+              ),
+            ],
+          );
+        });
+  }
+
+// 탈퇴 JSON
+  Future<String> leaveAction() async {
+    var url =
+        Uri.parse('http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=$id');
+    var response = await http.get(url);
+    var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+    result = dataConvertedJSON['result'];
+    setState(() {
+      if (result == 'OK') {
+        _leaveFinishDialog(context);
+      } else {
+        leaveerrorSnackBar(context);
+      }
+    });
+    return result;
+  }
+
+// 탈퇴 완료 후 확인창
+  _leaveFinishDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Icon(
+              Icons.task_alt,
+              color: Colors.red,
+              size: 30,
+            ),
+            content: const Text('          탈퇴가 완료 되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        });
+  }
+
+// 탈퇴 실패 에러바
+  leaveerrorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('탈퇴에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+} // End
