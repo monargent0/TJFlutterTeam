@@ -69,6 +69,12 @@ class _MyHistoryState extends State< MyHistory> {
                       ),
                     );
                   })),
+     floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
     );
   }
 

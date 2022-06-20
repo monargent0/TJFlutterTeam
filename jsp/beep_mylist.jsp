@@ -7,7 +7,7 @@
     <%
     request.setCharacterEncoding("utf-8");
    // String uId = request.getParameter("uid");
-
+String buid=request.getParameter("buser_buid");
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
     String pw_mysql="qwer1234";
@@ -22,10 +22,10 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String whereDefault ="select hid, hdaytype, d.dcontent, hpreict, hstart,hholiday,hweather,htraffic1,htraffic2,hspop,buser_build from history  where buser_build='aaa'";
+        String whereDefault ="select hid, hdaytype, d.dcontent, hpreict, hstart,hholiday,hweather,htraffic1,htraffic2,hspop,buser_build from history  where buser_build=?";
 
         ps = conn_mysql.prepareStatement(whereDefault);
-        //ps.setString(1, uId);
+        ps.setString(1, buid);
 
         ResultSet rs = ps.executeQuery();
 
