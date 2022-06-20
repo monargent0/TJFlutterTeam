@@ -38,14 +38,15 @@ class _TimeChartState extends State<TimeChart> {
             width: 380,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(153, 66, 5, 90),
-                  Color.fromARGB(128, 236, 236, 236)
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
+              color: Colors.black,
+              // gradient: LinearGradient(
+              //   colors: [
+              //     Color.fromARGB(221, 77, 12, 103),
+              //     Color.fromARGB(255, 233, 30, 98),
+              //   ],
+              //   begin: Alignment.bottomCenter,
+              //   end: Alignment.topCenter,
+              // ),
             ),
             child: Column(
               children: [
@@ -69,6 +70,8 @@ class _TimeChartState extends State<TimeChart> {
                               )),
                           maxY: 230,
                           minY: 0,
+                          minX: -1,
+                          maxX: 24,
                           borderData: FlBorderData(
                               border: const Border(
                                   bottom: BorderSide(), left: BorderSide()),
@@ -167,7 +170,8 @@ class _TimeChartState extends State<TimeChart> {
 // x 축 스타일 설정
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Color(0xff72719b),
+      // color: Color(0xff72719b),
+      color: Color(0xff75729e),
       fontWeight: FontWeight.bold,
       fontSize: 12,
     );
