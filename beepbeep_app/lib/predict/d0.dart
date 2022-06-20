@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -60,7 +61,8 @@ class _DdayState extends State<Dday> {
   late String hspop;
 
   //계산결과  즉 소요시간
-  late String result;
+  late String result1;
+  late String result2;
 
   @override
   void initState() {
@@ -69,7 +71,8 @@ class _DdayState extends State<Dday> {
     htraffic1text = TextEditingController();
     htraffic2text = TextEditingController();
     hspoptext = TextEditingController();
-    result = "";
+    result1 = "";
+    result2 = "";
   }
 
   @override
@@ -270,8 +273,13 @@ class _DdayState extends State<Dday> {
                       setState(
                         () {},
                       );
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
+                      Navigator.push(context, 
+                      MaterialPageRoute(
+                        builder: (context) {
+                          // 예측값 보내기
+                          return ResultPredict(busers: widget.busers, result1: result1,result2: result2,);
+                        },),
+                        );
                     }
                   },
 
@@ -310,7 +318,8 @@ class _DdayState extends State<Dday> {
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-      result = dataConvertedJSON['result'];
+      result1 = dataConvertedJSON['result1'];
+      result2 = dataConvertedJSON['result2'];
     });
   }
 

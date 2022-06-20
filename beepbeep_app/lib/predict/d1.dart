@@ -51,14 +51,16 @@ class _Dday1State extends State<Dday1> {
   late String hspop;
 
   //계산결과  즉 소요시간
-  late String result;
+  late String result1;
+  late String result2;
 
   @override
   void initState() {
     super.initState();
 
     hspoptext = TextEditingController();
-    result = "";
+    result1 = "";
+    result2 = "";
   }
 
   @override
@@ -230,7 +232,8 @@ class _Dday1State extends State<Dday1> {
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-      result = dataConvertedJSON['result'];
+      result1 = dataConvertedJSON['result1'];
+      result2 = dataConvertedJSON['result2'];
     });
   }
 
