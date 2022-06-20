@@ -43,6 +43,7 @@ class _TabPageState extends State<TabPage>
         title: Image.asset('images/beeplogo.png'),
         backgroundColor: Colors.white,
         elevation: 0, 
+
       ),
       body: Center(
         child: TabBarView(

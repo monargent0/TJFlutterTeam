@@ -19,23 +19,25 @@ class DeveloperPop extends StatelessWidget {
 
     return SizedBox(
       height: 400,
+      // color: Colors.pink[50],
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
+          elevation: 10,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
-                const Text(
-                  '2013 ~ 2020년 서울 인구수',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                // const Text(
+                //   '2013 ~ 2020년 서울 인구수',
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
                 Expanded(
                   child: charts.BarChart(
                     series,
-                    animationDuration: const Duration(milliseconds: 500),
+                    animationDuration: const Duration(milliseconds: 900),
                     animate: true,
                   ),
                 )
