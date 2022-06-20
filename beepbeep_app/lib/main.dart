@@ -9,6 +9,7 @@ import 'package:beepbeep_app/predict/d1.dart';
 import 'package:beepbeep_app/predict/d2.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 
+import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,13 +31,13 @@ class MyApp extends StatelessWidget {
         //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
         //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
         //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
-        '/signin': (context) => const LoginPage(), // 로그인 화면
+        '/': (context) => const LoginPage(), // 로그인 화면
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
         // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute: '/signin',
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
 // ------------------------
 
