@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import 'package:beepbeep_app/predict/d0.dart';
-=======
->>>>>>> 7b18dbdd82da032c50eca4ec507a92e6d8c72261
 import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
