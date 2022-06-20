@@ -137,7 +137,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '1종 교통량',
+                  '1종 교통량(1010519~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -157,7 +157,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '2종 교통량',
+                  '2종 교통량(46739~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -172,7 +172,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수',
+                  '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
