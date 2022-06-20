@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +12,7 @@ class SearchIdPage extends StatefulWidget {
 }
 
 class _SearchIdPageState extends State<SearchIdPage> {
+  // Property
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _pwController;
@@ -175,6 +177,7 @@ class _SearchIdPageState extends State<SearchIdPage> {
                       ),
                     ),
                     onPressed: () {
+                      print('hihihi');
                       if(_nameController.text.trim().isEmpty){
                         emptyName(context);
                       }else if(_emailController.text.trim().isEmpty){
@@ -187,7 +190,8 @@ class _SearchIdPageState extends State<SearchIdPage> {
                           email = _emailController.text.trim();
                           pw = _pwController.text.trim();
                         });
-                        getJSONData().then((value)=>findIDcheck(context));
+                        print('hihi');
+                        getJSONData().then((value) => findIDcheck(context));
                       }
                     },
                     child: const Text(
@@ -209,7 +213,7 @@ class _SearchIdPageState extends State<SearchIdPage> {
 emptyName(BuildContext context){
   ScaffoldMessenger.of(context).showSnackBar(
     const SnackBar(
-      content: Text('이름을 입력하세요.'),
+      content: Text('닉네임을 입력하세요.'),
     duration: Duration(seconds: 2),
     backgroundColor: Colors.deepPurple,)
   );
@@ -236,8 +240,10 @@ emptyPw(BuildContext context){
   Future<bool> getJSONData() async {
 
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_search.jsp?uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}&upw=${_pwController.text.trim()}');
+        // 'http://localhost:8080/Flutter/beep_search.jsp?uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}&upw=${_pwController.text.trim()}');
+        'http://localhost:8080/Flutter/beep_search.jsp?uname=$name&uemail=$email&upw=$pw');
     var response = await http.get(url);
+
     var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
     List result = dataConvertedJSON['results'];
 
@@ -278,14 +284,15 @@ emptyPw(BuildContext context){
               style: TextStyle(fontWeight: FontWeight.bold),),
               content: Text('가입하신 아이디는 $id 입니다.',),
               actions: [
-                ElevatedButton(onPressed: (){
+                TextButton(onPressed: (){
                   Navigator.pop(context);
                 },
                 child: const Text('닫기')),
-                ElevatedButton(onPressed: (){
-                  Navigator.pushNamed(context, '/login');
+                TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> loginPage()));
                 },
-                child: const Text('로그인 하기')),
+                child: const Text('로그인 하기',
+                style: TextStyle(fontWeight: FontWeight.bold),)),
               ],
             );
           }

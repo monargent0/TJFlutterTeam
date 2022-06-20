@@ -6,11 +6,11 @@
     pageEncoding="UTF-8"%>
 
 <%
-String url_mysql = "jdbc:mysql://localhost/team2?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
+String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
 String id_mysql = "root";
 String pw_mysql = "qwer1234";
 
-String whereDefault = "select uname, uemail, upw from team2";
+String whereDefault = "select uname, uemail, upw from buser";
 
 JSONObject jsonList = new JSONObject();
 JSONArray itemList = new JSONArray();
