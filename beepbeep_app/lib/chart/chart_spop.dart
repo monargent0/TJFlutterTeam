@@ -59,6 +59,11 @@ class _SpopChartState extends State<SpopChart> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
     );
   }
 
