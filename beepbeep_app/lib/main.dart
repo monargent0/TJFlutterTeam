@@ -2,7 +2,8 @@ import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'login/searchuser.dart';
+import 'login/searchMain.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         duration: 1000,
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.deepPurple,
-          nextScreen: RegisterIdPage(),),
+          nextScreen: SearchMainPage(),),
       debugShowCheckedModeBanner: false,
     );
   }
