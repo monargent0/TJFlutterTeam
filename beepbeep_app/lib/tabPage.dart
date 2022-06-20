@@ -39,10 +39,8 @@ class _TabPageState extends State<TabPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: Image.asset('images/beeplogo.png'),
-        backgroundColor: Colors.white,
-        elevation: 0, 
+      appBar: AppBar(
+        title: const Text('BEEP BEEP!'),
       ),
       body: Center(
         child: TabBarView(

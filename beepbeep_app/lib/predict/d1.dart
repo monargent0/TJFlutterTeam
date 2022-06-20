@@ -126,7 +126,7 @@ class _Dday1State extends State<Dday1> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: TextStyle( fontSize: 20),
                   iconSize: 50,
                 ),
               ),

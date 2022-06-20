@@ -32,14 +32,19 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday2');
               },
-              child: const Text('설날 전전날 출발 >'),
+              child: const Text(
+                '설날 전전날 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 132, 6, 173),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),
@@ -48,14 +53,19 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday1');
               },
-              child: const Text('설날 전날 출발 >'),
+              child: const Text(
+                '설날 전날 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 132, 6, 173),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),
@@ -64,14 +74,19 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday');
               },
-              child: const Text('설날 당일 출발 >'),
+              child: const Text(
+                '설날 당일 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 132, 6, 173),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),

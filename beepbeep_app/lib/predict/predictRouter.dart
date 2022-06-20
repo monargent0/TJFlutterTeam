@@ -9,7 +9,7 @@ import 'd1.dart';
 import 'd2.dart';
 
 class MyPredict extends StatelessWidget {
-  final Map busers;
+   final Map busers;
   const MyPredict({Key? key, required this.busers}) : super(key: key);
 
   @override

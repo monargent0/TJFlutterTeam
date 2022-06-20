@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
       //   '/signup': (context) => const RegisterPage(), // 회원 가입 화면
       // },
       debugShowCheckedModeBanner: false,
-// ------------------------
+// ————————————
 
-      // 삭제하지 마시오--- 상아엉니코드
+      // 삭제하지 마시오— 상아엉니코드
       // home: AnimatedSplashScreen(
       //   splash: 'images/main_splash.png',
       //   splashIconSize: 200,
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       //   nextScreen: const LoginPage(),
       // ),
       // debugShowCheckedModeBanner: false,
-      // -------
+      // ———
     );
   }
 }
