@@ -330,6 +330,7 @@ class _DdayState extends State<Dday> {
 
   insertAction() async {
     var url = Uri.parse(
+      //http://localhost:8080/Flutter/beep_predict_0.jsp?hdaytype=D&hstart=4&hholiday=0&hweather=0&htraffic1=1233323&htraffic2=1233333&hspop=1233323&buser_buid=$buid
         'http://localhost:8080/Flutter/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {

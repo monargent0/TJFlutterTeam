@@ -19,7 +19,7 @@ void main() {
   runApp(const MyApp());
 }
 
-late Map busers = {"buid":'0'};
+late Map busers = {"buid":'aaa'};
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
