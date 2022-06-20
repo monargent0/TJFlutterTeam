@@ -15,10 +15,19 @@ class _ChartPageState extends State<ChartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(onPressed: () {
+            ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/spop');
             }, child: const Text('년도 별 인구')),
-            TextButton(onPressed: () {
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/spop');
+            }, child: const Text('교통량')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/spop');
+            }, child: const Text('소요시간')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/total');
             }, child: const Text('전체 데이터')),
             TextButton(onPressed: () {
@@ -27,11 +36,6 @@ class _ChartPageState extends State<ChartPage> {
           ],
         ),
       ),
-      // appBar: AppBar(
-      //   title: Image.asset('images/beeplogo.png'),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0, 
-      // ),
     );
   }
 }
