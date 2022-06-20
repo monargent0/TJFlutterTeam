@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class myPage extends StatefulWidget {
+class MyPage extends StatefulWidget {
   final Map userdata;
-  const myPage({Key? key, required this.userdata}) : super(key: key);
+  const MyPage({Key? key, required this.userdata}) : super(key: key);
 
   @override
-  State<myPage> createState() => _myPageState();
+  State<MyPage> createState() => _MyPageState();
 }
 
-class _myPageState extends State<myPage> {
+class _MyPageState extends State<MyPage> {
   late TextEditingController _nameController;
   late TextEditingController _idController;
   late TextEditingController _emailController;
@@ -43,9 +43,8 @@ class _myPageState extends State<myPage> {
 
     _nameController.text = widget.userdata['buid'];
     _idController.text = widget.userdata['uname'];
-    _emailController.text = widget.userdata['uemail'];
+    // _emailController.text = widget.userdata['uemail'];
     _pwController.text = widget.userdata['upw'];
-    _pwokController.text = widget.userdata['upw'];
 
     _emailErrorText = null;
     _nameErrorText = null;
@@ -72,12 +71,6 @@ class _myPageState extends State<myPage> {
               color: Colors.deepPurple,
               fontWeight: FontWeight.bold,
               fontSize: 20),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios),
         ),
       ),
       body: GestureDetector(
@@ -127,7 +120,7 @@ class _myPageState extends State<myPage> {
                   height: 20,
                 ),
                 TextField(
-                  controller: _nameController,
+                  //  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '닉네임',
                     errorText: _nameErrorText,
@@ -248,25 +241,10 @@ class _myPageState extends State<myPage> {
                   autocorrect: false,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
-                Row(children: [
-                  const SizedBox(
-                    width: 300,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      _showLeaveDialog(context);
-                    },
-                    child: const Text(
-                      '탈퇴하기',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ]),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -274,7 +252,7 @@ class _myPageState extends State<myPage> {
                         fixedSize: const Size(140, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
-                          side: BorderSide(color: Colors.deepPurple),
+                          side: const BorderSide(color: Colors.deepPurple),
                         ),
                       ),
                       onPressed: () {
@@ -310,7 +288,23 @@ class _myPageState extends State<myPage> {
                       ),
                     ),
                   ],
-                )
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  const SizedBox(
+                    width: 100,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      _showLeaveDialog(context);
+                    },
+                    child: const Text(
+                      '탈퇴하기',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
+                ]),
               ],
             ),
           ),
@@ -341,69 +335,69 @@ class _myPageState extends State<myPage> {
       setState(() {
         _emailErrorText = null;
       });
+    }
 
-      //패스워드 체크
-      if (!pwReg.hasMatch(_pwController.text.trim())) {
+    //패스워드 체크
+    if (!pwReg.hasMatch(_pwController.text.trim())) {
+      setState(() {
+        _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
+      });
+    } else {
+      setState(() {
+        _passErrorText = null;
+      });
+
+      //패스워드 다시 확인
+      if (_pwokController.text != _pwController.text) {
         setState(() {
-          _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
+          _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
         });
       } else {
         setState(() {
-          _passErrorText = null;
-        });
+          _pass2ErrorText = null;
 
-        //패스워드 다시 확인
-        if (_pwokController.text != _pwController.text) {
-          setState(() {
-            _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
-          });
-        } else {
-          setState(() {
-            _pass2ErrorText = null;
-
-            // 통과하면 수정 의사
-            _editShowDialog(BuildContext context) {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext ctx) {
-                  return AlertDialog(
-                    title: const Icon(
-                      Icons.edit_note_rounded,
-                      color: Colors.deepPurple,
-                    ),
-                    content: const Text('            수정하시겠습니까?'),
-                    actions: [
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                              },
-                              child: const Text(
-                                '취소',
-                                style: TextStyle(color: Colors.amber),
-                              ),
+          // 통과하면 수정 의사
+          _editShowDialog(BuildContext context) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext ctx) {
+                return AlertDialog(
+                  title: const Icon(
+                    Icons.edit_note_rounded,
+                    color: Colors.deepPurple,
+                  ),
+                  content: const Text('            수정하시겠습니까?'),
+                  actions: [
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: const Text(
+                              '취소',
+                              style: TextStyle(color: Colors.amber),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                                updateAction();
-                              },
-                              child: const Text('확인'),
-                            ),
-                          ],
-                        ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                              updateAction();
+                            },
+                            child: const Text('확인'),
+                          ),
+                        ],
                       ),
-                    ],
-                  );
-                },
-              );
-            }
-          });
-        }
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+        });
       }
     }
     setState(() {
@@ -411,7 +405,6 @@ class _myPageState extends State<myPage> {
     }); // else
   } // async
 
-  // 수정 JSON
   Future<String> updateAction() async {
     var url = Uri.parse(
         'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');

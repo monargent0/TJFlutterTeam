@@ -243,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> loginAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://192.168.123.149:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
@@ -264,9 +264,9 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return  TabPage(busers: busers[0], ); // Map으로 보내
-
-
+              return TabPage(
+                busers: busers[0],
+              ); // Map으로 보내
             },
           ),
         ); // 로그인 성공 메인 화면으로 이동

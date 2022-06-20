@@ -1,4 +1,5 @@
 import 'package:beepbeep_app/chart/chartRouter.dart';
+import 'package:beepbeep_app/login/myPage.dart';
 import 'package:beepbeep_app/predict/myhistory.dart';
 import 'package:beepbeep_app/predict/predictRouter.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
@@ -38,7 +39,25 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BEEP BEEP!'),
+        title: Image.asset('images/beeplogo.png'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return MyPage(userdata: widget.busers); // Map으로 보내
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.settings),
+            color: Colors.deepPurple,
+          )
+        ],
       ),
       body: Center(
         child: TabBarView(controller: controller, children: [
