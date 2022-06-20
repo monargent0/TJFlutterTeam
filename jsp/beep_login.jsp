@@ -8,7 +8,6 @@
     request.setCharacterEncoding("utf-8");
     String buid = request.getParameter("buid");
     String upw = request.getParameter("upw");
-    String utaltoedate = request.getParameter("utaltoedate");
 
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
@@ -38,7 +37,6 @@
             tempJson.put("buid", rs.getString(1));
             tempJson.put("upw", rs.getString(2));
             tempJson.put("uname", rs.getString(3));
-            tempJson.put("utaltoedate", rs.getString(4));
             itemList.add(tempJson);
             
         }else{
