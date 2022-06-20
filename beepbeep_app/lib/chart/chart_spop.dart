@@ -16,8 +16,6 @@ class SpopChart extends StatefulWidget {
 class _SpopChartState extends State<SpopChart> {
   // property
   late List<DeveloperData> data = [];
-  var _dropList = ['서울 인구수', '출발시간별 소요시간', '1종 교통량'];
-  String _selected = '서울 인구수';
   // init
   @override
   void initState() {
@@ -34,32 +32,12 @@ class _SpopChartState extends State<SpopChart> {
       //   elevation: 0,
       // ),
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              width: 200,
-              child: DropdownButton(
-                  value: _selected,
-                  icon: const Icon(Icons.arrow_downward_rounded),
-                  items: _dropList.map(
-                    (String _dropList) {
-                      return DropdownMenuItem(
-                        value: _dropList,
-                        child: Text(_dropList),
-                      );
-                    },
-                  ).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selected = newValue!;
-                    });
-                  }),
-            ),
+        child: 
             DeveloperPop(data: data),
-          ],
-        ),
+        
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
         child: const Icon(Icons.arrow_back),
         onPressed: () {
           Navigator.pop(context);
