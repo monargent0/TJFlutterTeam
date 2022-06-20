@@ -17,11 +17,13 @@ class TimeChart extends StatefulWidget {
 class _TimeChartState extends State<TimeChart> {
   // property
   late List<FlSpot> data = [];
+  late List<FlSpot> data2 = [];
   // init
   @override
   void initState() {
     super.initState();
     getJSONData();
+    // getJSONData2();
   }
 
   @override
@@ -38,14 +40,15 @@ class _TimeChartState extends State<TimeChart> {
             width: 380,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(153, 66, 5, 90),
-                  Color.fromARGB(128, 236, 236, 236)
-                ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
+              color: Colors.white,
+              // gradient: LinearGradient(
+              //   colors: [
+              //     Color.fromARGB(221, 77, 12, 103),
+              //     Color.fromARGB(255, 233, 30, 98),
+              //   ],
+              //   begin: Alignment.bottomCenter,
+              //   end: Alignment.topCenter,
+              // ),
             ),
             child: Column(
               children: [
@@ -55,66 +58,97 @@ class _TimeChartState extends State<TimeChart> {
                     padding: const EdgeInsets.all(18.0),
                     child: LineChart(
                       LineChartData(
-                          clipData: FlClipData.all(),
-                          lineTouchData: LineTouchData(
-                              enabled: true,
-                              touchCallback: (FlTouchEvent event,
-                                  LineTouchResponse? touchResponse) {},
-                              touchTooltipData: LineTouchTooltipData(
-                                tooltipBgColor: Colors.yellow,
-                                tooltipRoundedRadius: 20.0,
-                                // showOnTopOfTheChartBoxArea: true,
-                                fitInsideHorizontally: true,
-                                tooltipMargin: 20,
-                              )),
-                          maxY: 230,
-                          minY: 0,
-                          borderData: FlBorderData(
-                              border: const Border(
-                                  bottom: BorderSide(), left: BorderSide()),
-                              show: true),
-                          gridData: FlGridData(
+                        clipData: FlClipData.all(),
+                        lineTouchData: LineTouchData(
+                            enabled: true,
+                            touchCallback: (FlTouchEvent event,
+                                LineTouchResponse? touchResponse) {},
+                            touchTooltipData: LineTouchTooltipData(
+                              tooltipBgColor: Colors.yellow,
+                              tooltipRoundedRadius: 20.0,
+                              // showOnTopOfTheChartBoxArea: true,
+                              fitInsideHorizontally: true,
+                              tooltipMargin: 20,
+                            )),
+                        maxY: 230,
+                        minY: 0,
+                        minX: -1,
+                        maxX: 24,
+                        borderData: FlBorderData(
+                            border: const Border(
+                                bottom: BorderSide(), left: BorderSide()),
+                            show: true),
+                        gridData: FlGridData(
+                            show: true,
+                            horizontalInterval: 500,
+                            verticalInterval: 4),
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: data,
+                            isCurved: true,
+                            barWidth: 5,
+                            dotData: FlDotData(show: false),
+                            belowBarData: BarAreaData(
                               show: true,
-                              horizontalInterval: 500,
-                              verticalInterval: 4),
-                          lineBarsData: [
-                            LineChartBarData(
-                              spots: data,
-                              isCurved: true,
-                              barWidth: 5,
-                              dotData: FlDotData(show: false),
-                              color: Colors.pink,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(78, 77, 12, 103),
+                                  Color.fromARGB(91, 233, 30, 98),
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
                             ),
-                            // LineChartBarData(
-                            //   spots: data,
-                            // ),
-                          ],
-                          titlesData: FlTitlesData(
-                              bottomTitles: AxisTitles(
-                                sideTitles: bottomTitles,
-                                axisNameWidget: const Text(
-                                  '출발 시간',
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 14,
-                                  ),
-                                ),
+                            color: Colors.pink,
+                          ),
+                          LineChartBarData(
+                            spots: data2,
+                            isCurved: true,
+                            barWidth: 5,
+                            dotData: FlDotData(show: false),
+                            belowBarData: BarAreaData(
+                              show: true,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(78, 27, 129, 246),
+                                  Color.fromARGB(91, 43, 25, 242),
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
                               ),
-                              rightTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
+                            ),
+                            color: Colors.cyan,
+                          ),
+                        ],
+                        titlesData: FlTitlesData(
+                          bottomTitles: AxisTitles(
+                            sideTitles: bottomTitles,
+                            axisNameWidget: const Text(
+                              '출발 시간',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 14,
                               ),
-                              topTitles: AxisTitles(
-                                sideTitles: SideTitles(showTitles: false),
+                            ),
+                          ),
+                          rightTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          leftTitles: AxisTitles(
+                            sideTitles: leftTitles(),
+                            axisNameWidget: const Text(
+                              '소요 시간',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 13,
                               ),
-                              leftTitles: AxisTitles(
-                                  sideTitles: leftTitles(),
-                                  axisNameWidget: const Text(
-                                    '소요 시간',
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 13,
-                                    ),
-                                  )))),
+                            ),
+                          ),
+                        ),
+                      ),
                       swapAnimationDuration: const Duration(seconds: 3),
                       swapAnimationCurve: Curves.linear,
                     ),
@@ -167,7 +201,8 @@ class _TimeChartState extends State<TimeChart> {
 // x 축 스타일 설정
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Color(0xff72719b),
+      // color: Color(0xff72719b),
+      color: Color(0xff75729e),
       fontWeight: FontWeight.bold,
       fontSize: 12,
     );
@@ -230,6 +265,27 @@ class _TimeChartState extends State<TimeChart> {
     setState(() {
       for (int i = 0; i < result.length; i++) {
         data.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
+      }
+    });
+
+    return true;
+  }
+  Future<bool> getJSONData2() async {
+    data2 = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_getdata.jsp?queryType=D-1');
+
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    var dataConvertedJSON =
+        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+
+    List result = dataConvertedJSON['results'];
+
+    print(result.length); // test
+
+    setState(() {
+      for (int i = 0; i < result.length; i++) {
+        data2.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
       }
     });
 

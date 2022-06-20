@@ -19,10 +19,13 @@ class TabPage extends StatefulWidget {
 class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   late TabController controller;
 
+  late String buid;
+
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 3, vsync: this);
+    buid = widget.busers['buid'];
   }
 
   @override
@@ -35,12 +38,16 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BEEP BEEP!'),
+        title: Image.asset('images/beeplogo.png'),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       body: Center(
-        child: TabBarView(
-            controller: controller,
-            children: const [MyPredict(), MyChart(), MyHistory()]),
+        child: TabBarView(controller: controller, children: [
+          MyPredict(busers: widget.busers),
+          const MyChart(),
+          MyHistory(busers: widget.busers)
+        ]),
       ),
       backgroundColor: Color.fromARGB(255, 211, 148, 222),
       bottomNavigationBar: Container(

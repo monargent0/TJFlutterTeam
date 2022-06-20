@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Volumes/Data/Development/flutter
-FLUTTER_APPLICATION_PATH=/Volumes/Data/dongwon/FlutterTeam/beepbeep_app
+FLUTTER_ROOT=/Users/hansooyeon/flutter
+FLUTTER_APPLICATION_PATH=/Users/hansooyeon/Documents/GitHub/FlutterTeam/beepbeep_app
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=/Volumes/Data/dongwon/FlutterTeam/beepbeep_app/lib/main.dart
 FLUTTER_BUILD_DIR=build

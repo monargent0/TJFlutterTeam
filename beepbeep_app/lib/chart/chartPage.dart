@@ -13,20 +13,36 @@ class _ChartPageState extends State<ChartPage> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+<<<<<<< HEAD
             TextButton(onPressed: () {
-              Navigator.pushNamed(context, '/pop');
+=======
+            ElevatedButton(onPressed: () {
+>>>>>>> 7b18dbdd82da032c50eca4ec507a92e6d8c72261
+              Navigator.pushNamed(context, '/spop');
             }, child: const Text('년도 별 인구')),
-            TextButton(onPressed: () {
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/traffic1');
+            }, child: const Text('1종 교통량')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/traffic2');
+            }, child: const Text('2종 교통량')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/spop');
+            }, child: const Text('소요시간')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: () {
               Navigator.pushNamed(context, '/total');
             }, child: const Text('전체 데이터')),
+            TextButton(onPressed: () {
+              Navigator.pushNamed(context, '/time');
+            }, child: const Text('소요시간 데이터')),
           ],
         ),
-      ),
-      appBar: AppBar(
-        title: Image.asset('images/beeplogo.png'),
-        backgroundColor: Colors.white,
-        elevation: 0, 
       ),
     );
   }
