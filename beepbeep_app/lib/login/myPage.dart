@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -283,7 +284,14 @@ class _MyPageState extends State<MyPage> {
                         ),
                       ),
                       onPressed: () {
-                        userUpdateOk();
+                        setState(() {
+                          name = _nameController.text;
+                          pw = _pwController.text;
+                          email = _emailController.text;
+
+                          userUpdateOk();
+                        });
+                        //print('$id , $email , $pw');
                       },
                       child: const Text(
                         '수정하기',
@@ -321,10 +329,6 @@ class _MyPageState extends State<MyPage> {
   // ---Function
 
   userUpdateOk() async {
-    setState(() {
-      isRegistering = true;
-    });
-
     // 정규식 적용
     RegExp emailReg = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -340,47 +344,44 @@ class _MyPageState extends State<MyPage> {
       setState(() {
         _emailErrorText = null;
       });
-    }
 
-    //패스워드 체크
-    if (!pwReg.hasMatch(_pwController.text.trim())) {
-      setState(() {
-        _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
-      });
-    } else {
-      setState(() {
-        _passErrorText = null;
-      });
-
-      //패스워드 다시 확인
-      if (_pwokController.text != _pwController.text) {
+      //패스워드 체크
+      if (!pwReg.hasMatch(_pwController.text.trim())) {
         setState(() {
-          _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+          _passErrorText = '영문 + 숫자 + 특수문자 8자 이상으로 입력해주세요';
         });
       } else {
         setState(() {
-          _pass2ErrorText = null;
+          _passErrorText = null;
         });
-        // 통과하면 수정 의사
-        var url = Uri.parse(
-            'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
-        var response = await http.get(url);
-        var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-        result = dataConvertedJSON['result'];
-        //print(result);
-        setState(() {
-          if (result == 'OK') {
-            _showfinishDialog(context);
-          } else {
-            editerrorSnackBar(context);
-          }
-        });
-        return result;
+
+        //패스워드 다시 확인
+        if (_pwokController.text != _pwController.text) {
+          setState(() {
+            _pass2ErrorText = '비밀번호 확인이 일치하지 않습니다.';
+          });
+        } else {
+          setState(() {
+            _pass2ErrorText = null;
+          });
+          // 통과하면 수정 의사
+          var url = Uri.parse(
+              'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
+          var response = await http.get(url);
+          var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+          result = dataConvertedJSON['result'];
+          //print(result);
+          setState(() {
+            if (result == 'OK') {
+              _showfinishDialog(context);
+            } else {
+              editerrorSnackBar(context);
+            }
+          });
+          return result;
+        }
       }
-    }
-    setState(() {
-      isRegistering = false;
-    }); // else
+    } // else
   } // async
 
   //   _editShowDialog(BuildContext context) {
@@ -489,6 +490,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
+                      Navigator.of(context).pop();
                       Navigator.of(ctx).pop();
                       leaveAction();
                     },
@@ -503,8 +505,8 @@ class _MyPageState extends State<MyPage> {
 
 // 탈퇴 JSON
   Future<String> leaveAction() async {
-    var url =
-        Uri.parse('http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=$id');
+    var url = Uri.parse(
+        'http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
@@ -533,8 +535,7 @@ class _MyPageState extends State<MyPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(ctx).pop();
-                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, '/');
                 },
                 child: const Text('확인'),
               ),
