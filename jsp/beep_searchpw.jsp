@@ -32,11 +32,11 @@ try{
     ps.setString(2,uname);
     ps.setString(3,uemail);
 
-    ResultSet rs = ps.excuteQuery();
+    ResultSet rs = ps.executeQuery();
 
     if(rs.next()){
         JSONObject tempJson = new JSONObject();
-        tempJson.put("bpw", rs.getString(1));
+        tempJson.put("upw", rs.getString(1));
         itemList.add(tempJson);
     }else{
         itemList.add("ERROR");
