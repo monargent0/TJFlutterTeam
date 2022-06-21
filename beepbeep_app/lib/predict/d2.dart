@@ -137,7 +137,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '1종 교통량(1010519~63006617)',
+                  '1종 교통량(1010519~63006617대)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -145,7 +145,7 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: TextField(
                   controller: htraffic1text,
-                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 ',
+                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 (단위:대)',
                   focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
@@ -158,7 +158,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '2종 교통량(46739~2208959)',
+                  '2종 교통량(46739~2208959대)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -166,7 +166,7 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: htraffic2text,
-                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',
+                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 (단위:대) ',
                   focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
@@ -174,7 +174,7 @@ class _Dday2State extends State<Dday2> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수(9911088~10388055)',
+                  '서울 인구수(9911088~10388055명)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -184,7 +184,7 @@ class _Dday2State extends State<Dday2> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 (단위:명)',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),

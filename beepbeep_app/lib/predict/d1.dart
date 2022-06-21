@@ -169,7 +169,7 @@ class _Dday1State extends State<Dday1> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Text(
-                  '서울 인구수(9911088~10388055)',
+                  '서울 인구수(9911088~10388055명)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -177,7 +177,7 @@ class _Dday1State extends State<Dday1> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기',
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 (단위:명)',
                  
                   focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
@@ -234,6 +234,7 @@ class _Dday1State extends State<Dday1> {
           ),
         ),
          floatingActionButton: FloatingActionButton(
+          
         backgroundColor: Colors.deepPurple,
         child: const Icon(Icons.arrow_back),
         onPressed: () {
