@@ -48,11 +48,7 @@ class _MyPageState extends State<MyPage> {
 
     _idController.text = widget.busers['buid'];
     _nameController.text = widget.busers['uname'];
-<<<<<<< HEAD
-     _emailController.text = widget.busers['uemail'];
-=======
     _emailController.text = widget.busers['uemail'];
->>>>>>> 3427b3eae17c91bbc7fca157b0edecaa2f063494
     _pwController.text = widget.busers['upw'];
     _pwokController.text;
 
