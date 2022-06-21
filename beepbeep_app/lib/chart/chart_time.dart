@@ -331,24 +331,21 @@ class _TimeChartState extends State<TimeChart> {
 
   // Function
   Future<bool> getJSONData() async {
-    data = []; // 초기화
+    data = [];
     var url = Uri.parse(
         'http://localhost:8080/Flutter/beep_getdata.jsp?queryType=D-2');
 
-    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    var response = await http.get(url);
     var dataConvertedJSON =
-        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+        json.decode(utf8.decode(response.bodyBytes));
 
     List result = dataConvertedJSON['results'];
-
-    print(result.length); // test
 
     setState(() {
       for (int i = 0; i < result.length; i++) {
         data.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
       }
     });
-
     return true;
   }
 
