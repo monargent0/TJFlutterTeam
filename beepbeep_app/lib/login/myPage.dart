@@ -48,7 +48,11 @@ class _MyPageState extends State<MyPage> {
 
     _idController.text = widget.busers['buid'];
     _nameController.text = widget.busers['uname'];
+<<<<<<< HEAD
      _emailController.text = widget.busers['uemail'];
+=======
+    _emailController.text = widget.busers['uemail'];
+>>>>>>> 3427b3eae17c91bbc7fca157b0edecaa2f063494
     _pwController.text = widget.busers['upw'];
     _pwokController.text;
 
@@ -64,6 +68,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         iconTheme: const IconThemeData(
@@ -317,6 +322,17 @@ class _MyPageState extends State<MyPage> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                    //
+                    },
+                    child: const Text(
+                      '로그아웃',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
                 ]),
               ],
             ),
@@ -536,7 +552,14 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context, rootNavigator: true).pushNamed('/signup');
+                  Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const LoginPage(); // Map으로 보내
+            },
+          ),
+        ); // 로그인 성공 메인 화면으로 이동
                 },
                 child: const Text('확인'),
               ),

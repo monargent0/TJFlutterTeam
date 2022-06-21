@@ -48,133 +48,139 @@ class _ResultPredictState extends State<ResultPredict> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('소요 예상 시간',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    result,
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('예상 소요 시간',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold , color: Colors.deepPurple),),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  result,
+                  style: const TextStyle(fontSize: 35),
+                ),
+              ],
             ),
             const SizedBox(
               height: 20,
             ),
+              
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 const Text(
-                  '내가 입력한 정보',
+                  '< 입력 정보 >',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  width: 50,
-                ),
-                Text(
-                  '*나의 이력에서 조회 가능',
-                  style: TextStyle(fontSize: 10),
-                )
               ],
             ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 10,),
-                    const Text(
-                      '출발 날짜 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['hdaytype']:""
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '출발 시간 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '연휴 기간 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['hholiday'].toString():"0"
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '날씨 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['hweather'].toString() == 0 ?'맑음':'눈 또는 비':''
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '제 1종 교통량 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '제 2종 교통량 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      '서울인구수 :'
-                    ),
-                    const SizedBox(width: 10,),
-                    Text(
-                      predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
-                    ),
-                  ],
-                ),
-              ],
+            const SizedBox(height: 20,),
+            SizedBox(
+              width: 200,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10,),
+                      const Text(
+                        '출발 날짜 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['hdaytype']:""
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '출발 시간 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold),),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '연휴 기간 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['hholiday'].toString():"0"
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '날씨 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['hweather'].toString() == 0 ?'맑음':'눈 또는 비':''
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '제 1종 교통량 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '제 2종 교통량 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
+                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '서울인구수 :'
+                      ),
+                      const SizedBox(width: 10,),
+                      Text(
+                        predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
+                     , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold) ),
+                    ],
+                  ),
+                      const SizedBox(height: 20,),
+                    Row(
+                    children: const [
+                      Text(
+                        '*나의 이력에서 조회 가능',
+                        style: TextStyle(fontSize: 10 , color: Colors.deepPurpleAccent),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20,),
             ElevatedButton(

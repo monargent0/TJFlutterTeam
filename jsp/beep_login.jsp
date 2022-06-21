@@ -24,7 +24,11 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
+<<<<<<< HEAD
         String whereDefault ="select buid , upw , uname, uemail from buser where buid = ? and upw = ? and utaltoedate is null ";
+=======
+        String whereDefault ="select buid , upw , uname, uemail from buser where buid = ? and upw = ? ";
+>>>>>>> 3427b3eae17c91bbc7fca157b0edecaa2f063494
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, buid);
