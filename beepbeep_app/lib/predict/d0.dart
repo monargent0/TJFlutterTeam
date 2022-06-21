@@ -207,8 +207,12 @@ class _DdayState extends State<Dday> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: TextField(
                   controller: htraffic1text,
-                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
+                  decoration:
+                    InputDecoration(labelText: '1종 교통량 입력하기 ',
+                 focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),
+                   ),
                   keyboardType: TextInputType.number,
+
 
                 ),
               ),
@@ -228,7 +232,8 @@ class _DdayState extends State<Dday> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: htraffic2text,
-                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 '),
+                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -245,7 +250,8 @@ class _DdayState extends State<Dday> {
                 padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -295,7 +301,7 @@ class _DdayState extends State<Dday> {
                         const Text(
                           "소요시간 보러가기",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.deepPurple,
                           ),
