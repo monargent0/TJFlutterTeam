@@ -162,6 +162,18 @@ class _ResultPredictState extends State<ResultPredict> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '서울인구수 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
+                    ),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 20,),
