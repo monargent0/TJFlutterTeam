@@ -49,7 +49,7 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return MyPage(userdata: widget.busers); // Map으로 보내
+                    return MyPage(busers: widget.busers); // Map으로 보내
                   },
                 ),
               );
