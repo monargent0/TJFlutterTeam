@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
           nextScreen: const LoginPage()),
       routes: {
-        '/signup': (context) => const LoginPage(), // 회원 가입 화면
+        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        '/login' : (context) => const LoginPage()
       },
       debugShowCheckedModeBanner: false,
     );

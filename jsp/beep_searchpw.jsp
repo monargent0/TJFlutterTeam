@@ -25,18 +25,18 @@ try{
     Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
     Statement stmt_mysql = conn_mysql.createStatement();
     
-    String whereDefault = "select bPw from buser where buid = ? and uname = ? and uemail = ?";
+    String whereDefault = "select upw from buser where buid = ? and uname = ? and uemail = ?";
 
     ps=conn_mysql.prepareStatement(whereDefault);
     ps.setString(1,buid);
     ps.setString(2,uname);
     ps.setString(3,uemail);
 
-    ResultSet rs = ps.excuteQuery();
+    ResultSet rs = ps.executeQuery();
 
     if(rs.next()){
         JSONObject tempJson = new JSONObject();
-        tempJson.put("bpw", rs.getString(1));
+        tempJson.put("upw", rs.getString(1));
         itemList.add(tempJson);
     }else{
         itemList.add("ERROR");
