@@ -320,14 +320,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const LoginPage(); // Map으로 보내
-                      },
-                    ),
-                  ); 
+                      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                     },
                     child: const Text(
                       '로그아웃',
@@ -510,8 +503,6 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(ctx).pop();
                       leaveAction();
                     },
                     child: const Text('확인'),
@@ -557,14 +548,7 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const LoginPage(); // Map으로 보내
-            },
-          ),
-        ); // 로그인 성공 메인 화면으로 이동
+                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                 },
                 child: const Text('확인'),
               ),
