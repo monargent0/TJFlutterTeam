@@ -364,7 +364,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             //통과
             var url = Uri.parse(
-                'http://localhost/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
+                'http://localhost:8080/Flutter/beep_regist.jsp?buid=${_idController.text.trim()}&upw=${_pwController.text.trim()}&uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}');
             var response = await http.get(url);
             var dataConvertedJSON = jsonDecode(utf8.decode(response.bodyBytes));
             bool isSuccess = dataConvertedJSON['results'];
