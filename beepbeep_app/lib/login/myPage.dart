@@ -413,7 +413,7 @@ class _MyPageState extends State<MyPage> {
 
   Future<String> updateAction() async {
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
+        'http://localhost:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=$id');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
