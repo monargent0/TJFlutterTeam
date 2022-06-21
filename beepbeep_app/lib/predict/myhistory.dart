@@ -59,7 +59,7 @@ class _MyHistoryState extends State<MyHistory> {
                             // 삭제버튼
                             TextButton(
                               onPressed: () {
-                                deleteAction(data[index]['hid']);
+                                deleteAction(data[index]['hid']).then((value) => getJSONData());
                               }, child: const Text('X'),),
                           ],
                         ),
