@@ -75,7 +75,7 @@ class _MyHistoryState extends State<MyHistory> {
   Future<bool> getJSONData() async {
     data = [];
     //async가 비동기라는 의미 38번째줄이랑 42번째줄이 같이 시작됨
-    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?uid=$buid');
+    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?buid=$buid');
     var response = await http.get(url); //get방식으로 많이씀 그래야 암호화해서 압축해서옴, await는 정보받아올때까지 기다렸다가 띄우기 위해
     setState(() {
       //가져온 데이터 알아보기 쉽게 변형시키기

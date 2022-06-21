@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'searchMain.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -180,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          //
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
                         },
                         child: const Text(
                           '아이디찾기',
@@ -197,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          //
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
                         },
                         child: const Text(
                           ' 비밀번호찾기',
