@@ -263,6 +263,10 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+*.xcconfig
+/*environment.sh
+*.xcfilelist
+
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods,xcode
 # Created by https://www.toptal.com/developers/gitignore/api/jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=jupyternotebooks
