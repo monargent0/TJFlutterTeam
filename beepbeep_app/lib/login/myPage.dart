@@ -379,7 +379,6 @@ class _MyPageState extends State<MyPage> {
           // 통과하면 수정 의사
           var url = Uri.parse(
               'http://localhost:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
-              // 'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
           var response = await http.get(url);
           var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
           result = dataConvertedJSON['result'];
@@ -518,7 +517,6 @@ class _MyPageState extends State<MyPage> {
   Future<String> leaveAction() async {
     var url = Uri.parse(
         'http://localhost:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
-        // 'http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
