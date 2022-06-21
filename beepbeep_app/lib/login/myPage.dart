@@ -320,7 +320,14 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                    //
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const LoginPage(); // Map으로 보내
+                      },
+                    ),
+                  ); 
                     },
                     child: const Text(
                       '로그아웃',
