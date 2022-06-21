@@ -2,11 +2,7 @@ import 'package:beepbeep_app/chart/chartRouter.dart';
 import 'package:beepbeep_app/login/myPage.dart';
 import 'package:beepbeep_app/predict/myhistory.dart';
 import 'package:beepbeep_app/predict/predictRouter.dart';
-import 'package:beepbeep_app/predict/selectPredictPage.dart';
-import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class TabPage extends StatefulWidget {
   final Map busers;
@@ -49,7 +45,7 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return MyPage(userdata: widget.busers); // Map으로 보내
+                    return MyPage(busers: widget.busers); // Map으로 보내
                   },
                 ),
               );

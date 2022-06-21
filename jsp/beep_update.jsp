@@ -24,7 +24,7 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String act1 ="update buser set upw = ?, uname = ?, uemail = ?";
+        String act1 ="update buser set upw = ?, uname = ?, uemail = ? ";
         String act2 ="where buid = ?";
 
         ps=conn_mysql.prepareStatement(act1+act2);

@@ -29,6 +29,7 @@ class _MyHistoryState extends State<MyHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: data.isEmpty
             ? const Text('검색 기록이 없습니다.')
@@ -37,30 +38,47 @@ class _MyHistoryState extends State<MyHistory> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 100,
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
-                        color: Color.fromARGB(255, 227, 207, 231),
+                        color: const Color.fromARGB(255, 227, 207, 231),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'D-${data[index]['hdaytype']} ${data[index]['hstart']}시 출발 ',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              '소요시간 :${data[index]['hpredict']}분',
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            SizedBox(
+                              width: 240,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'D-${data[index]['hdaytype']} ${data[index]['hstart']}시 출발 ',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  Text(
+                                    '소요시간 :${data[index]['hpredict']}분',
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                             // 삭제버튼
-                            TextButton(
-                              onPressed: () {
-                                deleteAction(data[index]['hid']).then((value) => getJSONData());
-                              }, child: const Text('X'),),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    deleteAction(data[index]['hid'])
+                                        .then((value) => getJSONData());
+                                  },
+                                  child: const Text('X'),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -96,8 +114,8 @@ class _MyHistoryState extends State<MyHistory> {
 
   // 삭제 JSON
   Future<String> deleteAction(int hid) async {
-    var url =
-        Uri.parse('http://localhost:8080/Flutter/beep_predictDelete.jsp?hid=$hid');
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_predictDelete.jsp?hid=$hid');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
@@ -111,6 +129,7 @@ class _MyHistoryState extends State<MyHistory> {
     });
     return result;
   }
+
   // 삭제 완료 후 확인창
   _deleteFinishDialog(BuildContext context) {
     showDialog(
@@ -145,5 +164,4 @@ class _MyHistoryState extends State<MyHistory> {
       ),
     );
   }
-
 }

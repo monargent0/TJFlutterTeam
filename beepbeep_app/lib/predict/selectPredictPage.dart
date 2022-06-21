@@ -16,6 +16,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

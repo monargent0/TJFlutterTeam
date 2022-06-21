@@ -76,20 +76,20 @@ class _Dday2State extends State<Dday2> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
-        
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 40,
+              const SizedBox(
+                height: 30,
               ),
 
               //제목
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     '설날 전전날 출발',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -98,15 +98,15 @@ class _Dday2State extends State<Dday2> {
               ),
 
               //시간선택
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 80, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 30, 80, 0),
                 child: Text(
                   '출발시간',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: DropdownButton(
                   isExpanded: true,
                   underline: Container(
@@ -118,7 +118,7 @@ class _Dday2State extends State<Dday2> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Text('$e시'),
+                        child: Center(child: Text('$e시',style: const TextStyle(fontSize: 16),)),
                       );
                     },
                   ).toList(),
@@ -128,25 +128,29 @@ class _Dday2State extends State<Dday2> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: const TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
 
               //1종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '1종 교통량(1010519~63006617)',
+                  '1종 교통량\n(1010519~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: TextField(
                   controller: htraffic1text,
-                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 ',
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  decoration: const InputDecoration(
+                    labelText: '1종 교통량 입력하기 (단위:대)',
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                  ),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -155,44 +159,52 @@ class _Dday2State extends State<Dday2> {
               ),
 
               //2종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '2종 교통량(46739~2208959)',
+                  '2종 교통량\n(46739~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: htraffic2text,
-                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  decoration: const InputDecoration(
+                    labelText: '2종 교통량 입력하기 (단위:대) ',
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                  ),
                   keyboardType: TextInputType.number,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '서울 인구수(9911088~10388055)',
+                  '서울 인구수\n(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
 
               //인구수 입력
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  decoration: const InputDecoration(
+                    labelText: '서울 인구수 입력하기 (단위:명)',
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                  ),
                   keyboardType: TextInputType.number,
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
+              Center(
                 child: ElevatedButton(
                    style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[100],
@@ -201,35 +213,38 @@ class _Dday2State extends State<Dday2> {
                   borderRadius: BorderRadius.circular(50),
                   side: const BorderSide(color: Colors.deepPurple),
                 ),
-              ),
+                ),
                   onPressed: () async{
                     if (htraffic1text.text.trim().isEmpty ||
                         htraffic2text.text.trim().isEmpty ||
                         hspoptext.text.trim().isEmpty) {
                       errorsnackbar(context);
                     } else {
+                      print('hi');
                       htraffic1 = htraffic1text.text;
                       htraffic2 = htraffic2text.text;
                       hspop = hspoptext.text;
                       await insertAction();
-                      Navigator.push(context, 
-                      MaterialPageRoute(
-                        builder: (context) {
-                          // 예측값 보내기
-                          return ResultPredict(busers: widget.busers, result: result);
-                        },),
-                        );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            // 예측값 보내기
+                            return ResultPredict(
+                                busers: widget.busers, result: result);
+                          },
+                        ),
+                      );
                     }
                   },
-
                   // 소요시간 보러가기 버튼
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         "소요시간 보러가기",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 15,
                            fontWeight: FontWeight.bold,
                             color: Colors.deepPurple,
                         ),
@@ -241,12 +256,13 @@ class _Dday2State extends State<Dday2> {
             ],
           ),
         ),
-         floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurple,
-        child: const Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.deepPurple,
+          child: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }
