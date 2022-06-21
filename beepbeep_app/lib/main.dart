@@ -1,18 +1,9 @@
-import 'package:beepbeep_app/chart/chartRouter.dart';
-import 'package:beepbeep_app/chart/chart_spop.dart';
-import 'package:beepbeep_app/chart/chart_time.dart';
 import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:beepbeep_app/login/register.dart';
-import 'package:beepbeep_app/predict/d0.dart';
-import 'package:beepbeep_app/predict/d1.dart';
-import 'package:beepbeep_app/predict/d2.dart';
-import 'package:beepbeep_app/predict/selectPredictPage.dart';
 
-import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
-import 'login/searchMain.dart';
 
 
 void main() {
