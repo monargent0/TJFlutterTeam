@@ -366,7 +366,7 @@ class _MyPageState extends State<MyPage> {
           });
           // 통과하면 수정 의사
           var url = Uri.parse(
-              'http://192.168.5.83:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
+              'http://localhost:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
           var response = await http.get(url);
           var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
           result = dataConvertedJSON['result'];
@@ -506,7 +506,7 @@ class _MyPageState extends State<MyPage> {
 // 탈퇴 JSON
   Future<String> leaveAction() async {
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
+        'http://localhost:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
@@ -535,7 +535,8 @@ class _MyPageState extends State<MyPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).pop();
                 },
                 child: const Text('확인'),
               ),
