@@ -10,7 +10,7 @@ void main() {
   runApp(const MyApp());
 }
 
-late Map busers = {"buid":'0'};
+late Map busers = {"buid":'aaa'};
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           nextScreen: const LoginPage()),
       routes: {
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        '/login' : (context) => const LoginPage()
       },
       debugShowCheckedModeBanner: false,
     );
