@@ -98,7 +98,7 @@ class _MyHistoryState extends State<MyHistory> {
   // 삭제 JSON
   Future<String> deleteAction(int hid) async {
     var url =
-        Uri.parse('http://localhost:8080/Flutter/beep_predictDelete.jsp?hid=${hid}');
+        Uri.parse('http://localhost:8080/Flutter/beep_predictDelete.jsp?hid=$hid');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
@@ -127,7 +127,6 @@ class _MyHistoryState extends State<MyHistory> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(ctx).pop();
                   Navigator.of(context).pop();
                 },
                 child: const Text('확인'),

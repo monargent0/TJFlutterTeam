@@ -12,7 +12,7 @@
 
     PreparedStatement ps =null;
 
-    String hid = request.getParameter('hid');
+    String hid = request.getParameter("hid");
 
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
