@@ -93,22 +93,21 @@ class _MyHistoryState extends State<MyHistory> {
   Future<bool> getJSONData() async {
     data = [];
     //async가 비동기라는 의미 38번째줄이랑 42번째줄이 같이 시작됨
-    var url = Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?buid=$buid');
-    var response = await http.get(url); //get방식으로 많이씀 그래야 암호화해서 압축해서옴, await는 정보받아올때까지 기다렸다가 띄우기 위해
+    var url =
+        Uri.parse('http://localhost:8080/Flutter/beep_mylist.jsp?buid=$buid');
+    var response = await http
+        .get(url); //get방식으로 많이씀 그래야 암호화해서 압축해서옴, await는 정보받아올때까지 기다렸다가 띄우기 위해
+
     setState(() {
       //가져온 데이터 알아보기 쉽게 변형시키기
-      try {
-        var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
-        //results 안에 데이터를 리스트로 넣기
-        print(response);
-        List result = dataConvertedJSON['results'];
-        print(result);
-        //add는 리스트 한줄씩 넣는건데 한꺼번에 넣기 위해 addall을 사용함
-        data.addAll(result);
-      } catch (e) {
-        //
-      }
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      //results 안에 데이터를 리스트로 넣기
+      List result = dataConvertedJSON['results'];
+      //add는 리스트 한줄씩 넣는건데 한꺼번에 넣기 위해 addall을 사용함
+      data.addAll(result);
     });
+
+
     return true;
   }
 
