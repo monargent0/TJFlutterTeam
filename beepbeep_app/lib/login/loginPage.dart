@@ -121,30 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      fixedSize: const Size(300, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.deepPurple),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                    child: const Text(
-                      '회원가입',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -170,6 +147,29 @@ class _LoginPageState extends State<LoginPage> {
                       '로그인',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      fixedSize: const Size(300, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Colors.deepPurple),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: const Text(
+                      '회원가입',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
                       ),
                     ),
                   ),
@@ -262,12 +262,14 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return  TabPage(busers: busers[0], ); // Map으로 보내
+              return TabPage(
+                busers: busers[0],
+              ); // Map으로 보내
             },
           ),
         ); // 로그인 성공 메인 화면으로 이동
       }
-        // print(busers[0]); // 결과 확인용
+      // print(busers[0]); // 결과 확인용
     });
 
     return true;
