@@ -38,14 +38,14 @@ class MyApp extends StatelessWidget {
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.deepPurple,
           nextScreen: LoginPage()),
-      // routes: {
-      //   //'/': (context) => const SelectPredictPage(),
-      //   //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
-      //   //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
-      //   //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
-      //   // '/': (context) =>  TabPage(busers: busers), // 로그인 화면
-      //   '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-      // },
+      routes: {
+        //'/': (context) => const SelectPredictPage(),
+        //'/Dday': (context) => Dday(busers: busers), //설날당일 입력화면
+        //'/Dday1': (context) => const Dday1(), // 설날D-1 입력화면
+        //'/Dday2': (context) => const Dday2(), // 설날D-2 입력화면
+        // '/': (context) =>  TabPage(busers: busers), // 로그인 화면
+        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+      },
       debugShowCheckedModeBanner: false,
 // ————————————
 
