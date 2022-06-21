@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundImage: AssetImage('images/logo.png'),
                     radius: 50,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Image.asset('images/beeplogo.png'),
@@ -256,7 +256,6 @@ class _LoginPageState extends State<LoginPage> {
         loginfailSnackbar(context); // 로그인 실패 알림창
       } else {
         busers.addAll(result);
-        // print(busers); // 결과 확인용
 
         Navigator.pop(context);
         Navigator.push(
@@ -264,12 +263,11 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(
             builder: (context) {
               return  TabPage(busers: busers[0], ); // Map으로 보내
-
-
             },
           ),
         ); // 로그인 성공 메인 화면으로 이동
       }
+        print(busers[0]); // 결과 확인용
     });
 
     return true;

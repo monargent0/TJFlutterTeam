@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:json_table/json_table.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -40,6 +39,7 @@ class _TotalChartState extends State<TotalChart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(

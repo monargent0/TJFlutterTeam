@@ -19,6 +19,15 @@ class _ResultPredictState extends State<ResultPredict> {
   late List predictList;
   late String buid;
   late String result;
+  late int hid;
+  // get으로 넘겨줄 용
+  late String hdaytype;
+  late int hstart;
+  late int hholiday;
+  late int hweather;
+  late int htraffic1;
+  late int htraffic2;
+  late int hspop;
 
   @override
   void initState() {
@@ -26,15 +35,19 @@ class _ResultPredictState extends State<ResultPredict> {
     predictList = [];
     buid = widget.busers['buid'];
     result = "${widget.result}분";
-    //getJSONData();
+    getJSONData();
+    hdaytype = '';
+    hstart = 0;
+    hholiday = 0;
+    hweather = 0;
+    htraffic1 = 0;
+    htraffic2 = 0;
+    hspop = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BEEP BEEP!'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,9 +56,10 @@ class _ResultPredictState extends State<ResultPredict> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('소요 예상 시간'),
+                  const Text('소요 예상 시간',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Text(
                     result,
@@ -73,6 +87,84 @@ class _ResultPredictState extends State<ResultPredict> {
                 )
               ],
             ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 10,),
+                    const Text(
+                      '출발 날짜 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['hdaytype']:""
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '출발 시간 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '연휴 기간 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['hholiday'].toString():"0"
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '날씨 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['hweather'].toString() == 0 ?'맑음':'눈 또는 비':''
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '제 1종 교통량 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '제 2종 교통량 :'
+                    ),
+                    const SizedBox(width: 10,),
+                    Text(
+                      predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
@@ -103,22 +195,29 @@ class _ResultPredictState extends State<ResultPredict> {
   //   });
   // }
 
-  //   Future<bool> getJSONData() async {
-  //   predictList = []; // 초기화
-  //   var url = Uri.parse(
-  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?buser_buid=$buid');
+    Future<bool> getJSONData() async {
+    predictList = [];
+    print(widget.result); // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hpredict=\"${widget.result}\"');
 
-  //   var response = await http.get(url); // 빌드가 끝날 때까지 기다려
-  //   var dataConvertedJSON =
-  //       json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
 
-  //   List result = dataConvertedJSON['results'];
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
 
-  //   setState(() {
-  //     predictList.addAll(result);
-  //   });
+      List result = dataConvertedJSON['results'];
+      predictList.addAll(result);
+      // hdaytype = result[0]['hdaytype'];
+      // hstart = result[0]['hstart'];
+      // hholiday = result[0]['hholiday'];
+      // hweather = result[0]['hweather'];
+      // htraffic1 = result[0]['htraffic1'];
+      // htraffic2 = result[0]['htraffic2'];
+      // hspop = result[0]['hspop'];
+    });
 
-  //   return true;
-  // }
+    return true;
+  }
 
 }
