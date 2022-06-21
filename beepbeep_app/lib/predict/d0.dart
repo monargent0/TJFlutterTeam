@@ -81,6 +81,7 @@ class _DdayState extends State<Dday> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
+        backgroundColor: Colors.white,
         
        
         body: SingleChildScrollView(
@@ -88,14 +89,14 @@ class _DdayState extends State<Dday> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 40,
+              const SizedBox(
+                height: 30,
               ),
 
               //제목
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     '설날 당일 출발',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -104,15 +105,15 @@ class _DdayState extends State<Dday> {
               ),
 
               //시간선택
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 30, 100, 0),
                 child: Text(
                   '출발시간',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: DropdownButton(
                   isExpanded: true,
                   underline: Container(
@@ -124,7 +125,7 @@ class _DdayState extends State<Dday> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Text('$e시'),
+                        child: Center(child: Text('$e시')),
                       );
                     },
                   ).toList(),
@@ -134,21 +135,21 @@ class _DdayState extends State<Dday> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: const TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
 
               //연휴길이 선택
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 100, 0),
                 child: Text(
                   '연휴길이',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: DropdownButton(
                   isExpanded: true,
                   underline: Container(
@@ -160,7 +161,7 @@ class _DdayState extends State<Dday> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Text('$e일'),
+                        child: Center(child: Text('$e일')),
                       );
                     },
                   ).toList(),
@@ -170,16 +171,16 @@ class _DdayState extends State<Dday> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: const TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
               //눈비유무선택
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 100, 20),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       "눈/비 오는날 ",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -196,19 +197,19 @@ class _DdayState extends State<Dday> {
                 ),
               ),
               //1종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 60, 0),
                 child: Text(
-                  '1종 교통량(933164~63006617)',
+                  '1종 교통량\n(933164~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: TextField(
                   controller: htraffic1text,
                   decoration:
-                    InputDecoration(labelText: '1종 교통량 입력하기 ',
+                    const InputDecoration(labelText: '1종 교통량 입력하기 ',
                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),
                    ),
                   keyboardType: TextInputType.number,
@@ -221,15 +222,15 @@ class _DdayState extends State<Dday> {
               ),
 
               //2종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '2종 교통량(39185~2208959)',
+                  '2종 교통량\n(39185~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: htraffic2text,
                   decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
@@ -237,8 +238,8 @@ class _DdayState extends State<Dday> {
                   keyboardType: TextInputType.number,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
                   '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -247,7 +248,7 @@ class _DdayState extends State<Dday> {
 
               //인구수 입력
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: hspoptext,
                   decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',
@@ -297,8 +298,8 @@ class _DdayState extends State<Dday> {
                     // 소요시간 보러가기 버튼
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           "소요시간 보러가기",
                           style: TextStyle(
                             fontSize: 15,
@@ -310,6 +311,9 @@ class _DdayState extends State<Dday> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 50,
               ),
             ],
           ),
