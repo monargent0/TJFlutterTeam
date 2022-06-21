@@ -48,7 +48,7 @@ class _MyPageState extends State<MyPage> {
 
     _idController.text = widget.busers['buid'];
     _nameController.text = widget.busers['uname'];
-    _emailController.text = widget.busers['uemail'];
+     _emailController.text = widget.busers['uemail'];
     _pwController.text = widget.busers['upw'];
     _pwokController.text;
 
@@ -536,7 +536,7 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).pop();
+                  Navigator.of(context, rootNavigator: true).pushNamed('/signup');
                 },
                 child: const Text('확인'),
               ),
