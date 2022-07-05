@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -80,26 +81,22 @@ class _DdayState extends State<Dday> {
         FocusScope.of(context).unfocus();
       }),
       child: Scaffold(
+        backgroundColor: Colors.white,
         
-        appBar: AppBar(
-          
-          title: const Text('d-day 소요시간 예측'),
-          backgroundColor: Colors.purple,
-  
-        ),
+       
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 40,
+              const SizedBox(
+                height: 30,
               ),
 
               //제목
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     '설날 당일 출발',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -108,15 +105,15 @@ class _DdayState extends State<Dday> {
               ),
 
               //시간선택
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 30, 100, 0),
                 child: Text(
                   '출발시간',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: DropdownButton(
                   isExpanded: true,
                   underline: Container(
@@ -128,7 +125,7 @@ class _DdayState extends State<Dday> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Text('$e시'),
+                        child: Center(child: Text('$e시')),
                       );
                     },
                   ).toList(),
@@ -138,21 +135,21 @@ class _DdayState extends State<Dday> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: const TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
 
               //연휴길이 선택
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 100, 0),
                 child: Text(
                   '연휴길이',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: DropdownButton(
                   isExpanded: true,
                   underline: Container(
@@ -164,7 +161,7 @@ class _DdayState extends State<Dday> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Text('$e일'),
+                        child: Center(child: Text('$e일')),
                       );
                     },
                   ).toList(),
@@ -174,16 +171,16 @@ class _DdayState extends State<Dday> {
                     });
                   },
                   elevation: 2,
-                  style: TextStyle(color: Colors.purple, fontSize: 20),
+                  style: const TextStyle(color: Colors.purple, fontSize: 20),
                   iconSize: 50,
                 ),
               ),
               //눈비유무선택
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 100, 20),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       "눈/비 오는날 ",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -200,19 +197,24 @@ class _DdayState extends State<Dday> {
                 ),
               ),
               //1종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 60, 0),
                 child: Text(
-                  '1종 교통량',
+                  '1종 교통량\n(933164~63006617)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: TextField(
                   controller: htraffic1text,
-                  decoration: const InputDecoration(labelText: '1종 교통량 입력하기 '),
+                  decoration:
+                    const InputDecoration(labelText: '1종 교통량 입력하기 ',
+                 focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),
+                   ),
                   keyboardType: TextInputType.number,
+
+
                 ),
               ),
               const SizedBox(
@@ -220,82 +222,108 @@ class _DdayState extends State<Dday> {
               ),
 
               //2종 교통량 입력
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '2종 교통량',
+                  '2종 교통량\n(39185~2208959)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: htraffic2text,
-                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 '),
+                  decoration: const InputDecoration(labelText: '2종 교통량 입력하기 ',focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
+                  
                   keyboardType: TextInputType.number,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text(
-                  '서울 인구수',
+                  '서울 인구수(9911088~10388055)',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
 
               //인구수 입력
               Padding(
-                padding: const EdgeInsets.fromLTRB(100, 0, 100, 20),
+                padding: const EdgeInsets.fromLTRB(80, 0, 80, 20),
                 child: TextField(
                   controller: hspoptext,
-                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 '),
+                  decoration: const InputDecoration(labelText: '서울 인구수 입력하기 ',
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.purple),),),
                   keyboardType: TextInputType.number,
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(120, 0, 100, 20),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.purple)),
-
-                  onPressed: () {
-                    if (htraffic1text.text.trim().isEmpty ||
-                        htraffic2text.text.trim().isEmpty ||
-                        hspoptext.text.trim().isEmpty) {
-                      errorsnackbar(context);
-                    } else {
-                      htraffic1 = htraffic1text.text;
-                      htraffic2 = htraffic2text.text;
-                      hspop = hspoptext.text;
-                      setState(
-                        () {},
-                      );
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed('/result');
-                    }
-                  },
-
-                  // 소요시간 보러가기 버튼
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "소요시간 보러가기",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                 
+                  ElevatedButton(
+                    style:ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(200, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
+              ),
+                    onPressed: () async {
+                      if (htraffic1text.text.trim().isEmpty ||
+                          htraffic2text.text.trim().isEmpty ||
+                          hspoptext.text.trim().isEmpty) {
+                        errorsnackbar(context);
+                      } else {
+                        htraffic1 = htraffic1text.text;
+                        htraffic2 = htraffic2text.text;
+                        hspop = hspoptext.text;
+                        await insertAction(); // Navigator를 기다린 후 해당 메서드 수행
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              // 예측값 보내기
+                              return ResultPredict(
+                                  busers: widget.busers, result: result);
+                            },
+                          ),
+                        );
+                      }
+                    },
+
+                    // 소요시간 보러가기 버튼
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "소요시간 보러가기",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
               ),
             ],
           ),
         ),
+         floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },),
       ),
     );
   }
@@ -310,11 +338,13 @@ class _DdayState extends State<Dday> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Rserve/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
+      //http://localhost:8080/Flutter/beep_predict_0.jsp?hdaytype=D&hstart=4&hholiday=0&hweather=0&htraffic1=1233323&htraffic2=1233333&hspop=1233323&buser_buid=$buid
+        'http://localhost:8080/Flutter/beep_predict_0.jsp?hdaytype=$hdaytype&hstart=$hstart&hholiday=$hholiday&hweather=$hweather&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
+      print(result);
     });
   }
 

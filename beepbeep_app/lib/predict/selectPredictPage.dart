@@ -16,30 +16,39 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "서울에서 대전까지",
-              textAlign: TextAlign.right,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+            Image.asset("images/logo.png",
+            width: 180),
+            // const Text(
+            //   "서울에서 대전으로 언제 ?",
+            //   textAlign: TextAlign.right,
+            //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            // ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday2');
               },
-              child: const Text('설날 전전날 출발 >'),
+              child: const Text(
+                '설날 전전날 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                  fontSize: 20,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 172, 16, 224),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),
@@ -48,14 +57,20 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday1');
               },
-              child: const Text('설날 전날 출발 >'),
+              child: const Text(
+                '설날 전날 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                   fontSize: 20,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 172, 16, 224),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),
@@ -64,14 +79,20 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday');
               },
-              child: const Text('설날 당일 출발 >'),
+              child: const Text(
+                '설날 당일 출발 >',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                   fontSize: 20,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 172, 16, 224),
-                minimumSize: const Size(250, 60),
+                primary: Colors.deepPurple[100],
+                fixedSize: const Size(300, 50),
                 shape: RoundedRectangleBorder(
-                  // 버튼 모서리 조절
-
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),

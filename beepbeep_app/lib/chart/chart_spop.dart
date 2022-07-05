@@ -26,14 +26,29 @@ class _SpopChartState extends State<SpopChart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   title: Image.asset('images/beeplogo.png'),
-      //   elevation: 0,
-      // ),
+      backgroundColor: Colors.white,
       body: Center(
         child: 
-            DeveloperPop(data: data),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('서울시 인구수 추이',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const SizedBox(
+                height: 40,
+              ),
+                DeveloperPop(data: data),
+                 const SizedBox(
+                      height: 16,
+                    ),
+                    const Text('출처: 서울 열린 데이터광장'),
+                    const Text('단위: 명 / 년'),
+                    const Text('기간: 2013년 ~ 2020년'),
+              ],
+            ),
         
       ),
       floatingActionButton: FloatingActionButton(
@@ -63,7 +78,7 @@ class _SpopChartState extends State<SpopChart> {
       data.add(DeveloperData(
         x: result[0]['x'], //13
         y: result[0]['y'],
-        barColor: charts.ColorUtil.fromDartColor(Colors.deepPurple),
+        barColor: charts.ColorUtil.fromDartColor(const Color.fromARGB(255, 154, 112, 227)),
       ));
       data.add(DeveloperData(
         x: result[1]['x'], //14
@@ -73,7 +88,7 @@ class _SpopChartState extends State<SpopChart> {
       data.add(DeveloperData(
         x: result[2]['x'], //15
         y: result[2]['y'],
-        barColor: charts.ColorUtil.fromDartColor(Colors.deepPurple),
+        barColor: charts.ColorUtil.fromDartColor(const Color.fromARGB(255, 154, 112, 227)),
       ));
       data.add(DeveloperData(
         x: 2016,
@@ -83,7 +98,7 @@ class _SpopChartState extends State<SpopChart> {
       data.add(DeveloperData(
         x: result[3]['x'], //17
         y: result[3]['y'],
-        barColor: charts.ColorUtil.fromDartColor(Colors.deepPurple),
+        barColor: charts.ColorUtil.fromDartColor(const Color.fromARGB(255, 154, 112, 227)),
       ));
       data.add(DeveloperData(
         x: result[4]['x'], //18
@@ -93,7 +108,7 @@ class _SpopChartState extends State<SpopChart> {
       data.add(DeveloperData(
         x: 2019,
         y: 10010983, // 19data
-        barColor: charts.ColorUtil.fromDartColor(Colors.deepPurple),
+        barColor: charts.ColorUtil.fromDartColor(const Color.fromARGB(255, 154, 112, 227)),
       ));
       data.add(DeveloperData(
         x: result[5]['x'], //20

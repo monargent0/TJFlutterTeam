@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'searchMain.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundImage: AssetImage('images/logo.png'),
                     radius: 50,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Image.asset('images/beeplogo.png'),
@@ -121,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -180,7 +182,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          //
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           '아이디찾기',
@@ -197,7 +203,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          //
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           ' 비밀번호찾기',
@@ -257,7 +267,6 @@ class _LoginPageState extends State<LoginPage> {
         loginfailSnackbar(context); // 로그인 실패 알림창
       } else {
         busers.addAll(result);
-        // print(busers); // 결과 확인용
 
         Navigator.pop(context);
         Navigator.push(
@@ -271,6 +280,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ); // 로그인 성공 메인 화면으로 이동
       }
+      // print(busers[0]); // 결과 확인용
     });
 
     return true;

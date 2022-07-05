@@ -64,6 +64,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         iconTheme: const IconThemeData(
@@ -317,6 +318,18 @@ class _MyPageState extends State<MyPage> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/login', (route) => false);
+                    },
+                    child: const Text(
+                      '로그아웃',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
                 ]),
               ],
             ),
@@ -490,8 +503,6 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(ctx).pop();
                       leaveAction();
                     },
                     child: const Text('확인'),
@@ -536,7 +547,8 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).pop();
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/login', (route) => false);
                 },
                 child: const Text('확인'),
               ),

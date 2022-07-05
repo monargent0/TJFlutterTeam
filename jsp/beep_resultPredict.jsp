@@ -5,53 +5,46 @@
     pageEncoding="UTF-8"%>
 
     <%
-    request.setCharacterEncoding("utf-8");
-    String buid = request.getParameter("buid");
-    String upw = request.getParameter("upw");
-
     String url_mysql = "jdbc:mysql://localhost/beep_user?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
     String id_mysql="root";
     String pw_mysql="qwer1234";
 
-    PreparedStatement ps = null;
+    request.setCharacterEncoding("utf-8");
 
-    
+    String hpredict = request.getParameter("hpredict");
+
     JSONObject jsonList = new JSONObject();
     JSONArray itemList = new JSONArray();
 
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+
+        String qeury ="select * from history where hpredict = " + hpredict;
+
         Statement stmt_mysql = conn_mysql.createStatement();
 
-
-        String whereDefault ="select buid , upw , uname, uemail from buser where buid = ? and upw = ? and utaltoedate is null ";
-
-
-        ps = conn_mysql.prepareStatement(whereDefault);
-        ps.setString(1, buid);
-        ps.setString(2, upw);
-
-        ResultSet rs = ps.executeQuery();
+        ResultSet rs = stmt_mysql.executeQuery(qeury);
 
         if(rs.next()){
             JSONObject tempJson = new JSONObject();
-            tempJson.put("buid", rs.getString(1));
-            tempJson.put("upw", rs.getString(2));
-            tempJson.put("uname", rs.getString(3));
-            tempJson.put("uemail", rs.getString(4));
+            tempJson.put("hid", rs.getInt(1));
+            tempJson.put("hdaytype", rs.getString(2));
+            tempJson.put("hpredict", rs.getString(3));
+            tempJson.put("hstart", rs.getInt(4));
+            tempJson.put("hholiday", rs.getInt(5));
+            tempJson.put("hweather", rs.getInt(6));
+            tempJson.put("htraffic1", rs.getInt(7));
+            tempJson.put("htraffic2", rs.getInt(8));
+            tempJson.put("hspop", rs.getInt(9));
             itemList.add(tempJson);
-            
-        }else{
-            itemList.add("ERROR");
         }
         jsonList.put("results", itemList);
         conn_mysql.close();
         out.print(jsonList);
 
     }catch(Exception e){
-
         e.printStackTrace();
-
     }
     %>
+    
