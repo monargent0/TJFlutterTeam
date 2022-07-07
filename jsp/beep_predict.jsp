@@ -39,12 +39,10 @@ try{
     Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
     Statement stmt_mysql = conn_mysql.createStatement();
 
-    String act1 ="insert into history(hdaytype, hpredict, hstart, hholiday, hweather, htraffic1, htraffic2, hspop, buser_buid";
-    // String act2=") values (" + hdaytype + "," +conResult+ "," +hstart+ "," +htraffic1+ "," +htraffic2+ "," +hspop+ "," +buid+ ");";
-    String act2=") values (2,?,?,0,0,?,?,?,?)";
+    String act1 ="insert into history(hpredict, hstart, htraffic1, htraffic2, hspop, buser_buid";
+    String act2=") values (?,?,?,?,?,?)";
     ps=conn_mysql.prepareStatement(act1+act2);
 
- 
     ps.setString(1, conResult);
     ps.setInt(2, hstart);
     ps.setInt(3, htraffic1);
