@@ -9,7 +9,9 @@ import 'package:http/http.dart' as http;
 class ResultPredict extends StatefulWidget {
   final Map busers;
   final String result;
-  const ResultPredict({Key? key, required this.busers, required this.result})
+  final String htraffic1;
+  final String hspop; 
+  const ResultPredict({Key? key, required this.busers, required this.result, required this.htraffic1, required this.hspop})
       : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class _ResultPredictState extends State<ResultPredict> {
   late String result;
   late int hid;
   // get으로 넘겨줄 용
-  late String hdaytype;
+ 
   late int hstart;
   late int hholiday;
   late int hweather;
@@ -37,7 +39,7 @@ class _ResultPredictState extends State<ResultPredict> {
     buid = widget.busers['buid'];
     result = "${widget.result}분";
     getJSONData();
-    hdaytype = '';
+
     hstart = 0;
     hholiday = 0;
     hweather = 0;
@@ -209,7 +211,7 @@ class _ResultPredictState extends State<ResultPredict> {
     predictList = [];
     print(widget.result); // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hpredict=\"${widget.result}\"');
+        'http://localhost:8080/Flutter/beep_resultPredict.jsp?hpredict=\"${widget.result}\"&htraffic1=${widget.htraffic1}&hspop=${widget.hspop}&buser_buid=${widget.busers}');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
 
@@ -218,13 +220,14 @@ class _ResultPredictState extends State<ResultPredict> {
 
       List result = dataConvertedJSON['results'];
       predictList.addAll(result);
-      // hdaytype = result[0]['hdaytype'];
-      // hstart = result[0]['hstart'];
+     
+      //  hdaytype = result[0]['hdaytype'];
+      //  hstart = result[0]['hstart'];
       // hholiday = result[0]['hholiday'];
       // hweather = result[0]['hweather'];
-      // htraffic1 = result[0]['htraffic1'];
+      //  htraffic1 = result[0]['htraffic1'];
       // htraffic2 = result[0]['htraffic2'];
-      // hspop = result[0]['hspop'];
+      //  hspop = result[0]['hspop'];
     });
 
     return true;
