@@ -11,7 +11,7 @@ class ResultPredict extends StatefulWidget {
   final Map busers;
   final String result;
   final String hstart;
-  final String htraffic1;
+  final String htraffic1; 
   final String htraffic2;
   final String hspop;
   const ResultPredict({Key? key, required this.busers, required this.result, required this.htraffic1, required this.hspop, required this.hstart, required this.htraffic2})
