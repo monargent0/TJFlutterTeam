@@ -26,8 +26,8 @@ class _TimeChartState extends State<TimeChart> {
   void initState() {
     super.initState();
     getJSONData();
-    getJSONData2();
-    getJSONData3();
+    // getJSONData2();
+    // getJSONData3();
   }
 
   @override
@@ -70,44 +70,44 @@ class _TimeChartState extends State<TimeChart> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('D-2'),
-                        Checkbox(
-                            value: day2Checked,
-                            activeColor: Colors.pink,
-                            onChanged: (bool? val) {
-                              setState(() {
-                                day2Checked = val!;
-                              });
-                            }),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        const Text('D-1'),
-                        Checkbox(
-                            value: day1Checked,
-                            activeColor: Colors.cyan,
-                            onChanged: (bool? val) {
-                              setState(() {
-                                day1Checked = val!;
-                              });
-                            }),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        const Text('D-Day'),
-                        Checkbox(
-                            value: dayChecked,
-                            activeColor: Colors.amber,
-                            onChanged: (bool? val) {
-                              setState(() {
-                                dayChecked = val!;
-                              });
-                            }),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     const Text('D-2'),
+                    //     Checkbox(
+                    //         value: day2Checked,
+                    //         activeColor: Colors.pink,
+                    //         onChanged: (bool? val) {
+                    //           setState(() {
+                    //             day2Checked = val!;
+                    //           });
+                    //         }),
+                    //     const SizedBox(
+                    //       width: 16,
+                    //     ),
+                    //     const Text('D-1'),
+                    //     Checkbox(
+                    //         value: day1Checked,
+                    //         activeColor: Colors.cyan,
+                    //         onChanged: (bool? val) {
+                    //           setState(() {
+                    //             day1Checked = val!;
+                    //           });
+                    //         }),
+                    //     const SizedBox(
+                    //       width: 16,
+                    //     ),
+                    //     const Text('D-Day'),
+                    //     Checkbox(
+                    //         value: dayChecked,
+                    //         activeColor: Colors.amber,
+                    //         onChanged: (bool? val) {
+                    //           setState(() {
+                    //             dayChecked = val!;
+                    //           });
+                    //         }),
+                    //   ],
+                    // ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(18.0),
@@ -352,47 +352,4 @@ class _TimeChartState extends State<TimeChart> {
     return true;
   }
 
-  Future<bool> getJSONData2() async {
-    data2 = []; // 초기화
-    var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_getdata.jsp?queryType=D-1');
-
-    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
-    var dataConvertedJSON =
-        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
-
-    List result = dataConvertedJSON['results'];
-
-    print(result.length); // test
-
-    setState(() {
-      for (int i = 0; i < result.length; i++) {
-        data2.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
-      }
-    });
-
-    return true;
-  }
-
-  Future<bool> getJSONData3() async {
-    data3 = []; // 초기화
-    var url =
-        Uri.parse('http://localhost:8080/Flutter/beep_getdata.jsp?queryType=D');
-
-    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
-    var dataConvertedJSON =
-        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
-
-    List result = dataConvertedJSON['results'];
-
-    print(result.length); // test
-
-    setState(() {
-      for (int i = 0; i < result.length; i++) {
-        data3.add(FlSpot(result[i]['x'].toDouble(), result[i]['y'].toDouble()));
-      }
-    });
-
-    return true;
-  }
 } //end
