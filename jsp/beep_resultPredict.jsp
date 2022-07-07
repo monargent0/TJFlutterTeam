@@ -29,14 +29,11 @@
         if(rs.next()){
             JSONObject tempJson = new JSONObject();
             tempJson.put("hid", rs.getInt(1));
-            tempJson.put("hdaytype", rs.getString(2));
-            tempJson.put("hpredict", rs.getString(3));
-            tempJson.put("hstart", rs.getInt(4));
-            tempJson.put("hholiday", rs.getInt(5));
-            tempJson.put("hweather", rs.getInt(6));
-            tempJson.put("htraffic1", rs.getInt(7));
-            tempJson.put("htraffic2", rs.getInt(8));
-            tempJson.put("hspop", rs.getInt(9));
+            tempJson.put("hpredict", rs.getString(2));
+            tempJson.put("hstart", rs.getInt(3));
+            tempJson.put("htraffic1", rs.getInt(4));
+            tempJson.put("htraffic2", rs.getInt(5));
+            tempJson.put("hspop", rs.getInt(6));
             itemList.add(tempJson);
         }
         jsonList.put("results", itemList);
