@@ -45,9 +45,11 @@ class _TotalChartState extends State<TotalChart> {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             children: [
-              SizedBox(
-                width: 350,
-                child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+              Center(
+                child: SizedBox(
+                  width: 350,
+                  child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+              ),
             ],
           ),
         ),

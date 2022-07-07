@@ -2,11 +2,7 @@ import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
 import 'd2.dart';
 
 class MyPredict extends StatelessWidget {
@@ -19,6 +15,7 @@ class MyPredict extends StatelessWidget {
       routes: {
         '/': (context) => SelectPredictPage(busers: busers),
         '/Dday2': (context) => Dday2(busers: busers),
+        //'/result': (context) => ResultPredict(busers: busers, ), // 설날D-2 입력화면
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

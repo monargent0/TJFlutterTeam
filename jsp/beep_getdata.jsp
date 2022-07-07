@@ -29,12 +29,8 @@
             query = "select round(avg(ctraffic1),0) traffic1 , cstart from cdata group by cstart";
         }else if(queryType.equals("traffic2")){
             query = "select round(avg(ctraffic2),0) traffic2 , cstart from cdata group by cstart";
-        }else if(queryType.equals("D")){
-            query = "select round(avg(cdriving),0) DDay , cstart from cdata where cdaytype = 'D' group by cstart";
-        }else if(queryType.equals("D-1")){
-            query = "select round(avg(cdriving),0) D1 , cstart from cdata where cdaytype = 'D-1' group by cstart";
         }else if(queryType.equals("D-2")){
-            query = "select round(avg(cdriving),0) D2 , cstart from cdata where cdaytype = 'D-2' group by cstart";
+            query = "select round(avg(cdriving),0) D2 , cstart from cdata group by cstart";
         }
         
         Statement stmt_mysql = conn_mysql.createStatement();
