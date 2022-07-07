@@ -14,7 +14,7 @@ class Dday2 extends StatefulWidget {
 class _Dday2State extends State<Dday2> {
   //입력 받을 변수들
 
-  int hdaytype = 2;
+  //int hdaytype = 2;
   //1.시간 설정
   final _timelist = [
     "00",
@@ -90,10 +90,10 @@ class _Dday2State extends State<Dday2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text(
-                    '설날 전전날 출발',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
+                  // Text(
+                  //   '설날 전전날 출발',
+                  //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  // ),
                 ],
               ),
 
@@ -269,7 +269,7 @@ class _Dday2State extends State<Dday2> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_predict_2.jsp?hdaytype=$hdaytype&hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
+        'http://localhost:8080/Flutter/beep_predict.jsp?hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
