@@ -53,14 +53,20 @@ class _MyHistoryState extends State<MyHistory> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  // Text(
+                                  //   'D-${data[index]['hdaytype']} ${data[index]['hstart']}시 출발 ',
+                                  //   style: TextStyle(fontSize: 18),
+                                  // ),
                                   Text(
-                                    'D-${data[index]['hdaytype']} ${data[index]['hstart']}시 출발 ',
-                                    style: TextStyle(fontSize: 18),
+                                    '${data[index]['hstart']}시에 출발하면? ',
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     '소요시간 :${data[index]['hpredict']}분',
                                     style: const TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 22,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],

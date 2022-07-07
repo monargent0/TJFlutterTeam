@@ -85,55 +85,22 @@ class _ResultPredictState extends State<ResultPredict> {
               width: 200,
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10,),
-                      const Text(
-                        '출발 날짜 :'
-                      ),
-                      const SizedBox(width: 10,),
-                      Text(
-                        predictList.isNotEmpty ? predictList[0]['hdaytype']:""
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
-                    ],
-                  ),
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Text(
-                        '출발 시간 :'
+                        '출발 시간 :',
+                        
                       ),
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold),),
+                      , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold),),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        '연휴 기간 :'
-                      ),
-                      const SizedBox(width: 10,),
-                      Text(
-                        predictList.isNotEmpty ? predictList[0]['hholiday'].toString():"0"
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        '날씨 :'
-                      ),
-                      const SizedBox(width: 10,),
-                      Text(
-                        predictList.isNotEmpty ? predictList[0]['hweather'].toString() == 0 ?'맑음':'눈 또는 비':''
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
-                    ],
-                  ),
+                  
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -143,7 +110,7 @@ class _ResultPredictState extends State<ResultPredict> {
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                      , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
                   ),
                   Row(
@@ -155,7 +122,7 @@ class _ResultPredictState extends State<ResultPredict> {
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
-                      , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold)),
+                      , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
                     ],
                   ),
                   Row(
@@ -167,7 +134,7 @@ class _ResultPredictState extends State<ResultPredict> {
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
-                     , style: const TextStyle(color: Colors.deepPurple , fontWeight: FontWeight.bold) ),
+                     , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold) ),
                     ],
                   ),
                       const SizedBox(height: 20,),
@@ -175,7 +142,7 @@ class _ResultPredictState extends State<ResultPredict> {
                     children: const [
                       Text(
                         '*나의 이력에서 조회 가능',
-                        style: TextStyle(fontSize: 10 , color: Colors.deepPurpleAccent),
+                        style: TextStyle(fontSize: 15 , color: Colors.deepPurpleAccent),
                       ),
                     ],
                   ),
@@ -191,8 +158,9 @@ class _ResultPredictState extends State<ResultPredict> {
                   },
                 ));
               },
-              child: const Text("다시 측정하기"),
+              child: const Text("다시 측정하기",),
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.purple)),
+              
             ),
           ],
         ),
