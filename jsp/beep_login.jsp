@@ -24,23 +24,27 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String whereDefault ="select buid , upw , uname, uemail from buser where buid = ? and upw = ? and utaltoedate is null ";
+        String whereDefault ="select * from buser where buid = ? and upw = ? ";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, buid);
         ps.setString(2, upw);
 
         ResultSet rs = ps.executeQuery();
-
+        
         if(rs.next()){
             JSONObject tempJson = new JSONObject();
             tempJson.put("buid", rs.getString(1));
             tempJson.put("upw", rs.getString(2));
             tempJson.put("uname", rs.getString(3));
             tempJson.put("uemail", rs.getString(4));
-            itemList.add(tempJson);
+            if (rs.getTimestamp(5) != null){
+                itemList.add("TALTOE");
+            }else{
+                itemList.add(tempJson);
+            }
             
-        }else{
+        } else{
             itemList.add("ERROR");
         }
         jsonList.put("results", itemList);

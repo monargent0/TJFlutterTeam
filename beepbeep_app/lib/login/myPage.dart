@@ -107,7 +107,7 @@ class _MyPageState extends State<MyPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
-                    borderSide:
+                      borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -320,7 +320,8 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/login', (route) => false);
                     },
                     child: const Text(
                       '로그아웃',
@@ -546,7 +547,8 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/login', (route) => false);
                 },
                 child: const Text('확인'),
               ),

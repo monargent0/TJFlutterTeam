@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (buid.text.trim().isEmpty || bpw.text.trim().isEmpty) {
                         errorSnackbar(context);
                       } else {
-                        updateAction();
+                        loginAction();
                       }
                     },
                     child: const Text(
@@ -182,7 +182,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           '아이디찾기',
@@ -199,7 +203,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           ' 비밀번호찾기',
@@ -217,7 +225,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  } //--- Function
+  }
+  //--- Function
 
   // 공백 에러창
   errorSnackbar(BuildContext context) {
@@ -237,11 +246,20 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
+// 탈퇴 계정 에러창
+  taltoeSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('탈퇴한 계정입니다.'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.deepPurple,
+    ));
+  }
+
   // Login
   // 택스트필드에서 id,pw를 받아와서 로그인 버튼을 누르면 실행된다.
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 다음 화면으로 바로 넘어가기
 
-  Future<bool> updateAction() async {
+  Future<bool> loginAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
         'http://localhost:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
@@ -256,6 +274,8 @@ class _LoginPageState extends State<LoginPage> {
       if (result[0] == 'ERROR') {
         // print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
+      } else if (result[0] == 'TALTOE') {
+        taltoeSnackbar(context); // 탈퇴 계정 알림창
       } else {
         busers.addAll(result);
 
@@ -276,5 +296,6 @@ class _LoginPageState extends State<LoginPage> {
 
     return true;
   } // Login
+// Login
 
 } // End
