@@ -83,7 +83,7 @@ class _ResultPredictState extends State<ResultPredict> {
             ),
             const SizedBox(height: 20,),
             SizedBox(
-              width: 200,
+              width: 220,
               child: Column(
                 children: [
                  
