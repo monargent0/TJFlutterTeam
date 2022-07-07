@@ -269,7 +269,7 @@ class _Dday2State extends State<Dday2> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/d2d2.jsp?hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
+        'http://localhost:8080/Flutter/beep_predict.jsp?hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
