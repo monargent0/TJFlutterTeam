@@ -6,12 +6,21 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+// 결과값 파라미터로 넘겨받아서 받는걸로 변경함
 class ResultPredict extends StatefulWidget {
   final Map busers;
   final String result;
+<<<<<<< HEAD
   final String htraffic1;
   final String hspop; 
   const ResultPredict({Key? key, required this.busers, required this.result, required this.htraffic1, required this.hspop})
+=======
+  final String hstart;
+  final String htraffic1; 
+  final String htraffic2;
+  final String hspop;
+  const ResultPredict({Key? key, required this.busers, required this.result, required this.htraffic1, required this.hspop, required this.hstart, required this.htraffic2})
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
       : super(key: key);
 
   @override
@@ -38,8 +47,13 @@ class _ResultPredictState extends State<ResultPredict> {
     predictList = [];
     buid = widget.busers['buid'];
     result = "${widget.result}분";
+<<<<<<< HEAD
     getJSONData();
 
+=======
+    // getJSONData();
+    hdaytype = '';
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
     hstart = 0;
     hholiday = 0;
     hweather = 0;
@@ -98,7 +112,8 @@ class _ResultPredictState extends State<ResultPredict> {
                       ),
                       const SizedBox(width: 10,),
                       Text(
-                        predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
+                        // predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
+                        widget.hstart
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold),),
                     const Text(
                         ' 시',
@@ -116,7 +131,8 @@ class _ResultPredictState extends State<ResultPredict> {
                       ),
                       const SizedBox(width: 10,),
                       Text(
-                        predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
+                        //predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
+                        widget.htraffic1
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
                     const Text(
                         ' 대',
@@ -132,7 +148,8 @@ class _ResultPredictState extends State<ResultPredict> {
                       ),
                       const SizedBox(width: 10,),
                       Text(
-                        predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
+                        // predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
+                        widget.htraffic2
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
                     const Text(
                         ' 대',
@@ -148,7 +165,8 @@ class _ResultPredictState extends State<ResultPredict> {
                       ),
                       const SizedBox(width: 10,),
                       Text(
-                        predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
+                        //predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
+                        widget.hspop
                      , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold) ),
                     const Text(
                         ' 명',
@@ -207,17 +225,26 @@ class _ResultPredictState extends State<ResultPredict> {
   //   });
   // }
 
+<<<<<<< HEAD
     Future<bool> getJSONData() async {
     predictList = [];
     print(widget.result); // 초기화
     var url = Uri.parse(
         'http://localhost:8080/Flutter/beep_resultPredict.jsp?hpredict=\"${widget.result}\"&htraffic1=${widget.htraffic1}&hspop=${widget.hspop}&buser_buid=${widget.busers}');
+=======
+  //   Future<bool> getJSONData() async {
+  //   predictList = [];
+  //   print(widget.result); // 초기화
+  //   var url = Uri.parse(
+  //       'http://localhost:8080/Flutter/beep_resultPredict.jsp?hpredict=${widget.result}&htraffic1=${widget.htraffic1}&hspop=${widget.hspop}&buser_buid=${widget.busers}');
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
 
-    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+  //   var response = await http.get(url); // 빌드가 끝날 때까지 기다려
 
-    setState(() {
-      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+  //   setState(() {
+  //     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
 
+<<<<<<< HEAD
       List result = dataConvertedJSON['results'];
       predictList.addAll(result);
      
@@ -229,8 +256,20 @@ class _ResultPredictState extends State<ResultPredict> {
       // htraffic2 = result[0]['htraffic2'];
       //  hspop = result[0]['hspop'];
     });
+=======
+  //     List result = dataConvertedJSON['results'];
+  //     predictList.addAll(result);
+  //     // hdaytype = result[0]['hdaytype'];
+  //     // hstart = result[0]['hstart'];
+  //     // hholiday = result[0]['hholiday'];
+  //     // hweather = result[0]['hweather'];
+  //     // htraffic1 = result[0]['htraffic1'];
+  //     // htraffic2 = result[0]['htraffic2'];
+  //     // hspop = result[0]['hspop'];
+  //   });
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
 
-    return true;
-  }
+  //   return true;
+  // }
 
 }

@@ -2,6 +2,11 @@ import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
 import 'd2.dart';
 
 class MyPredict extends StatelessWidget {

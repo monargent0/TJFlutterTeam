@@ -231,7 +231,11 @@ class _Dday2State extends State<Dday2> {
                           builder: (context) {
                             // 예측값 보내기
                             return ResultPredict(
+<<<<<<< HEAD
                                 busers: widget.busers, result: result, htraffic1: htraffic1, hspop: hspop);
+=======
+                                busers: widget.busers, result: result, hstart: hstart,  htraffic1: htraffic1, htraffic2: htraffic2, hspop: hspop);
+>>>>>>> 9f0d2cbab2b912ef1723fc10cd656c3f47d8c162
                           },
                         ),
                       );
