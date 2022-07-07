@@ -1,11 +1,9 @@
-import 'package:beepbeep_app/predict/d0.dart';
 import 'package:beepbeep_app/predict/resultPredict.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
-import 'd0.dart';
-import 'd1.dart';
+
 import 'd2.dart';
 
 class MyPredict extends StatelessWidget {
