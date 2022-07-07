@@ -1,3 +1,4 @@
+import 'package:beepbeep_app/predict/d2.dart';
 import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -57,13 +58,13 @@ class _ResultPredictState extends State<ResultPredict> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('예상 소요 시간',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold , color: Colors.deepPurple),),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold , color: Colors.black),),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Text(
                   result,
-                  style: const TextStyle(fontSize: 35),
+                  style: const TextStyle(fontSize: 35, color: Colors.deepPurple),
                 ),
               ],
             ),
@@ -90,13 +91,17 @@ class _ResultPredictState extends State<ResultPredict> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Text(
-                        '출발 시간 :',
+                        '- 출발 시간 :',
                         
                       ),
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold),),
+                    const Text(
+                        ' 시',
+                        
+                      ),
                     ],
                   ),
                   
@@ -105,36 +110,48 @@ class _ResultPredictState extends State<ResultPredict> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Text(
-                        '제 1종 교통량 :'
+                        '- 제 1종 교통량 :'
                       ),
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
+                    const Text(
+                        ' 대',
+                        
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Text(
-                        '제 2종 교통량 :'
+                        '- 제 2종 교통량 :'
                       ),
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
                       , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold)),
+                    const Text(
+                        ' 대',
+                        
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Text(
-                        '서울인구수 :'
+                        '- 서울인구수 :'
                       ),
                       const SizedBox(width: 10,),
                       Text(
                         predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
                      , style: const TextStyle(color: Colors.deepPurple ,fontSize: 15, fontWeight: FontWeight.bold) ),
+                    const Text(
+                        ' 명',
+                        
+                      ),
                     ],
                   ),
                       const SizedBox(height: 20,),
@@ -151,16 +168,23 @@ class _ResultPredictState extends State<ResultPredict> {
             ),
             SizedBox(height: 20,),
             ElevatedButton(
+              
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return SelectPredictPage(busers: widget.busers);
+                    return Dday2(busers: widget.busers);
                   },
                 ));
               },
-              child: const Text("다시 측정하기",),
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.purple)),
-              
+              child: const Text("다시 측정하기",style: TextStyle(fontSize: 15)),
+              style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(150, 50),
+                            primary: Colors.deepPurple,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+             
             ),
           ],
         ),
