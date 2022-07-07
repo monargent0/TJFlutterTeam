@@ -26,7 +26,6 @@ class _TotalChartState extends State<TotalChart> {
   var columns = [
       JsonTableColumn("cstart", label: "출발시간대",),
       JsonTableColumn("cdriving", label: "소요시간"),
-      JsonTableColumn("cdaytype", label: "설날 D-Day"),
       JsonTableColumn("choliday", label: "연휴길이"),
       JsonTableColumn("ctraffic1", label: "1종 교통량"),
       JsonTableColumn("ctraffic2", label: "2종 교통량"),
