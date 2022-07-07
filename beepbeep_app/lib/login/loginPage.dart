@@ -246,6 +246,15 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
+// 탈퇴 계정 에러창
+  taltoeSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('탈퇴한 계정입니다.'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.deepPurple,
+    ));
+  }
+
   // Login
   // 택스트필드에서 id,pw를 받아와서 로그인 버튼을 누르면 실행된다.
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 다음 화면으로 바로 넘어가기
@@ -265,6 +274,8 @@ class _LoginPageState extends State<LoginPage> {
       if (result[0] == 'ERROR') {
         // print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
+      } else if (result[0] == 'TALTOE') {
+        taltoeSnackbar(context); // 탈퇴 계정 알림창
       } else {
         busers.addAll(result);
 
@@ -285,5 +296,6 @@ class _LoginPageState extends State<LoginPage> {
 
     return true;
   } // Login
+// Login
 
 } // End
