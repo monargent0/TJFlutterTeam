@@ -22,7 +22,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("images/logo.png",
-            width: 180),
+            width: 200),
             // const Text(
             //   "서울에서 대전으로 언제 ?",
             //   textAlign: TextAlign.right,
@@ -36,66 +36,24 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 Navigator.pushNamed(context, '/Dday2');
               },
               child: const Text(
-                '설날 전전날 출발 >',
+                '설날 D-2 대전 GoGo ',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple,
-                  fontSize: 20,
+                  fontSize: 22,
                 ),
               ),
               style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[100],
-                fixedSize: const Size(300, 50),
+                fixedSize: const Size(300, 70),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                   side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
             ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Dday1');
-              },
-              child: const Text(
-                '설날 전날 출발 >',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                   fontSize: 20,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple[100],
-                fixedSize: const Size(300, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  side: const BorderSide(color: Colors.deepPurple),
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Dday');
-              },
-              child: const Text(
-                '설날 당일 출발 >',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                   fontSize: 20,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple[100],
-                fixedSize: const Size(300, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  side: const BorderSide(color: Colors.deepPurple),
-                ),
-              ),
-            ),
+            
+            
           ],
         ),
       ),

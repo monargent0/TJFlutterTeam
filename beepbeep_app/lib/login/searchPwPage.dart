@@ -175,7 +175,7 @@ class _SearchPwPageState extends State<SearchPwPage> {
                     ),
                   ),
                     onPressed: () {
-                      print('hihihi');
+                      // print('hihihi');
                       if(_idController.text.trim().isEmpty){
                         emptyId(context);
                       }else if(_nameController.text.trim().isEmpty){
@@ -188,7 +188,7 @@ class _SearchPwPageState extends State<SearchPwPage> {
                           name = _nameController.text.trim();
                           email = _emailController.text.trim();
                         });
-                        print('hihi');
+                        // print('hihi');
                         getJSONData().then((value) => findPWcheck(context));
                       }
                     },
@@ -256,7 +256,7 @@ emptyEmail(BuildContext context){
     if(data.isEmpty){
      return true;
     }else{
-      pw = data[0]['bpw'];
+      pw = data[0]['upw'];
       return true;
     }
   }
