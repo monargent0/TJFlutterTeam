@@ -20,16 +20,14 @@ class _MyPageState extends State<MyPage> {
   late TextEditingController _pwController;
   late TextEditingController _pwokController;
 
-  // late String id;
-  // late String pw;
-  // late String name;
-  // late String email;
   String? id;
   String? pw;
   String? name;
   String? email;
 
+  late String buid;
   late String result;
+  late List data;
 
   late String? _nameErrorText;
   late String? _emailErrorText;
@@ -57,7 +55,10 @@ class _MyPageState extends State<MyPage> {
     _passErrorText = null;
     _pass2ErrorText = null;
 
+    data = [];
+    buid = widget.busers['buid'];
     result = '';
+    getJSONData();
     super.initState();
   }
 
@@ -340,6 +341,21 @@ class _MyPageState extends State<MyPage> {
   }
 
   // ---Function
+  // 회원정보 불러오기
+  Future<bool> getJSONData() async {
+    data = [];
+    var url = Uri.parse(
+        'http://172.30.27.43:8080/Flutter/beep_mypage.jsp?buid=$buid');
+    var response = await http.get(url);
+
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      data.addAll(result);
+    });
+
+    return true;
+  }
 
   userUpdateOk() async {
     // 정규식 적용
@@ -379,7 +395,7 @@ class _MyPageState extends State<MyPage> {
           });
           // 통과하면 수정 의사
           var url = Uri.parse(
-              'http://localhost:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
+              'http://172.30.27.43:8080/Flutter/beep_update.jsp?&upw=$pw&uname=$name&uemail=$email&buid=${_idController.text}');
           var response = await http.get(url);
           var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
           result = dataConvertedJSON['result'];
@@ -396,47 +412,6 @@ class _MyPageState extends State<MyPage> {
       }
     } // else
   } // async
-
-  //   _editShowDialog(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (BuildContext ctx) {
-  //       return AlertDialog(
-  //         title: const Icon(
-  //           Icons.edit_note_rounded,
-  //           color: Colors.deepPurple,
-  //         ),
-  //         content: const Text('            수정하시겠습니까?'),
-  //         actions: [
-  //           Center(
-  //             child: Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //               children: [
-  //                 TextButton(
-  //                   onPressed: () {
-  //                     Navigator.of(ctx).pop();
-  //                   },
-  //                   child: const Text(
-  //                     '취소',
-  //                     style: TextStyle(color: Colors.amber),
-  //                   ),
-  //                 ),
-  //                 TextButton(
-  //                   onPressed: () {
-  //                     Navigator.of(ctx).pop();
-  //                     //updateAction();
-  //                   },
-  //                   child: const Text('확인'),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 
   // 수정 완료
   _showfinishDialog(BuildContext context) {

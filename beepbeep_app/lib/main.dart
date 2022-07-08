@@ -1,7 +1,6 @@
 import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:beepbeep_app/login/register.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {

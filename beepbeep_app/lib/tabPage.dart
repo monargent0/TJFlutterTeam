@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:beepbeep_app/chart/chartRouter.dart';
 import 'package:beepbeep_app/login/myPage.dart';
 import 'package:beepbeep_app/predict/myhistory.dart';
 import 'package:beepbeep_app/predict/predictRouter.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class TabPage extends StatefulWidget {
   final Map busers;
@@ -16,6 +19,7 @@ class TabPage extends StatefulWidget {
 class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   late TabController controller;
 
+  late List data;
   late String buid;
 
   @override
@@ -23,6 +27,8 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
     super.initState();
     controller = TabController(length: 3, vsync: this);
     buid = widget.busers['buid'];
+    data = [];
+    getJSONData();
   }
 
   @override
@@ -45,10 +51,10 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return MyPage(busers: widget.busers); // Map으로 보내
+                    return MyPage(busers: widget.busers['buid']); // Map으로 보내
                   },
                 ),
-              );
+              ).then((value) => getJSONData());
             },
             icon: const Icon(Icons.settings),
             color: Colors.deepPurple,
@@ -99,5 +105,21 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  // 회원정보 불러오기
+  Future<bool> getJSONData() async {
+    data = [];
+    var url = Uri.parse(
+        'http://172.30.27.43:8080/Flutter/beep_mypage.jsp?buid=$buid');
+    var response = await http.get(url);
+
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      data.addAll(result);
+    });
+
+    return true;
   }
 }
