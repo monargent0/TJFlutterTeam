@@ -3,7 +3,6 @@ import 'package:beepbeep_app/login/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class SearchIdPage extends StatefulWidget {
   const SearchIdPage({Key? key}) : super(key: key);
 
@@ -30,10 +29,10 @@ class _SearchIdPageState extends State<SearchIdPage> {
     _emailController = TextEditingController();
     _pwController = TextEditingController();
 
-    name='';
-    email='';
-    pw='';
-    id='';
+    name = '';
+    email = '';
+    pw = '';
+    id = '';
 
     data = [];
     super.initState();
@@ -180,13 +179,13 @@ class _SearchIdPageState extends State<SearchIdPage> {
                       ),
                       onPressed: () {
                         print('hihihi');
-                        if(_nameController.text.trim().isEmpty){
+                        if (_nameController.text.trim().isEmpty) {
                           emptyName(context);
-                        }else if(_emailController.text.trim().isEmpty){
+                        } else if (_emailController.text.trim().isEmpty) {
                           emptyEmail(context);
-                        }else if(_pwController.text.trim().isEmpty){
+                        } else if (_pwController.text.trim().isEmpty) {
                           emptyPw(context);
-                        }else{
+                        } else {
                           setState(() {
                             name = _nameController.text.trim();
                             email = _emailController.text.trim();
@@ -213,35 +212,32 @@ class _SearchIdPageState extends State<SearchIdPage> {
     );
   }
 
-emptyName(BuildContext context){
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
+  emptyName(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('닉네임을 입력하세요.'),
-    duration: Duration(seconds: 2),
-    backgroundColor: Colors.deepPurple,)
-  );
-}
-emptyEmail(BuildContext context){
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('이메일을 입력하세요.'),
-    duration: Duration(seconds: 2),
-    backgroundColor: Colors.deepPurple,)
-  );
-}
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.deepPurple,
+    ));
+  }
 
-emptyPw(BuildContext context){
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
+  emptyEmail(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('이메일을 입력하세요.'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.deepPurple,
+    ));
+  }
+
+  emptyPw(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('비밀번호를 입력하세요.'),
-    duration: Duration(seconds: 2),
-    backgroundColor: Colors.deepPurple,)
-  );
-}
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.deepPurple,
+    ));
+  }
 
   // —Fuction
   Future<bool> getJSONData() async {
-
     var url = Uri.parse(
         // 'http://localhost:8080/Flutter/beep_search.jsp?uname=${_nameController.text.trim()}&uemail=${_emailController.text.trim()}&upw=${_pwController.text.trim()}');
         'http://localhost:8080/Flutter/beep_search.jsp?uname=$name&uemail=$email&upw=$pw');
@@ -256,50 +252,65 @@ emptyPw(BuildContext context){
       data = [];
       data.addAll(result);
     });
-    if(data.isEmpty){
-     return true;
-    }else{
+    if (data[0] == "ERROR") {
+      return true;
+    } else {
       id = data[0]['buid'];
       return true;
     }
   }
 
-    findIDcheck(BuildContext context){
-      showDialog(
-        context: context, 
-        builder: (BuildContext ctx){
-          if(id.isEmpty){
+  findIDcheck(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          if (id.isEmpty) {
             return AlertDialog(
-              title: const Text('존재하지 않은 정보입니다.',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              title: const Text(
+                '존재하지 않은 정보입니다.',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               content: const Text('입력된 정보를 확인해주세요.'),
               actions: [
-                ElevatedButton(onPressed: (){
-                  Navigator.pop(context);
-                }, child: const Text('확인',
-                style: TextStyle(fontWeight: FontWeight.bold),)),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      '확인',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
               ],
             );
-          }else {
+          } else {
             return AlertDialog(
-              title: const Text('아이디 찾기 성공',
-              style: TextStyle(fontWeight: FontWeight.bold),),
-              content: Text('가입하신 아이디는 $id 입니다.',),
+              title: const Text(
+                '아이디 찾기 성공',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              content: Text(
+                '가입하신 아이디는 $id 입니다.',
+              ),
               actions: [
-                TextButton(onPressed: (){
-                  Navigator.pop(context);
-                },
-                child: const Text('닫기')),
-                TextButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
-                },
-                child: const Text('로그인 하기',
-                style: TextStyle(fontWeight: FontWeight.bold),)),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('닫기')),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    },
+                    child: const Text(
+                      '로그인 하기',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
               ],
             );
           }
-        }
-        );
-    }    
+        });
+  }
 }// END

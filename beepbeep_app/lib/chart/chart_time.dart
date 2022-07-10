@@ -14,11 +14,6 @@ class TimeChart extends StatefulWidget {
 class _TimeChartState extends State<TimeChart> {
   // property
   late List<FlSpot> data = [];
-  late List<FlSpot> data2 = [];
-  late List<FlSpot> data3 = [];
-  bool day1Checked = true;
-  bool day2Checked = true;
-  bool dayChecked = true;
   late final FlSpot mostLeftSpot;
 
   // init
@@ -26,8 +21,6 @@ class _TimeChartState extends State<TimeChart> {
   void initState() {
     super.initState();
     getJSONData();
-    // getJSONData2();
-    // getJSONData3();
   }
 
   @override
@@ -45,7 +38,12 @@ class _TimeChartState extends State<TimeChart> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('시간대 별 서울-대전 이동 소요시간',
+              const Text('설날 이틀 전',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const Text('시간대 별 서울-대전 평균 소요시간',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -70,44 +68,6 @@ class _TimeChartState extends State<TimeChart> {
                 ),
                 child: Column(
                   children: [
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     const Text('D-2'),
-                    //     Checkbox(
-                    //         value: day2Checked,
-                    //         activeColor: Colors.pink,
-                    //         onChanged: (bool? val) {
-                    //           setState(() {
-                    //             day2Checked = val!;
-                    //           });
-                    //         }),
-                    //     const SizedBox(
-                    //       width: 16,
-                    //     ),
-                    //     const Text('D-1'),
-                    //     Checkbox(
-                    //         value: day1Checked,
-                    //         activeColor: Colors.cyan,
-                    //         onChanged: (bool? val) {
-                    //           setState(() {
-                    //             day1Checked = val!;
-                    //           });
-                    //         }),
-                    //     const SizedBox(
-                    //       width: 16,
-                    //     ),
-                    //     const Text('D-Day'),
-                    //     Checkbox(
-                    //         value: dayChecked,
-                    //         activeColor: Colors.amber,
-                    //         onChanged: (bool? val) {
-                    //           setState(() {
-                    //             dayChecked = val!;
-                    //           });
-                    //         }),
-                    //   ],
-                    // ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(18.0),
@@ -118,7 +78,7 @@ class _TimeChartState extends State<TimeChart> {
                                 touchCallback: (FlTouchEvent event,
                                     LineTouchResponse? touchResponse) {},
                                 touchTooltipData: LineTouchTooltipData(
-                                  tooltipBgColor: Colors.black87,
+                                  tooltipBgColor: Colors.black26,
                                   tooltipRoundedRadius: 20.0,
                                   // showOnTopOfTheChartBoxArea: true,
                                   fitInsideHorizontally: true,
@@ -138,7 +98,7 @@ class _TimeChartState extends State<TimeChart> {
                                 verticalInterval: 4),
                             lineBarsData: [
                               LineChartBarData(
-                                spots: day2Checked ? data : [],
+                                spots: data,
                                 isCurved: true,
                                 barWidth: 5,
                                 dotData: FlDotData(show: false),
@@ -154,43 +114,6 @@ class _TimeChartState extends State<TimeChart> {
                                   ),
                                 ),
                                 color: Colors.pink,
-                              ),
-                              LineChartBarData(
-                                spots: day1Checked ? data2 : [],
-                                isCurved: true,
-                                barWidth: 5,
-                                isStrokeCapRound: true,
-                                dotData: FlDotData(show: false),
-                                belowBarData: BarAreaData(
-                                  show: true,
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color.fromARGB(78, 27, 129, 246),
-                                      Color.fromARGB(91, 246, 228, 234)
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                  ),
-                                ),
-                                color: Colors.cyan,
-                              ),
-                              LineChartBarData(
-                                spots: dayChecked ? data3 : [],
-                                isCurved: true,
-                                barWidth: 5,
-                                dotData: FlDotData(show: false),
-                                belowBarData: BarAreaData(
-                                  show: true,
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color.fromARGB(78, 246, 126, 27),
-                                      Color.fromARGB(91, 246, 228, 234)
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                  ),
-                                ),
-                                color: Colors.amber,
                               ),
                             ],
                             titlesData: FlTitlesData(
@@ -222,8 +145,8 @@ class _TimeChartState extends State<TimeChart> {
                               ),
                             ),
                           ),
-                          swapAnimationDuration: const Duration(seconds: 1),
-                          swapAnimationCurve: Curves.bounceIn,
+                          swapAnimationDuration: const Duration(seconds: 2),
+                          swapAnimationCurve: Curves.easeInCirc,
                         ),
                       ),
                     ),
@@ -341,7 +264,7 @@ class _TimeChartState extends State<TimeChart> {
 
     List result = dataConvertedJSON['results'];
 
-    print(result.length); // test
+    // print(result.length); // test
 
     setState(() {
       for (int i = 0; i < result.length; i++) {
@@ -351,5 +274,4 @@ class _TimeChartState extends State<TimeChart> {
 
     return true;
   }
-
 } //end
