@@ -118,7 +118,11 @@ class _Dday2State extends State<Dday2> {
                     (e) {
                       return DropdownMenuItem(
                         value: e,
-                        child: Center(child: Text('$e시',style: const TextStyle(fontSize: 16),)),
+                        child: Center(
+                            child: Text(
+                          '$e시',
+                          style: const TextStyle(fontSize: 16),
+                        )),
                       );
                     },
                   ).toList(),
@@ -206,15 +210,15 @@ class _Dday2State extends State<Dday2> {
               ),
               Center(
                 child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple[100],
-                fixedSize: const Size(200, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  side: const BorderSide(color: Colors.deepPurple),
-                ),
-                ),
-                  onPressed: () async{
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.deepPurple[100],
+                    fixedSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      side: const BorderSide(color: Colors.deepPurple),
+                    ),
+                  ),
+                  onPressed: () async {
                     if (htraffic1text.text.trim().isEmpty ||
                         htraffic2text.text.trim().isEmpty ||
                         hspoptext.text.trim().isEmpty) {
@@ -231,7 +235,12 @@ class _Dday2State extends State<Dday2> {
                           builder: (context) {
                             // 예측값 보내기
                             return ResultPredict(
-                                busers: widget.busers, result: result, hstart: hstart,  htraffic1: htraffic1, htraffic2: htraffic2, hspop: hspop);
+                                busers: widget.busers,
+                                result: result,
+                                hstart: hstart,
+                                htraffic1: htraffic1,
+                                htraffic2: htraffic2,
+                                hspop: hspop);
                           },
                         ),
                       );
@@ -245,8 +254,8 @@ class _Dday2State extends State<Dday2> {
                         "소요시간 보러가기",
                         style: TextStyle(
                           fontSize: 15,
-                           fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
                         ),
                       ),
                     ],
@@ -269,7 +278,7 @@ class _Dday2State extends State<Dday2> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_predict.jsp?hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
+        'http://172.30.1.13:8080/Flutter/beep_predict.jsp?hstart=$hstart&htraffic1=$htraffic1&htraffic2=$htraffic2&hspop=$hspop&buser_buid=$buid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

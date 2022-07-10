@@ -4,17 +4,15 @@ import 'package:beepbeep_app/login/register.dart';
 
 import 'package:flutter/material.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
 
-late Map busers = {"buid":'aaa'};
+// late Map busers = {"buid":'aaa'};
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,15 +21,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: AnimatedSplashScreen(
-        splash: 'images/main_splash.png',
-        splashIconSize: 200,
-        duration: 1000,
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.deepPurple,
+          splash: 'images/main_splash.png',
+          splashIconSize: 200,
+          duration: 1000,
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: Colors.deepPurple,
           nextScreen: const LoginPage()),
       routes: {
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-        '/login' : (context) => const LoginPage()
+        '/login': (context) => const LoginPage()
       },
       debugShowCheckedModeBanner: false,
     );

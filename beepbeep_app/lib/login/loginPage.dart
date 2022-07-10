@@ -182,7 +182,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           '아이디찾기',
@@ -199,7 +203,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchMainPage()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SearchMainPage()));
                         },
                         child: const Text(
                           ' 비밀번호찾기',
@@ -244,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://172.30.1.13:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);

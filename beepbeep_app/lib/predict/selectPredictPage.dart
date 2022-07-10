@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-// d-2, d-1, d-day 선택하는 페이지
+// login 이후 첫화면
 class SelectPredictPage extends StatefulWidget {
   final Map busers;
   const SelectPredictPage({Key? key, required this.busers}) : super(key: key);
@@ -21,8 +21,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("images/logo.png",
-            width: 200),
+            Image.asset("images/logo.png", width: 200),
             // const Text(
             //   "서울에서 대전으로 언제 ?",
             //   textAlign: TextAlign.right,
@@ -52,8 +51,6 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                 ),
               ),
             ),
-            
-            
           ],
         ),
       ),
