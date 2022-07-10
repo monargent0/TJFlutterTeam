@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 // login 이후 첫화면
 class SelectPredictPage extends StatefulWidget {
+  // login 페이지에서 가져온 user정보
   final Map busers;
   const SelectPredictPage({Key? key, required this.busers}) : super(key: key);
 
