@@ -11,11 +11,10 @@ class TotalChart extends StatefulWidget {
 }
 
 class _TotalChartState extends State<TotalChart> {
-
   late List _resultData;
 
   @override
-  void initState(){
+  void initState() {
     _resultData = [];
 
     getJSONData();
@@ -24,16 +23,15 @@ class _TotalChartState extends State<TotalChart> {
   }
 
   var columns = [
-      JsonTableColumn("cstart", label: "출발시간대",),
-      JsonTableColumn("cdriving", label: "소요시간"),
-      JsonTableColumn("choliday", label: "연휴길이"),
-      JsonTableColumn("ctraffic1", label: "1종 교통량"),
-      JsonTableColumn("ctraffic2", label: "2종 교통량"),
-      JsonTableColumn("cspop", label: "서울 인구수"),
-      JsonTableColumn("cweather", label: "강수여부"),
-      JsonTableColumn("cdate", label: "날짜",),
-    ];
-
+    JsonTableColumn("cstart", label: "출발시간대"),
+    JsonTableColumn("cdriving", label: "소요시간"),
+    JsonTableColumn("choliday", label: "연휴길이"),
+    JsonTableColumn("ctraffic1", label: "1종 교통량"),
+    JsonTableColumn("ctraffic2", label: "2종 교통량"),
+    JsonTableColumn("cspop", label: "서울 인구수"),
+    JsonTableColumn("cweather", label: "강수여부"),
+    JsonTableColumn("cdate", label: "날짜"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,13 @@ class _TotalChartState extends State<TotalChart> {
               Center(
                 child: SizedBox(
                   width: 350,
-                  child: _resultData.isNotEmpty ? JsonTable(_resultData, columns: columns, showColumnToggle: true, paginationRowCount:18) : null,),
+                  child: _resultData.isNotEmpty
+                      ? JsonTable(_resultData,
+                          columns: columns,
+                          showColumnToggle: true,
+                          paginationRowCount: 18)
+                      : null,
+                ),
               ),
             ],
           ),
@@ -59,14 +63,13 @@ class _TotalChartState extends State<TotalChart> {
         child: const Icon(Icons.arrow_back),
         onPressed: () {
           Navigator.pop(context);
-        },),
+        },
+      ),
     );
   }
 
-
   Future<bool> getJSONData() async {
-    var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_gettotal.jsp?');
+    var url = Uri.parse('http://localhost:8080/Flutter/beep_gettotal.jsp?');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =
@@ -81,4 +84,3 @@ class _TotalChartState extends State<TotalChart> {
     return true;
   }
 }
-

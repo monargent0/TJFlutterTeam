@@ -49,7 +49,7 @@ class _MyPageState extends State<MyPage> {
     _idController.text = widget.busers['buid'];
     _nameController.text = widget.busers['uname'];
     _emailController.text = widget.busers['uemail'];
-    _pwController.text = widget.busers['upw'];
+    // _pwController.text = widget.busers['upw']; // 비밀번호는 미리 입력해주지 않음
     _pwokController.text;
 
     _emailErrorText = null;
@@ -107,7 +107,7 @@ class _MyPageState extends State<MyPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
-                    borderSide:
+                      borderSide:
                           const BorderSide(width: 2, color: Colors.deepPurple),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -320,7 +320,8 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/login', (route) => false);
                     },
                     child: const Text(
                       '로그아웃',
@@ -546,7 +547,8 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/login', (route) => false);
                 },
                 child: const Text('확인'),
               ),

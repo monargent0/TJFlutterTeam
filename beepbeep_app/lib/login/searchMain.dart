@@ -42,7 +42,11 @@ class _SearchMainPageState extends State<SearchMainPage>
           centerTitle: true,
           bottom: TabBar(
               controller: controller,
-              labelColor: Colors.deepPurple,
+              indicator: const BoxDecoration(
+                color: Colors.deepPurple,
+              ),
+              unselectedLabelColor: Colors.deepPurple,
+              labelColor: Colors.white,
               tabs: const [
                 Tab(
                   text: '아이디 찾기',
@@ -59,11 +63,9 @@ class _SearchMainPageState extends State<SearchMainPage>
             icon: const Icon(Icons.arrow_back_ios),
           ),
         ),
-        body: TabBarView(
-          controller: controller, 
-          children: const [
+        body: TabBarView(controller: controller, children: const [
           SearchIdPage(),
           SearchPwPage(),
-          ]),
+        ]),
       );
 }// END
