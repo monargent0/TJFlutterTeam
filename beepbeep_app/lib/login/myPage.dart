@@ -49,7 +49,7 @@ class _MyPageState extends State<MyPage> {
     _idController.text = widget.busers['buid'];
     _nameController.text = widget.busers['uname'];
     _emailController.text = widget.busers['uemail'];
-    _pwController.text = widget.busers['upw'];
+    // _pwController.text = widget.busers['upw']; // 비밀번호는 미리 입력해주지 않음
     _pwokController.text;
 
     _emailErrorText = null;

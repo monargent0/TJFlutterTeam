@@ -54,14 +54,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           '회원가입',
           style: TextStyle(
               color: Colors.deepPurple,
@@ -84,11 +85,11 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(32.0),
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: AssetImage('images/logo.png'),
                   radius: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -117,7 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.text,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -147,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.text,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -177,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -209,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -241,10 +242,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -252,7 +254,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fixedSize: const Size(140, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
-                          side: BorderSide(color: Colors.deepPurple),
+                          side: const BorderSide(color: Colors.deepPurple),
                         ),
                       ),
                       onPressed: () {
@@ -266,7 +268,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(

@@ -8,7 +8,7 @@ void main() {
   runApp(const MyApp());
 }
 
-late Map busers = {"buid": 'aaa'};
+// late Map busers = {"buid": 'aaa'}; // ????
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: AnimatedSplashScreen(
+          // 스플래쉬
           splash: 'images/main_splash.png',
           splashIconSize: 200,
           duration: 1000,
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           nextScreen: const LoginPage()),
       routes: {
         '/signup': (context) => const RegisterPage(), // 회원 가입 화면
-        '/login': (context) => const LoginPage()
+        '/login': (context) => const LoginPage() // 로그인 화면
       },
       debugShowCheckedModeBanner: false,
     );
