@@ -29,14 +29,12 @@ class ResultPredict extends StatefulWidget {
 }
 
 class _ResultPredictState extends State<ResultPredict> {
-  late List predictList;
+  // late List predictList;
   late String buid;
   late String result;
   late int hid;
   late String hdaytype;
   late String hstart;
-  late String hholiday;
-  late String hweather;
   late String htraffic1;
   late String htraffic2;
   late String hspop;
@@ -44,7 +42,7 @@ class _ResultPredictState extends State<ResultPredict> {
   @override
   void initState() {
     super.initState();
-    predictList = [];
+    // predictList = [];
     buid = widget.busers['buid'];
     result = "${widget.result}분";
     // getJSONData();
@@ -112,7 +110,7 @@ class _ResultPredictState extends State<ResultPredict> {
                         width: 10,
                       ),
                       Text(
-                        // predictList.isNotEmpty ? predictList[0]['hstart'].toString():"0"
+                        // 출발시간 입력값
                         hstart,
                         style: const TextStyle(
                             color: Colors.deepPurple,
@@ -132,7 +130,7 @@ class _ResultPredictState extends State<ResultPredict> {
                         width: 10,
                       ),
                       Text(
-                          //predictList.isNotEmpty ? predictList[0]['htraffic1'].toString():"0"
+                          // 1종 교통량 입력값
                           htraffic1,
                           style: const TextStyle(
                               color: Colors.deepPurple,
@@ -151,7 +149,7 @@ class _ResultPredictState extends State<ResultPredict> {
                         width: 10,
                       ),
                       Text(
-                          // predictList.isNotEmpty ? predictList[0]['htraffic2'].toString():"0"
+                          // 2종 교통량 입력값
                           htraffic2,
                           style: const TextStyle(
                               color: Colors.deepPurple,
@@ -170,7 +168,7 @@ class _ResultPredictState extends State<ResultPredict> {
                         width: 10,
                       ),
                       Text(
-                          //predictList.isNotEmpty ? predictList[0]['hspop'].toString():"0"
+                          // 서울인구수 입력값
                           hspop,
                           style: const TextStyle(
                               color: Colors.deepPurple,

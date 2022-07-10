@@ -34,20 +34,20 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday2');
               },
-              child: const Text(
-                '설날 D-2 대전 GoGo ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                  fontSize: 22,
-                ),
-              ),
               style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[100],
                 fixedSize: const Size(300, 70),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                   side: const BorderSide(color: Colors.deepPurple),
+                ),
+              ),
+              child: const Text(
+                '설날 D-2 대전 GoGo ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                  fontSize: 22,
                 ),
               ),
             ),
