@@ -332,7 +332,6 @@ class _RegisterPageState extends State<RegisterPage> {
         setState(() {
           _idErrorText = null;
         });
-
         //이메일 체크
         if (!emailReg.hasMatch(_emailController.text.trim())) {
           setState(() {
@@ -343,7 +342,6 @@ class _RegisterPageState extends State<RegisterPage> {
             _emailErrorText = null;
           });
         }
-
         //패스워드 체크
         if (!pwReg.hasMatch(_pwController.text.trim())) {
           setState(() {
@@ -353,7 +351,6 @@ class _RegisterPageState extends State<RegisterPage> {
           setState(() {
             _passErrorText = null;
           });
-
           //패스워드 다시 확인
           if (_pwokController.text != _pwController.text) {
             setState(() {

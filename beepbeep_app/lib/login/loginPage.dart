@@ -263,11 +263,10 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> loginAction() async {
     busers = []; // 초기화
     var url = Uri.parse(
-        'http://172.30.27.43:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
+        'http://localhost:8080/Flutter/beep_login.jsp?buid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
-
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     List result = dataConvertedJSON['results'];
 
@@ -279,7 +278,6 @@ class _LoginPageState extends State<LoginPage> {
         taltoeSnackbar(context); // 탈퇴 계정 알림창
       } else {
         busers.addAll(result);
-
         Navigator.pop(context);
         Navigator.push(
           context,
@@ -294,7 +292,6 @@ class _LoginPageState extends State<LoginPage> {
       }
       // print(busers[0]); // 결과 확인용
     });
-
     return true;
   } // Login
 // Login
