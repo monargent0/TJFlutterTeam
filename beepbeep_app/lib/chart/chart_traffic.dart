@@ -27,95 +27,98 @@ class _TrafficChartState extends State<TrafficChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: data.isEmpty ? const Text('그래프를 불러오고 있습니다!') : 
-      Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text('시간대 별 ${widget.num}종 교통량',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  )),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                height: 400,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Expanded(
-                    child: LineChart(
-                      chartRendererKey: Key(kk),
-                      swapAnimationDuration: const Duration(seconds: 1),
-                      swapAnimationCurve: Curves.bounceIn,
-                      LineChartData(
-                        lineTouchData: LineTouchData(
-                            enabled: true,
-                            touchTooltipData: LineTouchTooltipData(
-                              tooltipBgColor: Colors.black87,
-                              tooltipRoundedRadius: 20.0,
-                              fitInsideHorizontally: true,
-                              tooltipMargin: 20,
-                            )),
-                        minY: 0,
-                        minX: -1,
-                        maxX: 24,
-                        maxY: widget.num == "1" ? 30000000 : 1500000,
-                        lineBarsData: [
-                          LineChartBarData(
-                              spots: data,
-                              isCurved: true,
-                              dotData: FlDotData(show: false),
-                              barWidth: 4,
-                              color: widget.num == "1"
-                                  ? Colors.deepOrange
-                                  : Colors.lime)
+      body: data.isEmpty
+          ? const Text('그래프를 불러오고 있습니다!')
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text('시간대 별 ${widget.num}종 교통량',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
                         ],
-                        titlesData: FlTitlesData(
-                          bottomTitles: AxisTitles(
-                            sideTitles: bottomTitles,
-                          ),
-                          rightTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false),
-                          ),
-                          topTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false),
+                      ),
+                      height: 400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Expanded(
+                          child: LineChart(
+                            chartRendererKey: Key(kk),
+                            swapAnimationDuration: const Duration(seconds: 1),
+                            swapAnimationCurve: Curves.bounceIn,
+                            LineChartData(
+                              lineTouchData: LineTouchData(
+                                  enabled: true,
+                                  touchTooltipData: LineTouchTooltipData(
+                                    tooltipBgColor: Colors.black87,
+                                    tooltipRoundedRadius: 20.0,
+                                    fitInsideHorizontally: true,
+                                    tooltipMargin: 20,
+                                  )),
+                              minY: 0,
+                              minX: -1,
+                              maxX: 24,
+                              maxY: widget.num == "1" ? 30000000 : 1500000,
+                              lineBarsData: [
+                                LineChartBarData(
+                                    spots: data,
+                                    isCurved: true,
+                                    dotData: FlDotData(show: false),
+                                    barWidth: 4,
+                                    color: widget.num == "1"
+                                        ? Colors.deepOrange
+                                        : Colors.cyan)
+                              ],
+                              titlesData: FlTitlesData(
+                                bottomTitles: AxisTitles(
+                                  sideTitles: bottomTitles,
+                                ),
+                                rightTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                                topTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Text('출처: KOSIS 국가통계포털'),
+                  const Text('단위: 대/시'),
+                  const Text('기간: 2013 ~ 2020년'),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text('출처: KOSIS 국가통계포털'),
-            const Text('단위: 대/시'),
-            const Text('기간: 2013 ~ 2020년'),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurple ,
+        backgroundColor: Colors.deepPurple,
         child: const Icon(Icons.arrow_back),
         onPressed: () {
           Navigator.pop(context);

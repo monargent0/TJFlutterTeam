@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-// d-2, d-1, d-day 선택하는 페이지
+// d-2 선택하는 페이지
 class SelectPredictPage extends StatefulWidget {
   final Map busers;
   const SelectPredictPage({Key? key, required this.busers}) : super(key: key);
@@ -21,8 +21,7 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("images/logo.png",
-            width: 200),
+            Image.asset("images/logo.png", width: 200),
             // const Text(
             //   "서울에서 대전으로 언제 ?",
             //   textAlign: TextAlign.right,
@@ -35,14 +34,6 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/Dday2');
               },
-              child: const Text(
-                '설날 D-2 대전 GoGo ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                  fontSize: 22,
-                ),
-              ),
               style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[100],
                 fixedSize: const Size(300, 70),
@@ -51,9 +42,13 @@ class _SelectPredictPageState extends State<SelectPredictPage> {
                   side: const BorderSide(color: Colors.deepPurple),
                 ),
               ),
+              child: const Text('설날 D-2 대전 GoGo ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
+                    fontSize: 22,
+                  )),
             ),
-            
-            
           ],
         ),
       ),

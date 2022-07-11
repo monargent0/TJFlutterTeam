@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:beepbeep_app/login/register.dart';
-import 'package:beepbeep_app/main.dart';
-import 'package:beepbeep_app/predict/predictRouter.dart';
-import 'package:beepbeep_app/predict/selectPredictPage.dart';
 import 'package:beepbeep_app/tabPage.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController buid;
-  late TextEditingController bpw;
+  late TextEditingController buid; // 아이디 입력창 컨트롤러
+  late TextEditingController bpw; // 비번 입력창 컨트롤러
   late List busers;
 
   // JSON
@@ -39,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus(); // 화면 터치시 언포커스
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -54,21 +50,21 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 80,
+                    height: 100,
                   ),
                   const CircleAvatar(
                     backgroundImage: AssetImage('images/logo.png'),
                     radius: 50,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Image.asset('images/beeplogo.png'),
-                  SizedBox(
-                    height: 5,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  Text(
-                    '서울-대전 교통 알림 서비스',
+                  const Text(
+                    '서울-대전 교통 예측 서비스',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.deepPurple,
@@ -78,16 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   SizedBox(
+                    // 아이디 입력
                     width: 300,
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: TextField(
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                         controller: buid,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "아이디",
                           hintStyle: TextStyle(color: Colors.deepPurple),
                           enabledBorder: UnderlineInputBorder(
@@ -100,16 +97,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(
+                    // 비밀번호 입력
                     width: 300,
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: TextField(
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                         controller: bpw,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "비밀번호",
                           hintStyle: TextStyle(color: Colors.deepPurple),
                           enabledBorder: UnderlineInputBorder(
@@ -117,15 +115,16 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         keyboardType: TextInputType.text,
-                        obscureText: true,
+                        obscureText: true, // 입력시 암호 모드 ** 로 표시
                         autocorrect: false, // 자동완성 해제
                       ),
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   ElevatedButton(
+                    // 로그인 버튼
                     style: ElevatedButton.styleFrom(
                       primary: Colors.deepPurple,
                       fixedSize: const Size(300, 50),
@@ -156,12 +155,13 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10,
                   ),
                   ElevatedButton(
+                    // 회원가입 버튼
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                       fixedSize: const Size(300, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.deepPurple),
+                        side: const BorderSide(color: Colors.deepPurple),
                       ),
                     ),
                     onPressed: () {
@@ -176,6 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Row(
+                    // 아이디 비밀번호 찾기
                     children: [
                       const SizedBox(
                         width: 100,
@@ -286,7 +287,7 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context) {
               return TabPage(
                 busers: busers[0],
-              ); // Map으로 보내
+              );
             },
           ),
         ); // 로그인 성공 메인 화면으로 이동
