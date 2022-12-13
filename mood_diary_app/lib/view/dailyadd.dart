@@ -353,7 +353,7 @@ class _DailyAddState extends State<DailyAdd> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid');
+        'http://localhost:8080/Flutter/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

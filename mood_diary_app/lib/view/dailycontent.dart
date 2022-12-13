@@ -419,7 +419,7 @@ class _DailyContentState extends State<DailyContent> {
 // 수정 JSON
   Future<String> updateAction() async {
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/daily_update.jsp?dcontent=$content&eid=$eid&did=$did');
+        'http://localhost:8080/Flutter/daily_update.jsp?dcontent=$content&eid=$eid&did=$did');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
@@ -518,7 +518,7 @@ class _DailyContentState extends State<DailyContent> {
 // 삭제 JSON
   Future<String> deleteAction() async {
     var url =
-        Uri.parse('http://192.168.5.83:8080/Flutter/daily_delete.jsp?did=$did');
+        Uri.parse('http://localhost:8080/Flutter/daily_delete.jsp?did=$did');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
