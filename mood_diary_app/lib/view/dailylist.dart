@@ -152,7 +152,7 @@ class _DailyListState extends State<DailyList> {
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Text(
-                                                  '${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
+                                                  '${diaryList[index]['ddate'].substring(5, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
                                                   style: const TextStyle(
                                                       fontSize: 12,
                                                       color: Colors.brown),

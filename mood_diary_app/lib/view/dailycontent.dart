@@ -401,7 +401,7 @@ class _DailyContentState extends State<DailyContent> {
                   ),
                   TextButton(
                     onPressed: () {
-                      print('$content , $eid , $did');
+                      // print('$content , $eid , $did'); // 내용 확인
                       Navigator.of(ctx).pop();
                       updateAction();
                     },
